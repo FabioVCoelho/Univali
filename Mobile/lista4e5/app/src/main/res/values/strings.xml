@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">lista4e5</string>
+    <string name="matricula_do_funcion_rio">Matricula do funcionário</string>
+    <string name="nome">Nome</string>
+    <string name="lota_o_departamento">Lotação (Departamento)</string>
+    <string name="fun_o_cargo">Função (Cargo)</string>
+    <string name="horariodas9">Horario das 9</string>
+    <string name="hor_rio_das_10">Horário das 10</string>
+    <string name="hor_rio_das_11">Horário das 11</string>
+    <string name="hor_rio_das_13">Horário das 13</string>
+    <string name="hor_rio_das_14">Horário das 14</string>
+    <string name="hor_rio_das_15">Horário das 15</string>
+    <string name="hor_rio_das_16">Horário das 16</string>
+    <string name="hor_rio_das_17">Horário das 17</string>
+    <string name="title_activity_lista5">Lista5</string>
+</resources>
