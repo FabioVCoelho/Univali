@@ -1,0 +1,27 @@
+PARSER_BEGIN(SyntaxChecker)
+
+public class SyntaxChecker {
+}
+
+PARSER_END(SyntaxChecker)
+
+SKIP: { " "| "\t"| "\n"| "\r"| <"//" (~["\n","\r"])* ("\n"|"\r")> }
+TOKEN: {
+        | <ARITMETICA: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
+        | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
+        | <LOGICA: ("&" | "|" | "!")>
+        | <INTEGER: <DIGITO>+>
+        | <REAL: <DIGITO>+.<DIGITO>+>
+        | <STRING: LETRA+>
+        | <LETRA: ["A"-"Z","a"-"z"]>
+        | <DIGITO: ["0"-"9"]>
+        | <BOOLEAN: ("true" | "false")>
+        | <TIPO: ("integer"|"real"|"string"|"boolean")>
+        | <VALOR: (<INTEGER>|<REAL>|<STRING>)>
+        | <EXPRESSAO: (<ARITMETICA> | <RELACIONAL> | <LOGICA>)
+        | <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
+        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose")
+        }
+
+
+// | <EXPRESSAO: ( "(<OPERADORESARITMETICOS>)" | "(<OPERADORESRELACIONAIS>)" | "(<OPERADORESLOGICOS>)" )"
