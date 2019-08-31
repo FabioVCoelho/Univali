@@ -1,0 +1,369 @@
+{ "databaseChangeLog": [
+  {
+    "changeSet": {
+      "id": "1561182319769-1",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createTable": {
+            "columns": [
+              {
+                "column": {
+                  "constraints": {
+                    "primaryKey": true,
+                    "primaryKeyName": "address_pkey"
+                  },
+                  "name": "id",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "name": "street",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "name": "num",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "name": "extra",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "name": "zip_code",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "name": "state",
+                  "type": "VARCHAR(60)"
+                }
+              },
+              {
+                "column": {
+                  "name": "city",
+                  "type": "VARCHAR(60)"
+                }
+              },
+              {
+                "column": {
+                  "name": "country",
+                  "type": "VARCHAR(50)"
+                }
+              }]
+            ,
+            "tableName": "address"
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-2",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createTable": {
+            "columns": [
+              {
+                "column": {
+                  "autoIncrement": true,
+                  "constraints": {
+                    "primaryKey": true,
+                    "primaryKeyName": "item_pkey"
+                  },
+                  "name": "id",
+                  "type": "SERIAL"
+                }
+              },
+              {
+                "column": {
+                  "constraints": {
+                    "nullable": false
+                  },
+                  "name": "quantity",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "name": "product_id",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "name": "order_id",
+                  "type": "INTEGER"
+                }
+              }]
+            ,
+            "tableName": "item"
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-3",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createTable": {
+            "columns": [
+              {
+                "column": {
+                  "autoIncrement": true,
+                  "constraints": {
+                    "primaryKey": true,
+                    "primaryKeyName": "order_pkey"
+                  },
+                  "name": "id",
+                  "type": "SERIAL"
+                }
+              },
+              {
+                "column": {
+                  "constraints": {
+                    "nullable": false
+                  },
+                  "name": "create_date",
+                  "type": "date"
+                }
+              },
+              {
+                "column": {
+                  "name": "total",
+                  "type": "FLOAT8"
+                }
+              },
+              {
+                "column": {
+                  "name": "user_id",
+                  "type": "INTEGER"
+                }
+              }]
+            ,
+            "tableName": "order"
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-4",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createTable": {
+            "columns": [
+              {
+                "column": {
+                  "constraints": {
+                    "primaryKey": true,
+                    "primaryKeyName": "product_pkey"
+                  },
+                  "name": "sku",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "name": "name",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "name": "price",
+                  "type": "FLOAT8"
+                }
+              }]
+            ,
+            "tableName": "product"
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-5",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createTable": {
+            "columns": [
+              {
+                "column": {
+                  "constraints": {
+                    "primaryKey": true,
+                    "primaryKeyName": "user_pkey"
+                  },
+                  "name": "id",
+                  "type": "INTEGER"
+                }
+              },
+              {
+                "column": {
+                  "constraints": {
+                    "nullable": false
+                  },
+                  "name": "username",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "constraints": {
+                    "nullable": false
+                  },
+                  "name": "password",
+                  "type": "VARCHAR"
+                }
+              },
+              {
+                "column": {
+                  "name": "address_id",
+                  "type": "INTEGER"
+                }
+              }]
+            ,
+            "tableName": "user"
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-6",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "createIndex": {
+            "columns": [
+              {
+                "column": {
+                  "name": "username"
+                }
+              }]
+            ,
+            "indexName": "user_username_key",
+            "tableName": "user",
+            "unique": true
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-7",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "addForeignKeyConstraint": {
+            "baseColumnNames": "order_id",
+            "baseTableName": "item",
+            "constraintName": "item_order_id_fkey",
+            "deferrable": false,
+            "initiallyDeferred": false,
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "referencedColumnNames": "id",
+            "referencedTableName": "order",
+            "validate": true
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-8",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "addForeignKeyConstraint": {
+            "baseColumnNames": "product_id",
+            "baseTableName": "item",
+            "constraintName": "item_product_id_fkey",
+            "deferrable": false,
+            "initiallyDeferred": false,
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "referencedColumnNames": "sku",
+            "referencedTableName": "product",
+            "validate": true
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-9",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "addForeignKeyConstraint": {
+            "baseColumnNames": "user_id",
+            "baseTableName": "order",
+            "constraintName": "order_user_id_fkey",
+            "deferrable": false,
+            "initiallyDeferred": false,
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "referencedColumnNames": "id",
+            "referencedTableName": "user",
+            "validate": true
+          }
+        }]
+      
+    }
+  },
+  
+  {
+    "changeSet": {
+      "id": "1561182319769-10",
+      "author": "mateussouza (generated)",
+      "changes": [
+        {
+          "addForeignKeyConstraint": {
+            "baseColumnNames": "address_id",
+            "baseTableName": "user",
+            "constraintName": "user_address_id_fkey",
+            "deferrable": false,
+            "initiallyDeferred": false,
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "referencedColumnNames": "id",
+            "referencedTableName": "address",
+            "validate": true
+          }
+        }]
+      
+    }
+  }
+  
+]}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:focusable="false">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="46dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="@string/minus" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="35dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:onClick="onClickPlus"
+        android:text="@string/plus" />
+
+</LinearLayout>

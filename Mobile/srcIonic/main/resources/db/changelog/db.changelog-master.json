@@ -1,0 +1,8 @@
+{
+   "databaseChangeLog":[
+        {"include": {
+            "file": "liquibase-outputChangeLog.json"
+            }
+        }
+   ]
+}
