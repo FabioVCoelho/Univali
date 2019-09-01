@@ -1,27 +1,137 @@
-PARSER_BEGIN(SyntaxChecker)
+PARSER_BEGIN(linguagem2019)
+package parser;
+import java.io.*;
+public class linguagem2019 {
+final static String Version = "linguagem2019 Compiler - Version 1.0 - 2019";
+boolean Menosshort = false;
 
-public class SyntaxChecker {
+    public static void main(String args[]) throws ParseException {
+        String filename = "";
+        linguagem2019 parser;
+        int i;
+        boolean ms = false;
+        System.out.println(Version);
+        filename = args[args.length-1];
+        try {
+            parser = new linguagem2019(new java.io.FileInputStream(filename));
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("File not found");
+            return;
+        }
+        parser.MenosShort = ms;
+        parser.program();
+
+        if (parser.token_source.foundLexError() != 0 )
+            System.out.println(parser.token_source.foundLexError() + " Erro léxico encontrando");
+        else
+            System.out.println("Programa analisado com sucesso");
+    }
+
+    static public String im(int x) {
+        int k;
+        String s;
+        s = tokenImage[x];
+        k = s.lastIndexOf("\"");
+        try {
+            s = s.substring(1,k);
+        } catch (StringIndexOutOfBoundsException e) {
+
+        }
+        return s;
+    }
+}
+PARSER_END(linguagem2019)
+
+TOKEN_MGR_DECLS:
+{
+ int countLexError = 0;
+
+ public int foundLexError() {
+    return countLexError;
+ }
 }
 
-PARSER_END(SyntaxChecker)
+SKIP:
+{
+    "//" : comentarioemlinha
+    | " " | "\t" | "\n" | "\r" | "\f"
+}
+<comentarioemlinha> SKIP :
+{
+      <["\n","\r"]> : DEFAULT
+    | <~[]>
+}
 
-SKIP: { " "| "\t"| "\n"| "\r"| <"//" (~["\n","\r"])* ("\n"|"\r")> }
 TOKEN: {
+        | <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
+        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose")
         | <ARITMETICA: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
         | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
         | <LOGICA: ("&" | "|" | "!")>
         | <INTEGER: <DIGITO>+>
         | <REAL: <DIGITO>+.<DIGITO>+>
-        | <STRING: LETRA+>
+        | <STRING: "\""(~["\"","\n","\r"])*"\"">
         | <LETRA: ["A"-"Z","a"-"z"]>
         | <DIGITO: ["0"-"9"]>
         | <BOOLEAN: ("true" | "false")>
         | <TIPO: ("integer"|"real"|"string"|"boolean")>
         | <VALOR: (<INTEGER>|<REAL>|<STRING>)>
-        | <EXPRESSAO: (<ARITMETICA> | <RELACIONAL> | <LOGICA>)
-        | <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
-        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose")
         }
 
+TOKEN: {
+        <SIMBOLOSESPECIAIS: ("("|")"|"{"|"}"|"["|"]"|";"|","|".") >
+}
 
-// | <EXPRESSAO: ( "(<OPERADORESARITMETICOS>)" | "(<OPERADORESRELACIONAIS>)" | "(<OPERADORESLOGICOS>)" )"
+/* Trata os erros léxicos */
+SPECIAL_TOKEN:
+{
+<INVALID_LEXICAL: (~
+["a"-"z",
+"A"-"Z",
+"0"-"9",
+"\"",
+"(",
+ ")",
+ "{",
+ "}",
+ "[",
+ "]",
+ ";",
+ ",",
+ ".",
+ "=",
+ ">",
+ "<",
+ "!",
+ "+",
+ "-",
+ "*",
+ "/",
+ "%",
+ "**",
+ "%%",
+ ">>=",
+ "<<=",
+ "==",
+ "!=",
+ ">>",
+ "<<",
+ "&",
+ "|",
+ " ",
+ "\t",
+ "\n",
+ "\r",
+ "\f"
+ ])+>
+    {
+        System.err.println("Linha " + input_stream.getEndLine() + " - valor inválido encontrado: " + image);
+        countLexError+;
+    }
+|
+<INVALID_CONST: "\"" ( ~["\n","\r","\""])* ["\n","\r"]>
+    {
+        System.err.println("Linha " + input_stream.getEndLine() + " - constante possui \\n: " + image);
+        countLexError+;
+    }
+}
