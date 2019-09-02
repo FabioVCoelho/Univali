@@ -1,0 +1,21 @@
+this "Meu teste123" program
+@@@
+
+// Single line comment
+"hduishauidhsa"
+
+121.132
+/*
+094738284328&*&@*@(*@!#(@!*_)@
+dsadsadsad
+dsiagduosa
+guidhs3780t2r0br79r8y43yf890ew y f894y 398fy93
+*/
+
+true
+false
+
+2823 * 0932
+// 123
+**
+32

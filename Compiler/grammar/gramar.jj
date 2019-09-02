@@ -1,9 +1,16 @@
+ options {
+   STATIC=false;
+   DEBUG_PARSER=true;
+   IGNORE_CASE=true;
+ }
+
 PARSER_BEGIN(linguagem2019)
 package parser;
 import java.io.*;
+
 public class linguagem2019 {
 final static String Version = "linguagem2019 Compiler - Version 1.0 - 2019";
-boolean Menosshort = false;
+boolean MenosShort = false;
 
     public static void main(String args[]) throws ParseException {
         String filename = "";
@@ -19,7 +26,7 @@ boolean Menosshort = false;
             return;
         }
         parser.MenosShort = ms;
-        parser.program();
+        //parser.program();
 
         if (parser.token_source.foundLexError() != 0 )
             System.out.println(parser.token_source.foundLexError() + " Erro léxico encontrando");
@@ -44,7 +51,7 @@ PARSER_END(linguagem2019)
 
 TOKEN_MGR_DECLS:
 {
- int countLexError = 0;
+ public int countLexError = 0;
 
  public int foundLexError() {
     return countLexError;
@@ -54,28 +61,36 @@ TOKEN_MGR_DECLS:
 SKIP:
 {
     "//" : comentarioemlinha
-    | " " | "\t" | "\n" | "\r" | "\f"
+    | " " | "\t" | "\n" | "\r" | "\f" |
+    "/*" : multilinecomment
 }
+
 <comentarioemlinha> SKIP :
 {
       <["\n","\r"]> : DEFAULT
     | <~[]>
 }
 
+<multilinecomment> SKIP :
+{
+      <"*/"> : DEFAULT
+    | <~[]>
+}
+
+
 TOKEN: {
-        | <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
-        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose")
+          <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
+        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose") >
         | <ARITMETICA: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
         | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
         | <LOGICA: ("&" | "|" | "!")>
-        | <INTEGER: <DIGITO>+>
-        | <REAL: <DIGITO>+.<DIGITO>+>
+        | <INTEGER: (<DIGITO>)+ >
+        | <REAL: (<DIGITO>)+"."(<DIGITO>)+>
         | <STRING: "\""(~["\"","\n","\r"])*"\"">
-        | <LETRA: ["A"-"Z","a"-"z"]>
-        | <DIGITO: ["0"-"9"]>
         | <BOOLEAN: ("true" | "false")>
         | <TIPO: ("integer"|"real"|"string"|"boolean")>
-        | <VALOR: (<INTEGER>|<REAL>|<STRING>)>
+        | <LETRA: ["A"-"Z","a"-"z"]>
+        | <DIGITO: ["0"-"9"]>
         }
 
 TOKEN: {
@@ -108,14 +123,6 @@ SPECIAL_TOKEN:
  "*",
  "/",
  "%",
- "**",
- "%%",
- ">>=",
- "<<=",
- "==",
- "!=",
- ">>",
- "<<",
  "&",
  "|",
  " ",
@@ -126,12 +133,21 @@ SPECIAL_TOKEN:
  ])+>
     {
         System.err.println("Linha " + input_stream.getEndLine() + " - valor inválido encontrado: " + image);
-        countLexError+;
+        countLexError++;
     }
 |
 <INVALID_CONST: "\"" ( ~["\n","\r","\""])* ["\n","\r"]>
     {
         System.err.println("Linha " + input_stream.getEndLine() + " - constante possui \\n: " + image);
-        countLexError+;
+        countLexError++;
     }
+}
+
+void Start () : {}
+{
+  (
+    <PALAVRARESERVADA> | <ARITMETICA> | <RELACIONAL> |
+    <LOGICA> | <INTEGER> | <REAL> | <STRING> | <BOOLEAN> | <TIPO> | <SIMBOLOSESPECIAIS>
+  )*
+  <EOF>
 }
