@@ -5,8 +5,6 @@ import parser.TokenMgrError;
 import parser.linguagem2019;
 
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
 import javax.swing.text.BadLocationException;
@@ -16,7 +14,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-class editor extends JFrame implements ActionListener {
+// TODO: Criar um método para realizar a ação de sobreescrever e tudo mais.
+// TODO: Atualizar o salvar.
+// TODO: Criar os botãozinho.
+// TODO: Melhorar JTextArea para resize.
+// TODO: Melhorar mensagem de token.
+// TODO: Melhorar mensagem de erro e analisar o de comentário.
+
+class Compilador extends JFrame implements ActionListener {
+    private String filePath = "";
     private JLabel footnoteLabelText;
     private JTextArea t2;
     // Text component
@@ -27,7 +33,7 @@ class editor extends JFrame implements ActionListener {
     private JLabel footnoteLabelFile;
 
     // Constructor 
-    private editor() {
+    private Compilador() {
         // Create a frame 
         f = new JFrame("Compilador");
 
@@ -43,14 +49,11 @@ class editor extends JFrame implements ActionListener {
 
         // Text component 
         t = new JTextArea();
-        t.addCaretListener(new CaretListener() {
-            @Override
-            public void caretUpdate(CaretEvent evt) {
-                JTextArea textPane1 = (JTextArea) evt.getSource();
-                int row = getRow(evt.getDot(), textPane1); //row += 1;
-                int col = getColumn(evt.getDot(), textPane1);
-                footnoteLabelText.setText("Line: " + row + " Column: " + col);
-            }
+        t.addCaretListener(evt -> {
+            JTextArea textPane1 = (JTextArea) evt.getSource();
+            int row = getRow(evt.getDot(), textPane1); //row += 1;
+            int col = getColumn(evt.getDot(), textPane1);
+            footnoteLabelText.setText("Line: " + row + " Column: " + col);
         });
         t.setLineWrap(true);
         t.setPreferredSize(new Dimension(400, 400));
@@ -141,7 +144,7 @@ class editor extends JFrame implements ActionListener {
 
     // Main class
     public static void main(String[] args) {
-        editor e = new editor();
+        new Compilador();
     }
 
     private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
@@ -154,99 +157,117 @@ class editor extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
 
-        if (s.equals("Cut")) {
-            t.cut();
-        } else if (s.equals("Copy")) {
-            t.copy();
-        } else if (s.equals("Paste")) {
-            t.paste();
-        } else if (s.equals("Save")) {
-            // Create an object of JFileChooser class
-            JFileChooser j = new JFileChooser("f:");
+        switch (s) {
+            case "Cut":
+                t.cut();
+                break;
+            case "Copy":
+                t.copy();
+                break;
+            case "Paste":
+                t.paste();
+                break;
+            case "Save": {
+                if (filePath.equals("")) {
+                    // Create an object of JFileChooser class
+                    JFileChooser j = new JFileChooser("f:");
 
-            // Invoke the showsSaveDialog function to show the save dialog
-            int r = j.showSaveDialog(null);
+                    // Invoke the showsSaveDialog function to show the save dialog
+                    int r = j.showSaveDialog(null);
 
-            if (r == JFileChooser.APPROVE_OPTION) {
+                    if (r == JFileChooser.APPROVE_OPTION) {
 
-                // Set the label to the path of the selected directory
-                File fi = new File(j.getSelectedFile().getAbsolutePath());
+                        // Set the label to the path of the selected directory
+                        File fi = new File(j.getSelectedFile().getAbsolutePath());
+                        filePath = j.getSelectedFile().getAbsolutePath();
 
-                try {
-                    // Create a file writer
-                    FileWriter wr = new FileWriter(fi, false);
+                        try {
+                            // Create a file writer
+                            FileWriter wr = new FileWriter(fi, false);
 
-                    // Create buffered writer to write
-                    BufferedWriter w = new BufferedWriter(wr);
+                            // Create buffered writer to write
+                            BufferedWriter w = new BufferedWriter(wr);
 
-                    // Write
-                    w.write(t.getText());
+                            // Write
+                            w.write(t.getText());
 
-                    w.flush();
-                    w.close();
-                } catch (Exception evt) {
-                    JOptionPane.showMessageDialog(f, evt.getMessage());
-                }
-            }
-            // If the user cancelled the operation
-            else
-                JOptionPane.showMessageDialog(f, "the user cancelled the operation");
-        } else if (s.equals("Print")) {
-            try {
-                // print the file
-                t.print();
-            } catch (Exception evt) {
-                JOptionPane.showMessageDialog(f, evt.getMessage());
-            }
-        } else if (s.equals("Open")) {
-            // Create an object of JFileChooser class
-            JFileChooser j = new JFileChooser("f:");
-
-            // Invoke the showsOpenDialog function to show the save dialog
-            int r = j.showOpenDialog(null);
-
-            // If the user selects a file
-            if (r == JFileChooser.APPROVE_OPTION) {
-                // Set the label to the path of the selected directory
-                File fi = new File(j.getSelectedFile().getAbsolutePath());
-                footnoteLabelFile.setText(fi.getName());
-                try {
-                    // String
-                    String s1 = "", sl = "";
-
-                    // File reader
-                    FileReader fr = new FileReader(fi);
-
-                    // Buffered reader
-                    BufferedReader br = new BufferedReader(fr);
-
-                    // Initilize sl
-                    sl = br.readLine();
-
-                    // Take the input from the file
-                    while ((s1 = br.readLine()) != null) {
-                        sl = sl + "\n" + s1;
+                            w.flush();
+                            w.close();
+                        } catch (Exception evt) {
+                            JOptionPane.showMessageDialog(f, evt.getMessage());
+                        }
                     }
-
-                    // Set the text
-                    t.setText(sl);
+                    // If the user cancelled the operation
+                    else
+                        JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                    break;
+                }
+            }
+            case "Print":
+                try {
+                    // print the file
+                    t.print();
                 } catch (Exception evt) {
                     JOptionPane.showMessageDialog(f, evt.getMessage());
                 }
+                break;
+            case "Open": {
+                // Create an object of JFileChooser class
+                JFileChooser j = new JFileChooser("f:");
+
+                // Invoke the showsOpenDialog function to show the save dialog
+                int r = j.showOpenDialog(null);
+
+                // If the user selects a file
+                if (r == JFileChooser.APPROVE_OPTION) {
+                    // Set the label to the path of the selected directory
+                    File fi = new File(j.getSelectedFile().getAbsolutePath());
+                    filePath = j.getSelectedFile().getAbsolutePath();
+                    footnoteLabelFile.setText(fi.getName());
+                    try {
+                        // String
+                        String s1;
+                        StringBuilder sl;
+
+                        // File reader
+                        FileReader fr = new FileReader(fi);
+
+                        // Buffered reader
+                        BufferedReader br = new BufferedReader(fr);
+
+                        // Initilize sl
+                        sl = new StringBuilder(br.readLine());
+
+                        // Take the input from the file
+                        while ((s1 = br.readLine()) != null) {
+                            sl.append("\n").append(s1);
+                        }
+
+                        // Set the text
+                        t.setText(sl.toString());
+                    } catch (Exception evt) {
+                        JOptionPane.showMessageDialog(f, evt.getMessage());
+                    }
+                }
+                // If the user cancelled the operation
+                else
+                    JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                break;
             }
-            // If the user cancelled the operation
-            else
-                JOptionPane.showMessageDialog(f, "the user cancelled the operation");
-        } else if (s.equals("New")) {
-            t.setText("");
-        } else if (s.equals("close")) {
-            f.setVisible(false);
-        } else if (s.equals("Compile")) {
-            if (!t.getText().isEmpty()) {
-                linguagem2019 compiler = new linguagem2019(new StringBufferInputStream(t.getText()));
-                ByteArrayOutputStream baos = getSystemPrint(compiler);
-                t2.setText(baos.toString());
-            }
+            case "New":
+                t.setText("");
+                footnoteLabelFile.setText("");
+                break;
+            case "close":
+                f.setVisible(false);
+                break;
+            case "Compile":
+                if (!t.getText().isEmpty()) {
+                    linguagem2019 compiler = new linguagem2019(new StringBufferInputStream(t.getText()));
+                    ByteArrayOutputStream baos = getSystemPrint(compiler);
+                    t2.setText(baos.toString());
+                }
+                break;
         }
     }
 
