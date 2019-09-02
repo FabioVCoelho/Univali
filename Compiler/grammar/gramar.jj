@@ -75,7 +75,8 @@ SKIP:
 
 TOKEN: {
           <RESERVEDWORD: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
-        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose") >
+        |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose"|"untrue") >
+        | <IDENTIFIER: (<LETTER>|"_")(<LETTER>|<DIGIT>|"_")*>
         | <ARITHMETIC: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
         | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
         | <LOGIC: ("&" | "|" | "!")>
@@ -85,6 +86,7 @@ TOKEN: {
         | <BOOLEAN: ("true" | "false")>
         | <TYPE: ("integer"|"real"|"string"|"boolean")>
         | <DIGIT: ["0"-"9"]>
+        | <LETTER: ["a"-"z","A"-"Z"]>
         }
 
 TOKEN: {
@@ -140,7 +142,7 @@ SPECIAL_TOKEN:
 void Start () : {}
 {
   (
-    <RESERVEDWORD> | <ARITHMETIC> | <RELACIONAL> |
+    <RESERVEDWORD> | <ARITHMETIC> | <RELACIONAL> | <IDENTIFIER> |
     <LOGIC> | <INTEGER> | <REAL> | <STRING> | <BOOLEAN> | <TYPE> | <SPECIALSYMBOL>
   )*
   <EOF>

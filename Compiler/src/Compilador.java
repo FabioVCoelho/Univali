@@ -56,14 +56,14 @@ class Compilador extends JFrame implements ActionListener {
             footnoteLabelText.setText("Line: " + row + " Column: " + col);
         });
         t.setLineWrap(true);
-        t.setPreferredSize(new Dimension(400, 400));
-        t.setMinimumSize(new Dimension(400, 400));
-        t.setBounds(0, 0, 400, 400);
+        t.setPreferredSize(new Dimension(1200, 1200));
+        t.setMinimumSize(new Dimension(1200, 1200));
+        t.setBounds(0, 0, 1200, 1200);
         t2 = new JTextArea();
         t2.setLineWrap(true);
-        t2.setPreferredSize(new Dimension(400, 400));
-        t2.setMinimumSize(new Dimension(400, 400));
-        t2.setBounds(0, 0, 400, 400);
+        t2.setPreferredSize(new Dimension(1200, 1200));
+        t2.setMinimumSize(new Dimension(1200, 1200));
+        t2.setBounds(0, 0, 1200, 1200);
         t2.setEditable(false);
 
         // Footnote
@@ -156,7 +156,6 @@ class Compilador extends JFrame implements ActionListener {
     // If a button is pressed
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-
         switch (s) {
             case "Cut":
                 t.cut();

@@ -5,6 +5,19 @@ public class linguagem2019 implements linguagem2019Constants {
     final static String Version = "linguagem2019 Compiler - Version 1.0 - 2019";
     static private int[] jj_la1_0;
 
+    static public String im(int x) {
+        int k;
+        String s;
+        s = tokenImage[x];
+        k = s.lastIndexOf("\u005c"");
+        try {
+            s = s.substring(1, k);
+        } catch (StringIndexOutOfBoundsException e) {
+
+        }
+        return s;
+    }
+
     static {
         jj_la1_init_0();
     }
@@ -89,27 +102,14 @@ public class linguagem2019 implements linguagem2019Constants {
             System.out.println("File not found");
             return;
         }
-        if (parser.token_source.foundLexError() != 0 )
-            System.out.println(parser.token_source.foundLexError() + " Erro l\u00e9xico encontrando");
+        if (parser.token_source.foundLexError() != 0)
+            System.out.println(parser.token_source.foundLexError() + " Lexical error found");
         else
-            System.out.println("Programa analisado com sucesso");
-    }
-
-    static public String im(int x) {
-        int k;
-        String s;
-        s = tokenImage[x];
-        k = s.lastIndexOf("\u005c"");
-        try {
-            s = s.substring(1,k);
-        } catch (StringIndexOutOfBoundsException e) {
-
-        }
-        return s;
+            System.out.println("Lexical analysis finished successfully");
     }
 
     private static void jj_la1_init_0() {
-        jj_la1_0 = new int[]{0x5ff000, 0x5ff000,};
+        jj_la1_0 = new int[]{0x13ff000, 0x13ff000,};
     }
 
     final public void Start() throws ParseException {
@@ -118,34 +118,37 @@ public class linguagem2019 implements linguagem2019Constants {
             label_1:
             while (true) {
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
-                    case PALAVRARESERVADA:
-                    case ARITMETICA:
+                    case RESERVEDWORD:
+                    case IDENTIFIER:
+                    case ARITHMETIC:
                     case RELACIONAL:
-                    case LOGICA:
+                    case LOGIC:
                     case INTEGER:
                     case REAL:
                     case STRING:
                     case BOOLEAN:
-                    case TIPO:
-                    case SIMBOLOSESPECIAIS:
-                        ;
+                    case TYPE:
+                    case SPECIALSYMBOL:
                         break;
                     default:
                         jj_la1[0] = jj_gen;
                         break label_1;
                 }
                 switch ((jj_ntk == -1) ? jj_ntk() : jj_ntk) {
-                    case PALAVRARESERVADA:
-                        jj_consume_token(PALAVRARESERVADA);
+                    case RESERVEDWORD:
+                        jj_consume_token(RESERVEDWORD);
                         break;
-                    case ARITMETICA:
-                        jj_consume_token(ARITMETICA);
+                    case ARITHMETIC:
+                        jj_consume_token(ARITHMETIC);
                         break;
                     case RELACIONAL:
                         jj_consume_token(RELACIONAL);
                         break;
-                    case LOGICA:
-                        jj_consume_token(LOGICA);
+                    case IDENTIFIER:
+                        jj_consume_token(IDENTIFIER);
+                        break;
+                    case LOGIC:
+                        jj_consume_token(LOGIC);
                         break;
                     case INTEGER:
                         jj_consume_token(INTEGER);
@@ -159,11 +162,11 @@ public class linguagem2019 implements linguagem2019Constants {
                     case BOOLEAN:
                         jj_consume_token(BOOLEAN);
                         break;
-                    case TIPO:
-                        jj_consume_token(TIPO);
+                    case TYPE:
+                        jj_consume_token(TYPE);
                         break;
-                    case SIMBOLOSESPECIAIS:
-                        jj_consume_token(SIMBOLOSESPECIAIS);
+                    case SPECIALSYMBOL:
+                        jj_consume_token(SPECIALSYMBOL);
                         break;
                     default:
                         jj_la1[1] = jj_gen;
@@ -274,7 +277,7 @@ public class linguagem2019 implements linguagem2019Constants {
      */
     public ParseException generateParseException() {
         jj_expentries.clear();
-        boolean[] la1tokens = new boolean[25];
+        boolean[] la1tokens = new boolean[27];
         if (jj_kind >= 0) {
             la1tokens[jj_kind] = true;
             jj_kind = -1;
@@ -288,7 +291,7 @@ public class linguagem2019 implements linguagem2019Constants {
                 }
             }
         }
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 27; i++) {
             if (la1tokens[i]) {
                 jj_expentry = new int[1];
                 jj_expentry[0] = i;

@@ -15,55 +15,63 @@ public interface linguagem2019Constants {
     /**
      * RegularExpression Id.
      */
-    int PALAVRARESERVADA = 12;
+    int RESERVEDWORD = 12;
     /**
      * RegularExpression Id.
      */
-    int ARITMETICA = 13;
+    int IDENTIFIER = 13;
     /**
      * RegularExpression Id.
      */
-    int RELACIONAL = 14;
+    int ARITHMETIC = 14;
     /**
      * RegularExpression Id.
      */
-    int LOGICA = 15;
+    int RELACIONAL = 15;
     /**
      * RegularExpression Id.
      */
-    int INTEGER = 16;
+    int LOGIC = 16;
     /**
      * RegularExpression Id.
      */
-    int REAL = 17;
+    int INTEGER = 17;
     /**
      * RegularExpression Id.
      */
-    int STRING = 18;
+    int REAL = 18;
     /**
      * RegularExpression Id.
      */
-    int BOOLEAN = 19;
+    int STRING = 19;
     /**
      * RegularExpression Id.
      */
-    int TIPO = 20;
+    int BOOLEAN = 20;
     /**
      * RegularExpression Id.
      */
-    int DIGITO = 21;
+    int TYPE = 21;
     /**
      * RegularExpression Id.
      */
-    int SIMBOLOSESPECIAIS = 22;
+    int DIGIT = 22;
     /**
      * RegularExpression Id.
      */
-    int INVALID_LEXICAL = 23;
+    int LETTER = 23;
     /**
      * RegularExpression Id.
      */
-    int INVALID_CONST = 24;
+    int SPECIALSYMBOL = 24;
+    /**
+     * RegularExpression Id.
+     */
+    int INVALID_LEXICAL = 25;
+    /**
+     * RegularExpression Id.
+     */
+    int INVALID_CONST = 26;
 
     /**
      * Lexical state.
@@ -72,7 +80,7 @@ public interface linguagem2019Constants {
     /**
      * Lexical state.
      */
-    int comentarioemlinha = 1;
+    int singlelinecomment = 1;
     /**
      * Lexical state.
      */
@@ -94,17 +102,19 @@ public interface linguagem2019Constants {
             "<token of kind 9>",
             "\"*/\"",
             "<token of kind 11>",
-            "<PALAVRARESERVADA>",
-            "<ARITMETICA>",
+            "<RESERVEDWORD>",
+            "<IDENTIFIER>",
+            "<ARITHMETIC>",
             "<RELACIONAL>",
-            "<LOGICA>",
+            "<LOGIC>",
             "<INTEGER>",
             "<REAL>",
             "<STRING>",
             "<BOOLEAN>",
-            "<TIPO>",
-            "<DIGITO>",
-            "<SIMBOLOSESPECIAIS>",
+            "<TYPE>",
+            "<DIGIT>",
+            "<LETTER>",
+            "<SPECIALSYMBOL>",
             "<INVALID_LEXICAL>",
             "<INVALID_CONST>",
     };
