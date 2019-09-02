@@ -261,11 +261,7 @@ class editor extends JFrame implements ActionListener {
         // Print some output: goes to your special stream
         try {
             compiler.Start();
-        } catch (ParseException e) {
-            System.out.println("ExampleParser: There was an error during the parse.");
-            System.out.println(e.getMessage());
-        } catch (TokenMgrError e) {
-            System.out.println("ExampleParser: There was an error.");
+        } catch (ParseException | TokenMgrError e) {
             System.out.println(e.getMessage());
         }
         // Put things back

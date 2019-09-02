@@ -24,9 +24,9 @@ final static String Version = "linguagem2019 Compiler - Version 1.0 - 2019";
             return;
         }
         if (parser.token_source.foundLexError() != 0 )
-            System.out.println(parser.token_source.foundLexError() + " Erro léxico encontrando");
+            System.out.println(parser.token_source.foundLexError() + " Lexical error found");
         else
-            System.out.println("Programa analisado com sucesso");
+            System.out.println("Lexical analysis finished successfully");
     }
 
     static public String im(int x) {
@@ -55,12 +55,12 @@ TOKEN_MGR_DECLS:
 
 SKIP:
 {
-    "//" : comentarioemlinha
+    "//" : singlelinecomment
     | " " | "\t" | "\n" | "\r" | "\f" |
     "/*" : multilinecomment
 }
 
-<comentarioemlinha> SKIP :
+<singlelinecomment> SKIP :
 {
       <["\n","\r"]> : DEFAULT
     | <~[]>
@@ -74,21 +74,21 @@ SKIP:
 
 
 TOKEN: {
-          <PALAVRARESERVADA: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
+          <RESERVEDWORD: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
         |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose") >
-        | <ARITMETICA: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
+        | <ARITHMETIC: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
         | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
-        | <LOGICA: ("&" | "|" | "!")>
-        | <INTEGER: (<DIGITO>)+ >
-        | <REAL: (<DIGITO>)+"."(<DIGITO>)+>
+        | <LOGIC: ("&" | "|" | "!")>
+        | <INTEGER: (<DIGIT>)+ >
+        | <REAL: (<DIGIT>)+"."(<DIGIT>)+>
         | <STRING: "\""(~["\"","\n","\r"])*"\"">
         | <BOOLEAN: ("true" | "false")>
-        | <TIPO: ("integer"|"real"|"string"|"boolean")>
-        | <DIGITO: ["0"-"9"]>
+        | <TYPE: ("integer"|"real"|"string"|"boolean")>
+        | <DIGIT: ["0"-"9"]>
         }
 
 TOKEN: {
-        <SIMBOLOSESPECIAIS: ("("|")"|"{"|"}"|"["|"]"|";"|","|".") >
+        <SPECIALSYMBOL: ("("|")"|"{"|"}"|"["|"]"|";"|","|".") >
 }
 
 /* Trata os erros léxicos */
@@ -126,7 +126,7 @@ SPECIAL_TOKEN:
  "\f"
  ])+>
     {
-        System.out.println("Line " + input_stream.getEndLine() + " Column " + input_stream.getBeginColumn()  +" - invalid value found: " + image);
+        System.out.println("Line " + input_stream.getEndLine() + " Column " + input_stream.getBeginColumn()  +" - invalid token found: " + image);
         countLexError++;
     }
 |
@@ -140,8 +140,8 @@ SPECIAL_TOKEN:
 void Start () : {}
 {
   (
-    <PALAVRARESERVADA> | <ARITMETICA> | <RELACIONAL> |
-    <LOGICA> | <INTEGER> | <REAL> | <STRING> | <BOOLEAN> | <TIPO> | <SIMBOLOSESPECIAIS>
+    <RESERVEDWORD> | <ARITHMETIC> | <RELACIONAL> |
+    <LOGIC> | <INTEGER> | <REAL> | <STRING> | <BOOLEAN> | <TYPE> | <SPECIALSYMBOL>
   )*
   <EOF>
 }
