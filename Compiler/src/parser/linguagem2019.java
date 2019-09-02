@@ -22,7 +22,6 @@ public class linguagem2019 implements linguagem2019Constants {
      * Next token.
      */
     public Token jj_nt;
-    boolean MenosShort = false;
     SimpleCharStream jj_input_stream;
     private int jj_ntk;
     private int jj_gen;
@@ -78,23 +77,19 @@ public class linguagem2019 implements linguagem2019Constants {
         for (int i = 0; i < 2; i++) jj_la1[i] = -1;
     }
 
-    public static void main(String args[]) throws ParseException {
+    public static void main(String[] args) throws ParseException {
         String filename = "";
         linguagem2019 parser;
         int i;
-        boolean ms = false;
         System.out.println(Version);
-        filename = args[args.length - 1];
+        filename = args[args.length-1];
         try {
             parser = new linguagem2019(new java.io.FileInputStream(filename));
         } catch (java.io.FileNotFoundException e) {
             System.out.println("File not found");
             return;
         }
-        parser.MenosShort = ms;
-        //parser.program();
-
-        if (parser.token_source.foundLexError() != 0)
+        if (parser.token_source.foundLexError() != 0 )
             System.out.println(parser.token_source.foundLexError() + " Erro l\u00e9xico encontrando");
         else
             System.out.println("Programa analisado com sucesso");
@@ -106,7 +101,7 @@ public class linguagem2019 implements linguagem2019Constants {
         s = tokenImage[x];
         k = s.lastIndexOf("\u005c"");
         try {
-            s = s.substring(1, k);
+            s = s.substring(1,k);
         } catch (StringIndexOutOfBoundsException e) {
 
         }
@@ -114,7 +109,7 @@ public class linguagem2019 implements linguagem2019Constants {
     }
 
     private static void jj_la1_init_0() {
-        jj_la1_0 = new int[]{0x9ff000, 0x9ff000,};
+        jj_la1_0 = new int[]{0x5ff000, 0x5ff000,};
     }
 
     final public void Start() throws ParseException {
@@ -279,7 +274,7 @@ public class linguagem2019 implements linguagem2019Constants {
      */
     public ParseException generateParseException() {
         jj_expentries.clear();
-        boolean[] la1tokens = new boolean[26];
+        boolean[] la1tokens = new boolean[25];
         if (jj_kind >= 0) {
             la1tokens[jj_kind] = true;
             jj_kind = -1;
@@ -293,7 +288,7 @@ public class linguagem2019 implements linguagem2019Constants {
                 }
             }
         }
-        for (int i = 0; i < 26; i++) {
+        for (int i = 0; i < 25; i++) {
             if (la1tokens[i]) {
                 jj_expentry = new int[1];
                 jj_expentry[0] = i;
@@ -364,7 +359,7 @@ public class linguagem2019 implements linguagem2019Constants {
                 System.out.print(": \"" + t1.image + "\"");
             }
             System.out.println(" at line " + t1.beginLine + " column " + t1.beginColumn + ">; Expected token: <" + tokenImage[t2] + ">");
-        }
     }
+  }
 
 }

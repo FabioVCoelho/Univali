@@ -51,23 +51,19 @@ public interface linguagem2019Constants {
     /**
      * RegularExpression Id.
      */
-    int LETRA = 21;
+    int DIGITO = 21;
     /**
      * RegularExpression Id.
      */
-    int DIGITO = 22;
+    int SIMBOLOSESPECIAIS = 22;
     /**
      * RegularExpression Id.
      */
-    int SIMBOLOSESPECIAIS = 23;
+    int INVALID_LEXICAL = 23;
     /**
      * RegularExpression Id.
      */
-    int INVALID_LEXICAL = 24;
-    /**
-     * RegularExpression Id.
-     */
-    int INVALID_CONST = 25;
+    int INVALID_CONST = 24;
 
     /**
      * Lexical state.
@@ -107,7 +103,6 @@ public interface linguagem2019Constants {
             "<STRING>",
             "<BOOLEAN>",
             "<TIPO>",
-            "<LETRA>",
             "<DIGITO>",
             "<SIMBOLOSESPECIAIS>",
             "<INVALID_LEXICAL>",

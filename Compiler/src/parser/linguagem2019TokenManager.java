@@ -5,50 +5,41 @@ package parser;
  * Token Manager.
  */
 public class linguagem2019TokenManager implements linguagem2019Constants {
-    /**
-     * Token literal values.
-     */
+    /** Token literal values. */
     public static final String[] jjstrLiteralImages = {
             "", null, null, null, null, null, null, null, null, null, null, null, null,
-            null, null, null, null, null, null, null, null, null, null, null, null, null,};
-    /**
-     * Lexer state names.
-     */
+            null, null, null, null, null, null, null, null, null, null, null, null,};
+    /** Lexer state names. */
     public static final String[] lexStateNames = {
             "DEFAULT",
             "comentarioemlinha",
             "multilinecomment",
     };
-    /**
-     * Lex State array.
-     */
+    /** Lex State array. */
     public static final int[] jjnewLexState = {
             -1, 1, -1, -1, -1, -1, -1, 2, 0, -1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
-            -1,
     };
     static final long[] jjbitVec0 = {
             0x0L, 0x0L, 0xffffffffffffffffL, 0xffffffffffffffffL
     };
     static final int[] jjnextStates = {
-            123, 124, 125, 128, 129, 130, 131, 58, 59, 55, 56, 116, 121, 109, 112, 102,
-            104, 93, 98, 99, 76, 82, 87, 64, 68, 74, 128, 129, 130, 131,
+            122, 123, 124, 127, 128, 129, 130, 57, 58, 54, 55, 115, 120, 108, 111, 101,
+            103, 92, 97, 98, 75, 81, 86, 63, 67, 73, 127, 128, 129, 130,
     };
     static final long[] jjtoToken = {
-            0xfff001L,
+            0x7ff001L,
     };
     static final long[] jjtoSkip = {
-            0x3000ffeL,
+            0x1800ffeL,
     };
     static final long[] jjtoSpecial = {
-            0x3000000L,
+            0x1800000L,
     };
-    private final int[] jjrounds = new int[132];
-    private final int[] jjstateSet = new int[264];
+    private final int[] jjrounds = new int[131];
+    private final int[] jjstateSet = new int[262];
     private final StringBuilder jjimage = new StringBuilder();
     public int countLexError = 0;
-    /**
-     * Debug output.
-     */
+    /** Debug output. */
     public java.io.PrintStream debugStream = System.out;
     protected SimpleCharStream input_stream;
     protected char curChar;
@@ -62,18 +53,14 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
     private int jjimageLen;
     private int lengthOfMatch;
 
-    /**
-     * Constructor.
-     */
+    /** Constructor. */
     public linguagem2019TokenManager(SimpleCharStream stream) {
         if (SimpleCharStream.staticFlag)
             throw new Error("ERROR: Cannot use a static CharStream class with a non-static lexical analyzer.");
         input_stream = stream;
     }
 
-    /**
-     * Constructor.
-     */
+    /** Constructor. */
     public linguagem2019TokenManager(SimpleCharStream stream, int lexState) {
         this(stream);
         SwitchTo(lexState);
@@ -83,9 +70,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
         return countLexError;
     }
 
-    /**
-     * Set debug output.
-     */
+    /** Set debug output. */
     public void setDebugStream(java.io.PrintStream ds) {
         debugStream = ds;
     }
@@ -146,7 +131,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
 
     private int jjMoveNfa_0(int startState, int curPos) {
         int startsAt = 0;
-        jjnewStateCnt = 132;
+        jjnewStateCnt = 131;
         int i = 1;
         jjstateSet[0] = startState;
         int kind = 0x7fffffff;
@@ -159,16 +144,16 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                     switch (jjstateSet[--i]) {
                         case 2:
                             if ((0x84000098ffffc9ffL & l) != 0L) {
-                                if (kind > 24)
-                                    kind = 24;
-                                jjCheckNAdd(53);
+                                if (kind > 23)
+                                    kind = 23;
+                                jjCheckNAdd(52);
                             } else if ((0x3ff000000000000L & l) != 0L) {
                                 if (kind > 16)
                                     kind = 16;
                                 jjCheckNAddStates(0, 2);
                             } else if ((0x800530000000000L & l) != 0L) {
-                                if (kind > 23)
-                                    kind = 23;
+                                if (kind > 22)
+                                    kind = 22;
                             } else if ((0xac2000000000L & l) != 0L) {
                                 if (kind > 13)
                                     kind = 13;
@@ -226,89 +211,89 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                             if ((0x4200000000L & l) != 0L && kind > 15)
                                 kind = 15;
                             break;
-                        case 52:
-                            if ((0x800530000000000L & l) != 0L && kind > 23)
-                                kind = 23;
+                        case 51:
+                            if ((0x800530000000000L & l) != 0L && kind > 22)
+                                kind = 22;
                             break;
-                        case 53:
+                        case 52:
                             if ((0x84000098ffffc9ffL & l) == 0L)
                                 break;
-                            if (kind > 24)
-                                kind = 24;
-                            jjCheckNAdd(53);
+                            if (kind > 23)
+                                kind = 23;
+                            jjCheckNAdd(52);
                             break;
-                        case 54:
+                        case 53:
                             if (curChar == 60)
                                 jjAddStates(9, 10);
                             break;
-                        case 55:
+                        case 54:
                             if (curChar == 60 && kind > 14)
                                 kind = 14;
                             break;
-                        case 56:
+                        case 55:
                             if (curChar == 60)
                                 jjCheckNAdd(28);
                             break;
-                        case 57:
+                        case 56:
                             if (curChar == 62)
                                 jjAddStates(7, 8);
                             break;
-                        case 58:
+                        case 57:
                             if (curChar == 62 && kind > 14)
                                 kind = 14;
                             break;
-                        case 59:
+                        case 58:
                             if (curChar == 62)
                                 jjCheckNAdd(28);
                             break;
-                        case 122:
+                        case 121:
                             if ((0x3ff000000000000L & l) == 0L)
                                 break;
                             if (kind > 16)
                                 kind = 16;
                             jjCheckNAddStates(0, 2);
                             break;
-                        case 123:
+                        case 122:
                             if ((0x3ff000000000000L & l) == 0L)
                                 break;
                             if (kind > 16)
                                 kind = 16;
-                            jjCheckNAdd(123);
+                            jjCheckNAdd(122);
+                            break;
+                        case 123:
+                            if ((0x3ff000000000000L & l) != 0L)
+                                jjCheckNAddTwoStates(123, 124);
                             break;
                         case 124:
-                            if ((0x3ff000000000000L & l) != 0L)
-                                jjCheckNAddTwoStates(124, 125);
+                            if (curChar == 46)
+                                jjCheckNAdd(125);
                             break;
                         case 125:
-                            if (curChar == 46)
-                                jjCheckNAdd(126);
-                            break;
-                        case 126:
                             if ((0x3ff000000000000L & l) == 0L)
                                 break;
                             if (kind > 17)
                                 kind = 17;
-                            jjCheckNAdd(126);
+                            jjCheckNAdd(125);
                             break;
-                        case 127:
+                        case 126:
                             if (curChar == 34)
                                 jjCheckNAddStates(3, 6);
                             break;
-                        case 128:
+                        case 127:
                             if ((0xfffffffbffffdbffL & l) != 0L)
-                                jjCheckNAddTwoStates(128, 129);
+                                jjCheckNAddTwoStates(127, 128);
                             break;
-                        case 129:
+                        case 128:
                             if (curChar == 34 && kind > 18)
                                 kind = 18;
                             break;
-                        case 130:
+                        case 129:
                             if ((0xfffffffbffffdbffL & l) != 0L)
-                                jjCheckNAddTwoStates(130, 131);
+                                jjCheckNAddTwoStates(129, 130);
                             break;
-                        case 131:
+                        case 130:
                             if ((0x2400L & l) != 0L)
-                                kind = 25;
+                                kind = 24;
                             break;
                         default:
                             break;
@@ -319,21 +304,14 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                 do {
                     switch (jjstateSet[--i]) {
                         case 2:
-                            if ((0x7fffffe07fffffeL & l) != 0L) {
-                                if (kind > 21)
-                                    kind = 21;
-                            } else if ((0xc0000001d0000001L & l) != 0L) {
-                                if (kind > 24)
-                                    kind = 24;
-                                jjCheckNAdd(53);
-                            } else if ((0x2800000028000000L & l) != 0L) {
+                            if ((0xc0000001d0000001L & l) != 0L) {
                                 if (kind > 23)
                                     kind = 23;
-                            } else if (curChar == 124) {
-                                if (kind > 15)
-                                    kind = 15;
-                            }
-                            if ((0x8000000080000L & l) != 0L)
+                                jjCheckNAdd(52);
+                            } else if ((0x2800000028000000L & l) != 0L) {
+                                if (kind > 22)
+                                    kind = 22;
+                            } else if ((0x8000000080000L & l) != 0L)
                                 jjAddStates(11, 12);
                             else if ((0x4000000040000L & l) != 0L)
                                 jjAddStates(13, 14);
@@ -359,13 +337,17 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                                 jjstateSet[jjnewStateCnt++] = 8;
                             else if ((0x800000008000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 1;
+                            else if (curChar == 124) {
+                                if (kind > 15)
+                                    kind = 15;
+                            }
                             break;
                         case 0:
                             if ((0x10000000100000L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
                         case 1:
-                        case 76:
+                        case 75:
                             if ((0x20000000200000L & l) != 0L)
                                 jjCheckNAdd(0);
                             break;
@@ -374,7 +356,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                                 kind = 12;
                             break;
                         case 4:
-                        case 89:
+                        case 88:
                             if ((0x4000000040000L & l) != 0L)
                                 jjCheckNAdd(3);
                             break;
@@ -531,158 +513,158 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                                 jjstateSet[jjnewStateCnt++] = 49;
                             break;
                         case 51:
-                            if ((0x7fffffe07fffffeL & l) != 0L && kind > 21)
-                                kind = 21;
+                            if ((0x2800000028000000L & l) != 0L && kind > 22)
+                                kind = 22;
                             break;
                         case 52:
-                            if ((0x2800000028000000L & l) != 0L && kind > 23)
-                                kind = 23;
-                            break;
-                        case 53:
                             if ((0xc0000001d0000001L & l) == 0L)
                                 break;
-                            if (kind > 24)
-                                kind = 24;
-                            jjCheckNAdd(53);
+                            if (kind > 23)
+                                kind = 23;
+                            jjCheckNAdd(52);
                             break;
-                        case 60:
+                        case 59:
                             if ((0x800000008L & l) != 0L)
                                 jjAddStates(23, 25);
                             break;
-                        case 61:
+                        case 60:
                             if ((0x200000002000000L & l) != 0L && kind > 12)
                                 kind = 12;
+                            break;
+                        case 61:
+                            if ((0x4000000040000L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 60;
                             break;
                         case 62:
                             if ((0x4000000040000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 61;
                             break;
                         case 63:
-                            if ((0x4000000040000L & l) != 0L)
+                            if ((0x200000002L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 62;
                             break;
                         case 64:
-                            if ((0x200000002L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 63;
-                            break;
-                        case 65:
                             if ((0x80000000800L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
-                        case 66:
+                        case 65:
                             if ((0x800000008L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 64;
+                            break;
+                        case 66:
+                            if ((0x2000000020L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 65;
                             break;
                         case 67:
-                            if ((0x2000000020L & l) != 0L)
+                            if ((0x10000000100L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 66;
                             break;
                         case 68:
-                            if ((0x10000000100L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 67;
-                            break;
-                        case 69:
                             if ((0x400000004000L & l) != 0L)
                                 jjCheckNAdd(0);
                             break;
-                        case 70:
+                        case 69:
                             if ((0x200000002L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 68;
+                            break;
+                        case 70:
+                            if ((0x10000000100000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 69;
                             break;
                         case 71:
-                            if ((0x10000000100000L & l) != 0L)
+                            if ((0x8000000080000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 70;
                             break;
                         case 72:
-                            if ((0x8000000080000L & l) != 0L)
+                            if ((0x400000004000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 71;
                             break;
                         case 73:
-                            if ((0x400000004000L & l) != 0L)
+                            if ((0x800000008000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 72;
                             break;
                         case 74:
-                            if ((0x800000008000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 73;
-                            break;
-                        case 75:
                             if ((0x1000000010000L & l) != 0L)
                                 jjAddStates(20, 22);
                             break;
-                        case 77:
+                        case 76:
                             if ((0x200000002000L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
-                        case 78:
+                        case 77:
                             if ((0x200000002L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 76;
+                            break;
+                        case 78:
+                            if ((0x4000000040000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 77;
                             break;
                         case 79:
-                            if ((0x4000000040000L & l) != 0L)
+                            if ((0x8000000080L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 78;
                             break;
                         case 80:
-                            if ((0x8000000080L & l) != 0L)
+                            if ((0x800000008000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 79;
                             break;
                         case 81:
-                            if ((0x800000008000L & l) != 0L)
+                            if ((0x4000000040000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 80;
                             break;
                         case 82:
-                            if ((0x4000000040000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 81;
-                            break;
-                        case 83:
                             if ((0x8000000080000L & l) != 0L)
                                 jjCheckNAdd(3);
                             break;
-                        case 84:
+                        case 83:
                             if ((0x800000008000L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 82;
+                            break;
+                        case 84:
+                            if ((0x1000000010000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 83;
                             break;
                         case 85:
-                            if ((0x1000000010000L & l) != 0L)
+                            if ((0x4000000040000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 84;
                             break;
                         case 86:
-                            if ((0x4000000040000L & l) != 0L)
+                            if ((0x20000000200000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 85;
                             break;
                         case 87:
-                            if ((0x20000000200000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 86;
-                            break;
-                        case 88:
                             if ((0x200000002L & l) != 0L)
                                 jjCheckNAddStates(17, 19);
                             break;
-                        case 90:
+                        case 89:
                             if ((0x20000000200L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 88;
+                            break;
+                        case 90:
+                            if ((0x20000000200000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 89;
                             break;
                         case 91:
-                            if ((0x20000000200000L & l) != 0L)
+                            if ((0x2000000020000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 90;
                             break;
                         case 92:
-                            if ((0x2000000020000L & l) != 0L)
+                            if ((0x800000008L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 91;
                             break;
                         case 93:
-                            if ((0x800000008L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 92;
-                            break;
-                        case 94:
                             if ((0x400000004000L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
-                        case 95:
+                        case 94:
                             if ((0x8000000080L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 93;
+                            break;
+                        case 95:
+                            if ((0x20000000200L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 94;
                             break;
                         case 96:
-                            if ((0x20000000200L & l) != 0L)
+                            if ((0x8000000080000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 95;
                             break;
                         case 97:
@@ -690,105 +672,101 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                                 jjstateSet[jjnewStateCnt++] = 96;
                             break;
                         case 98:
-                            if ((0x8000000080000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 97;
-                            break;
-                        case 99:
                             if ((0x8000000080000L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
-                        case 100:
+                        case 99:
                             if ((0x10000000100000L & l) != 0L)
                                 jjAddStates(15, 16);
                             break;
-                        case 101:
+                        case 100:
                             if ((0x20000000200L & l) != 0L)
-                                jjCheckNAdd(99);
+                                jjCheckNAdd(98);
+                            break;
+                        case 101:
+                            if ((0x10000000100L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 100;
                             break;
                         case 102:
-                            if ((0x10000000100L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 101;
-                            break;
-                        case 103:
                             if ((0x20000000200000L & l) != 0L)
                                 jjCheckNAdd(32);
                             break;
-                        case 104:
+                        case 103:
                             if ((0x4000000040000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 103;
+                                jjstateSet[jjnewStateCnt++] = 102;
                             break;
-                        case 105:
+                        case 104:
                             if ((0x4000000040000L & l) != 0L)
                                 jjAddStates(13, 14);
                             break;
-                        case 106:
+                        case 105:
                             if ((0x100000001000L & l) != 0L)
                                 jjCheckNAdd(0);
                             break;
-                        case 107:
+                        case 106:
                             if ((0x20000000200000L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 105;
+                            break;
+                        case 107:
+                            if ((0x8000000080000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 106;
                             break;
                         case 108:
-                            if ((0x8000000080000L & l) != 0L)
+                            if ((0x2000000020L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 107;
                             break;
                         case 109:
-                            if ((0x2000000020L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 108;
-                            break;
-                        case 110:
                             if ((0x100000001000L & l) != 0L && kind > 20)
                                 kind = 20;
                             break;
-                        case 111:
+                        case 110:
                             if ((0x200000002L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 109;
+                            break;
+                        case 111:
+                            if ((0x2000000020L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 110;
                             break;
                         case 112:
-                            if ((0x2000000020L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 111;
-                            break;
-                        case 113:
                             if ((0x8000000080000L & l) != 0L)
                                 jjAddStates(11, 12);
                             break;
-                        case 114:
+                        case 113:
                             if ((0x80000000800000L & l) != 0L && kind > 12)
                                 kind = 12;
                             break;
-                        case 115:
+                        case 114:
                             if ((0x800000008000L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 113;
+                            break;
+                        case 115:
+                            if ((0x10000000100L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 114;
                             break;
                         case 116:
-                            if ((0x10000000100L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 115;
-                            break;
-                        case 117:
                             if ((0x8000000080L & l) != 0L && kind > 20)
                                 kind = 20;
                             break;
-                        case 118:
+                        case 117:
                             if ((0x400000004000L & l) != 0L)
+                                jjstateSet[jjnewStateCnt++] = 116;
+                            break;
+                        case 118:
+                            if ((0x20000000200L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 117;
                             break;
                         case 119:
-                            if ((0x20000000200L & l) != 0L)
+                            if ((0x4000000040000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 118;
                             break;
                         case 120:
-                            if ((0x4000000040000L & l) != 0L)
+                            if ((0x10000000100000L & l) != 0L)
                                 jjstateSet[jjnewStateCnt++] = 119;
                             break;
-                        case 121:
-                            if ((0x10000000100000L & l) != 0L)
-                                jjstateSet[jjnewStateCnt++] = 120;
-                            break;
-                        case 128:
+                        case 127:
                             jjAddStates(26, 27);
                             break;
-                        case 130:
+                        case 129:
                             jjAddStates(28, 29);
                             break;
                         default:
@@ -801,18 +779,18 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                 do {
                     switch (jjstateSet[--i]) {
                         case 2:
-                        case 53:
+                        case 52:
                             if ((jjbitVec0[i2] & l2) == 0L)
                                 break;
-                            if (kind > 24)
-                                kind = 24;
-                            jjCheckNAdd(53);
+                            if (kind > 23)
+                                kind = 23;
+                            jjCheckNAdd(52);
                             break;
-                        case 128:
+                        case 127:
                             if ((jjbitVec0[i2] & l2) != 0L)
                                 jjAddStates(26, 27);
                             break;
-                        case 130:
+                        case 129:
                             if ((jjbitVec0[i2] & l2) != 0L)
                                 jjAddStates(28, 29);
                             break;
@@ -827,7 +805,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
                 kind = 0x7fffffff;
             }
             ++curPos;
-            if ((i = jjnewStateCnt) == (startsAt = 132 - (jjnewStateCnt = startsAt)))
+            if ((i = jjnewStateCnt) == (startsAt = 131 - (jjnewStateCnt = startsAt)))
                 return curPos;
             try {
                 curChar = input_stream.readChar();
@@ -922,9 +900,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
         return 2;
     }
 
-    /**
-     * Reinitialise parser.
-     */
+    /** Reinitialise parser. */
     public void ReInit(SimpleCharStream stream) {
         jjmatchedPos = jjnewStateCnt = 0;
         curLexState = defaultLexState;
@@ -935,21 +911,17 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
     private void ReInitRounds() {
         int i;
         jjround = 0x80000001;
-        for (i = 132; i-- > 0; )
+        for (i = 131; i-- > 0; )
             jjrounds[i] = 0x80000000;
     }
 
-    /**
-     * Reinitialise parser.
-     */
+    /** Reinitialise parser. */
     public void ReInit(SimpleCharStream stream, int lexState) {
         ReInit(stream);
         SwitchTo(lexState);
     }
 
-    /**
-     * Switch to specified lex state.
-     */
+    /** Switch to specified lex state. */
     public void SwitchTo(int lexState) {
         if (lexState >= 3 || lexState < 0)
             throw new TokenMgrError("Error: Ignoring invalid lexical state : " + lexState + ". State unchanged.", TokenMgrError.INVALID_LEXICAL_STATE);
@@ -980,9 +952,7 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
         return t;
     }
 
-    /**
-     * Get the next Token.
-     */
+    /** Get the next Token. */
     public Token getNextToken() {
         Token specialToken = null;
         Token matchedToken;
@@ -1084,14 +1054,14 @@ public class linguagem2019TokenManager implements linguagem2019Constants {
 
     void SkipLexicalActions(Token matchedToken) {
         switch (jjmatchedKind) {
-            case 24:
+            case 23:
                 image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                System.err.println("Linha " + input_stream.getEndLine() + " - valor inv\u00e1lido encontrado: " + image);
+                System.out.println("Line " + input_stream.getEndLine() + " Column " + input_stream.getBeginColumn() + " - invalid value found: " + image);
                 countLexError++;
                 break;
-            case 25:
+            case 24:
                 image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                System.err.println("Linha " + input_stream.getEndLine() + " - constante possui \u005c\u005cn: " + image);
+                System.out.println("Line " + input_stream.getEndLine() + " - constant already has \u005c\u005cn: " + image);
                 countLexError++;
                 break;
             default:

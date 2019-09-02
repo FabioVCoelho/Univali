@@ -10,13 +10,11 @@ import java.io.*;
 
 public class linguagem2019 {
 final static String Version = "linguagem2019 Compiler - Version 1.0 - 2019";
-boolean MenosShort = false;
 
-    public static void main(String args[]) throws ParseException {
+    public static void main(String[] args) throws ParseException {
         String filename = "";
         linguagem2019 parser;
         int i;
-        boolean ms = false;
         System.out.println(Version);
         filename = args[args.length-1];
         try {
@@ -25,9 +23,6 @@ boolean MenosShort = false;
             System.out.println("File not found");
             return;
         }
-        parser.MenosShort = ms;
-        //parser.program();
-
         if (parser.token_source.foundLexError() != 0 )
             System.out.println(parser.token_source.foundLexError() + " Erro léxico encontrando");
         else
@@ -73,7 +68,7 @@ SKIP:
 
 <multilinecomment> SKIP :
 {
-      <"*/"> : DEFAULT
+      "*/" : DEFAULT
     | <~[]>
 }
 
@@ -89,7 +84,6 @@ TOKEN: {
         | <STRING: "\""(~["\"","\n","\r"])*"\"">
         | <BOOLEAN: ("true" | "false")>
         | <TIPO: ("integer"|"real"|"string"|"boolean")>
-        | <LETRA: ["A"-"Z","a"-"z"]>
         | <DIGITO: ["0"-"9"]>
         }
 
@@ -132,13 +126,13 @@ SPECIAL_TOKEN:
  "\f"
  ])+>
     {
-        System.err.println("Linha " + input_stream.getEndLine() + " - valor inválido encontrado: " + image);
+        System.out.println("Line " + input_stream.getEndLine() + " Column " + input_stream.getBeginColumn()  +" - invalid value found: " + image);
         countLexError++;
     }
 |
 <INVALID_CONST: "\"" ( ~["\n","\r","\""])* ["\n","\r"]>
     {
-        System.err.println("Linha " + input_stream.getEndLine() + " - constante possui \\n: " + image);
+        System.out.println("Line " + input_stream.getEndLine() + " - constant already has \\n: " + image);
         countLexError++;
     }
 }

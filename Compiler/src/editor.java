@@ -1,23 +1,35 @@
 // Java Program to create a text editor using java 
 
+import parser.ParseException;
+import parser.TokenMgrError;
+import parser.linguagem2019;
+
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.OceanTheme;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Utilities;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
 class editor extends JFrame implements ActionListener {
-    // Text component 
+    private JLabel footnoteLabelText;
+    private JTextArea t2;
+    // Text component
     private JTextArea t;
 
     // Frame 
     private JFrame f;
+    private JLabel footnoteLabelFile;
 
     // Constructor 
     private editor() {
         // Create a frame 
-        f = new JFrame("editor");
+        f = new JFrame("Compilador");
 
         try {
             // Set metl look and feel 
@@ -31,6 +43,29 @@ class editor extends JFrame implements ActionListener {
 
         // Text component 
         t = new JTextArea();
+        t.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent evt) {
+                JTextArea textPane1 = (JTextArea) evt.getSource();
+                int row = getRow(evt.getDot(), textPane1); //row += 1;
+                int col = getColumn(evt.getDot(), textPane1);
+                footnoteLabelText.setText("Line: " + row + " Column: " + col);
+            }
+        });
+        t.setLineWrap(true);
+        t.setPreferredSize(new Dimension(400, 400));
+        t.setMinimumSize(new Dimension(400, 400));
+        t.setBounds(0, 0, 400, 400);
+        t2 = new JTextArea();
+        t2.setLineWrap(true);
+        t2.setPreferredSize(new Dimension(400, 400));
+        t2.setMinimumSize(new Dimension(400, 400));
+        t2.setBounds(0, 0, 400, 400);
+        t2.setEditable(false);
+
+        // Footnote
+        footnoteLabelFile = new JLabel();
+        footnoteLabelText = new JLabel();
 
         // Create a menubar 
         JMenuBar mb = new JMenuBar();
@@ -59,9 +94,9 @@ class editor extends JFrame implements ActionListener {
         JMenu m2 = new JMenu("Edit");
 
         // Create menu items 
-        JMenuItem mi4 = new JMenuItem("cut");
-        JMenuItem mi5 = new JMenuItem("copy");
-        JMenuItem mi6 = new JMenuItem("paste");
+        JMenuItem mi4 = new JMenuItem("Cut");
+        JMenuItem mi5 = new JMenuItem("Copy");
+        JMenuItem mi6 = new JMenuItem("Paste");
 
         // Add action listener 
         mi4.addActionListener(this);
@@ -72,34 +107,58 @@ class editor extends JFrame implements ActionListener {
         m2.add(mi5);
         m2.add(mi6);
 
-        JMenuItem mc = new JMenuItem("close");
+        JMenu m3 = new JMenu("Compiler");
 
-        mc.addActionListener(this);
+        JMenuItem mi7 = new JMenuItem("Compile");
+        JMenuItem mi8 = new JMenuItem("Execute");
+        mi7.addActionListener(this);
+
+        m3.add(mi7);
+        m3.add(mi8);
 
         mb.add(m1);
         mb.add(m2);
-        mb.add(mc);
+        mb.add(m3);
 
         f.setJMenuBar(mb);
-        f.add(t);
-        f.setSize(500, 500);
+        JPanel jp = new JPanel(new GridLayout(0, 2, 2, 2));
+        JPanel jp1 = new JPanel();
+        jp1.add(t);
+        JPanel jp2 = new JPanel();
+        jp2.add(t2);
+        jp.add(new JScrollPane(jp1));
+        jp.add(new JScrollPane(jp2));
+        f.add(createMenuButton(), BorderLayout.NORTH);
+        JPanel footnote = new JPanel(new GridLayout(0, 3, 2, 2));
+        footnote.add(footnoteLabelFile);
+        footnote.add(footnoteLabelText);
+        f.add(footnote, BorderLayout.SOUTH);
+        f.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        f.add(jp);
+        f.setSize(800, 600);
         f.show();
     }
 
     // Main class
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         editor e = new editor();
+    }
+
+    private static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
+        Image img = icon.getImage();
+        Image resizedImage = img.getScaledInstance(resizedWidth, resizedHeight, java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
     }
 
     // If a button is pressed
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
 
-        if (s.equals("cut")) {
+        if (s.equals("Cut")) {
             t.cut();
-        } else if (s.equals("copy")) {
+        } else if (s.equals("Copy")) {
             t.copy();
-        } else if (s.equals("paste")) {
+        } else if (s.equals("Paste")) {
             t.paste();
         } else if (s.equals("Save")) {
             // Create an object of JFileChooser class
@@ -150,7 +209,7 @@ class editor extends JFrame implements ActionListener {
             if (r == JFileChooser.APPROVE_OPTION) {
                 // Set the label to the path of the selected directory
                 File fi = new File(j.getSelectedFile().getAbsolutePath());
-
+                footnoteLabelFile.setText(fi.getName());
                 try {
                     // String
                     String s1 = "", sl = "";
@@ -182,6 +241,76 @@ class editor extends JFrame implements ActionListener {
             t.setText("");
         } else if (s.equals("close")) {
             f.setVisible(false);
+        } else if (s.equals("Compile")) {
+            if (!t.getText().isEmpty()) {
+                linguagem2019 compiler = new linguagem2019(new StringBufferInputStream(t.getText()));
+                ByteArrayOutputStream baos = getSystemPrint(compiler);
+                t2.setText(baos.toString());
+            }
         }
     }
-} 
+
+    private ByteArrayOutputStream getSystemPrint(linguagem2019 compiler) {
+        // Create a stream to hold the output
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(baos);
+        // IMPORTANT: Save the old System.out!
+        PrintStream old = System.out;
+        // Tell Java to use your special stream
+        System.setOut(ps);
+        // Print some output: goes to your special stream
+        try {
+            compiler.Start();
+        } catch (ParseException e) {
+            System.out.println("ExampleParser: There was an error during the parse.");
+            System.out.println(e.getMessage());
+        } catch (TokenMgrError e) {
+            System.out.println("ExampleParser: There was an error.");
+            System.out.println(e.getMessage());
+        }
+        // Put things back
+        System.out.flush();
+        System.setOut(old);
+        // Show what happened
+        return baos;
+    }
+
+    private JPanel createMenuButton() {
+        JPanel menuButton = new JPanel();
+        JButton compile = new JButton("Compile");
+        ImageIcon compileIcon = new ImageIcon(getClass().getResource("hammer.png"));
+        compile.setIcon(resizeIcon(compileIcon, 25, 25));
+        compile.setSize(25, 25);
+        compile.setBackground(Color.white);
+        compile.setMargin(new Insets(0, 0, 0, 0));
+        compile.addActionListener(this);
+        compile.setBorder(null);
+        menuButton.add(compile);
+        return menuButton;
+    }
+
+    private int getRow(int pos, JTextArea textPane1) {
+        int rn = (pos == 0) ? 1 : 0;
+        try {
+            int offs = pos;
+            while (offs > 0) {
+                offs = Utilities.getRowStart(textPane1, offs) - 1;
+                rn++;
+            }
+        } catch (BadLocationException evt) {
+            evt.printStackTrace();
+        }
+
+        return rn;
+    }
+
+    private int getColumn(int pos, JTextArea textPane1) {
+        try {
+            return pos - Utilities.getRowStart(textPane1, pos) + 1;
+        } catch (BadLocationException evt) {
+            evt.printStackTrace();
+        }
+
+        return -1;
+    }
+}
