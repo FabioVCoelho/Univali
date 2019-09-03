@@ -14,8 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
-// TODO: Criar um método para realizar a ação de sobreescrever e tudo mais.
-// TODO: Atualizar o salvar.
 // TODO: Criar os botãozinho.
 // TODO: Melhorar JTextArea para resize.
 // TODO: Melhorar mensagem de token.
@@ -56,14 +54,14 @@ class Compilador extends JFrame implements ActionListener {
             footnoteLabelText.setText("Line: " + row + " Column: " + col);
         });
         t.setLineWrap(true);
-        t.setPreferredSize(new Dimension(1200, 1200));
-        t.setMinimumSize(new Dimension(1200, 1200));
-        t.setBounds(0, 0, 1200, 1200);
+        t.setPreferredSize(new Dimension(800, 800));
+        t.setMinimumSize(new Dimension(800, 800));
+        t.setBounds(0, 0, 800, 800);
         t2 = new JTextArea();
         t2.setLineWrap(true);
-        t2.setPreferredSize(new Dimension(1200, 1200));
-        t2.setMinimumSize(new Dimension(1200, 1200));
-        t2.setBounds(0, 0, 1200, 1200);
+        t2.setPreferredSize(new Dimension(800, 800));
+        t2.setMinimumSize(new Dimension(800, 800));
+        t2.setBounds(0, 0, 800, 800);
         t2.setEditable(false);
 
         // Footnote
@@ -80,18 +78,24 @@ class Compilador extends JFrame implements ActionListener {
         JMenuItem mi1 = new JMenuItem("New");
         JMenuItem mi2 = new JMenuItem("Open");
         JMenuItem mi3 = new JMenuItem("Save");
+        JMenuItem mi10 = new JMenuItem("Save As");
         JMenuItem mi9 = new JMenuItem("Print");
+        JMenuItem m11 = new JMenuItem("Quit");
 
         // Add action listener 
         mi1.addActionListener(this);
         mi2.addActionListener(this);
         mi3.addActionListener(this);
+        mi10.addActionListener(this);
         mi9.addActionListener(this);
+        m11.addActionListener(this);
 
         m1.add(mi1);
         m1.add(mi2);
         m1.add(mi3);
+        m1.add(mi10);
         m1.add(mi9);
+        m1.add(m11);
 
         // Create amenu for menu 
         JMenu m2 = new JMenu("Edit");
@@ -168,39 +172,41 @@ class Compilador extends JFrame implements ActionListener {
                 break;
             case "Save": {
                 if (filePath.equals("")) {
-                    // Create an object of JFileChooser class
-                    JFileChooser j = new JFileChooser("f:");
-
-                    // Invoke the showsSaveDialog function to show the save dialog
+                    JFileChooser j = new JFileChooser();
                     int r = j.showSaveDialog(null);
-
                     if (r == JFileChooser.APPROVE_OPTION) {
-
-                        // Set the label to the path of the selected directory
-                        File fi = new File(j.getSelectedFile().getAbsolutePath());
-                        filePath = j.getSelectedFile().getAbsolutePath();
-
-                        try {
-                            // Create a file writer
-                            FileWriter wr = new FileWriter(fi, false);
-
-                            // Create buffered writer to write
-                            BufferedWriter w = new BufferedWriter(wr);
-
-                            // Write
-                            w.write(t.getText());
-
-                            w.flush();
-                            w.close();
-                        } catch (Exception evt) {
-                            JOptionPane.showMessageDialog(f, evt.getMessage());
-                        }
+                        String absolutePath = j.getSelectedFile().getAbsolutePath();
+                        saveFile(absolutePath);
                     }
                     // If the user cancelled the operation
                     else
                         JOptionPane.showMessageDialog(f, "the user cancelled the operation");
                     break;
+                } else {
+                    saveFile(filePath);
+                    break;
                 }
+            }
+            case "Save As": {
+                JFileChooser j = new JFileChooser();
+                int r = j.showSaveDialog(null);
+                if (r == JFileChooser.APPROVE_OPTION) {
+                    String absolutePath = j.getSelectedFile().getAbsolutePath();
+                    if (j.getSelectedFile().exists()) {
+                        int n = JOptionPane.showConfirmDialog(
+                                this,
+                                "Do You Want to Overwrite File?",
+                                "Confirm Overwrite",
+                                JOptionPane.YES_NO_OPTION);
+
+                        if (n == JOptionPane.YES_OPTION)
+                            saveFile(absolutePath);
+                    } else {
+                        saveFile(absolutePath);
+                    }
+                } else
+                    JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                break;
             }
             case "Print":
                 try {
@@ -211,39 +217,19 @@ class Compilador extends JFrame implements ActionListener {
                 }
                 break;
             case "Open": {
-                // Create an object of JFileChooser class
+                exitingFile();
                 JFileChooser j = new JFileChooser("f:");
-
-                // Invoke the showsOpenDialog function to show the save dialog
                 int r = j.showOpenDialog(null);
-
-                // If the user selects a file
                 if (r == JFileChooser.APPROVE_OPTION) {
-                    // Set the label to the path of the selected directory
                     File fi = new File(j.getSelectedFile().getAbsolutePath());
-                    filePath = j.getSelectedFile().getAbsolutePath();
+                    filePath = fi.getAbsolutePath();
                     footnoteLabelFile.setText(fi.getName());
+
                     try {
-                        // String
-                        String s1;
-                        StringBuilder sl;
-
-                        // File reader
-                        FileReader fr = new FileReader(fi);
-
-                        // Buffered reader
-                        BufferedReader br = new BufferedReader(fr);
-
-                        // Initilize sl
-                        sl = new StringBuilder(br.readLine());
-
-                        // Take the input from the file
-                        while ((s1 = br.readLine()) != null) {
-                            sl.append("\n").append(s1);
-                        }
+                        String sl = getStringFromFile(fi);
 
                         // Set the text
-                        t.setText(sl.toString());
+                        t.setText(sl);
                     } catch (Exception evt) {
                         JOptionPane.showMessageDialog(f, evt.getMessage());
                     }
@@ -251,14 +237,17 @@ class Compilador extends JFrame implements ActionListener {
                 // If the user cancelled the operation
                 else
                     JOptionPane.showMessageDialog(f, "the user cancelled the operation");
-                break;
             }
+            break;
             case "New":
+                exitingFile();
                 t.setText("");
                 footnoteLabelFile.setText("");
+                filePath = "";
                 break;
-            case "close":
-                f.setVisible(false);
+            case "Quit":
+                wantToSaveFile();
+                System.exit(0);
                 break;
             case "Compile":
                 if (!t.getText().isEmpty()) {
@@ -268,6 +257,70 @@ class Compilador extends JFrame implements ActionListener {
                 }
                 break;
         }
+    }
+
+    private void exitingFile() {
+        if (fileIsEdited() && !t.getText().equals("")) {
+            int n = wantToSaveFile();
+            if (n == JOptionPane.YES_OPTION && filePath.equals("")) {
+                JFileChooser j = new JFileChooser("f:");
+                int r = j.showSaveDialog(null);
+                if (r == JFileChooser.APPROVE_OPTION) {
+                    saveFile(j.getSelectedFile().getAbsolutePath());
+                }
+            } else if (n == JOptionPane.YES_OPTION) {
+                saveFile(filePath);
+            }
+        }
+    }
+
+    private void saveFile(String absolutePath) {
+        File fi = new File(absolutePath);
+        filePath = absolutePath;
+        footnoteLabelFile.setText(fi.getName());
+        try {
+            // Create a file writer
+            FileWriter wr = new FileWriter(fi, false);
+
+            // Create buffered writer to write
+            BufferedWriter w = new BufferedWriter(wr);
+
+            // Write
+            w.write(t.getText());
+
+            w.flush();
+            w.close();
+        } catch (Exception evt) {
+            JOptionPane.showMessageDialog(f, evt.getMessage());
+        }
+    }
+
+    private int wantToSaveFile() {
+        int n = JOptionPane.showConfirmDialog(
+                this,
+                "Do You Want to Save File?",
+                "Save File",
+                JOptionPane.YES_NO_OPTION);
+        return n;
+    }
+
+    private String getStringFromFile(File fi) throws IOException {
+        String s1 = "", sl = "";
+
+        // File reader
+        FileReader fr = new FileReader(fi);
+
+        // Buffered reader
+        BufferedReader br = new BufferedReader(fr);
+
+        // Initilize sl
+        sl = br.readLine();
+
+        // Take the input from the file
+        while ((s1 = br.readLine()) != null) {
+            sl = sl + "\n" + s1;
+        }
+        return sl;
     }
 
     private ByteArrayOutputStream getSystemPrint(linguagem2019 compiler) {
@@ -328,5 +381,14 @@ class Compilador extends JFrame implements ActionListener {
         }
 
         return -1;
+    }
+
+    private boolean fileIsEdited() {
+        try {
+            return !t.getText().equals(getStringFromFile(new File(filePath)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
