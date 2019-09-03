@@ -123,9 +123,14 @@ class Compilador extends JFrame implements ActionListener {
         m3.add(mi7);
         m3.add(mi8);
 
+        JMenuItem m4 = new JMenuItem("About");
+
+        m4.addActionListener(this);
+
         mb.add(m1);
         mb.add(m2);
         mb.add(m3);
+        mb.add(m4);
 
         f.setJMenuBar(mb);
         JPanel jp = new JPanel(new GridLayout(0, 2, 2, 2));
@@ -177,10 +182,8 @@ class Compilador extends JFrame implements ActionListener {
                     if (r == JFileChooser.APPROVE_OPTION) {
                         String absolutePath = j.getSelectedFile().getAbsolutePath();
                         saveFile(absolutePath);
-                    }
-                    // If the user cancelled the operation
-                    else
-                        JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                    } else
+                        showMessageDialog("the user cancelled the operation");
                     break;
                 } else {
                     saveFile(filePath);
@@ -205,15 +208,14 @@ class Compilador extends JFrame implements ActionListener {
                         saveFile(absolutePath);
                     }
                 } else
-                    JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                    showMessageDialog("the user cancelled the operation");
                 break;
             }
             case "Print":
                 try {
-                    // print the file
                     t.print();
                 } catch (Exception evt) {
-                    JOptionPane.showMessageDialog(f, evt.getMessage());
+                    showMessageDialog(evt.getMessage());
                 }
                 break;
             case "Open": {
@@ -227,16 +229,14 @@ class Compilador extends JFrame implements ActionListener {
 
                     try {
                         String sl = getStringFromFile(fi);
-
-                        // Set the text
                         t.setText(sl);
                     } catch (Exception evt) {
-                        JOptionPane.showMessageDialog(f, evt.getMessage());
+                        showMessageDialog(evt.getMessage());
                     }
                 }
                 // If the user cancelled the operation
                 else
-                    JOptionPane.showMessageDialog(f, "the user cancelled the operation");
+                    showMessageDialog("the user cancelled the operation");
             }
             break;
             case "New":
@@ -256,7 +256,15 @@ class Compilador extends JFrame implements ActionListener {
                     t2.setText(baos.toString());
                 }
                 break;
+            case "About": {
+                showMessageDialog("Created by: Fábio Volkmann Coelho");
+                break;
+            }
         }
+    }
+
+    private void showMessageDialog(String s) {
+        JOptionPane.showMessageDialog(f, s);
     }
 
     private void exitingFile() {
@@ -291,7 +299,7 @@ class Compilador extends JFrame implements ActionListener {
             w.flush();
             w.close();
         } catch (Exception evt) {
-            JOptionPane.showMessageDialog(f, evt.getMessage());
+            showMessageDialog(evt.getMessage());
         }
     }
 
@@ -386,8 +394,8 @@ class Compilador extends JFrame implements ActionListener {
     private boolean fileIsEdited() {
         try {
             return !t.getText().equals(getStringFromFile(new File(filePath)));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
+
         }
         return true;
     }
