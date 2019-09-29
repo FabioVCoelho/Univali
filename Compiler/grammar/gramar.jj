@@ -76,7 +76,6 @@ SKIP:
 TOKEN: {
           <RESERVEDWORD: ("carry"|"this"|"out"|"check"|"result"|"put"|"show"|"acquire"|"assign"
         |"declare"|"as"|"constant"|"variable"|"program"|"execute"|"purpose"|"untrue") >
-        | <IDENTIFIER: (<LETTER>|"_")(<LETTER>|<DIGIT>|"_")*>
         | <ARITHMETIC: ("+" | "-" | "*" | "/" | "**" | "%" | "%%")>
         | <RELACIONAL: ("==" | "!=" | "<<" | ">>" | "<<=" | ">>=")>
         | <LOGIC: ("&" | "|" | "!")>
@@ -85,12 +84,13 @@ TOKEN: {
         | <STRING: "\""(~["\"","\n","\r"])*"\"">
         | <BOOLEAN: ("true" | "false")>
         | <TYPE: ("integer"|"real"|"string"|"boolean")>
+        | <IDENTIFIER: (<LETTER>|"_")(<LETTER>|<DIGIT>|"_")*>
         | <DIGIT: ["0"-"9"]>
         | <LETTER: ["a"-"z","A"-"Z"]>
         }
 
 TOKEN: {
-        <SPECIALSYMBOL: ("("|")"|"{"|"}"|"["|"]"|";"|","|".") >
+        <SPECIALSYMBOL: ("("|")"|"{"|"}"|"["|"]"|";"|","|"."|"=") >
 }
 
 /* Trata os erros léxicos */
