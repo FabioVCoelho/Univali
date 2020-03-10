@@ -1,7 +1,15 @@
 package questaoTres;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Comprador {
-    float verba;
+    private float verba;
+    private List<Venda> compras = new ArrayList<Venda>();
+
+    public List<Venda> getCompras() {
+        return compras;
+    }
 
     public float getVerba() {
         return verba;

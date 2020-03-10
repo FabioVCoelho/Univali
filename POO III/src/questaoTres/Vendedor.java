@@ -1,7 +1,15 @@
 package questaoTres;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Vendedor {
-    float comissao;
+    private float comissao;
+    private List<Venda> vendas = new ArrayList<Venda>();
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
 
     public float getComissao() {
         return comissao;

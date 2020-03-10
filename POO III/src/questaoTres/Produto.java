@@ -1,8 +1,16 @@
 package questaoTres;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Produto {
-    float preco;
-    int tamanho;
+    private float preco;
+    private int tamanho;
+    private List<Venda> vendas = new ArrayList<Venda>();
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
 
     public float getPreco() {
         return preco;
