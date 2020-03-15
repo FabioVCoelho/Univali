@@ -12,15 +12,15 @@ public class Ator {
     }
 
     public List<Atua> getAtuacoes() {
-        return atuacoes;
+        return new ArrayList<>(atuacoes);
+    }
+
+    public void addAtuacao(String papel, Filme filme) {
+        atuacoes.add(new Atua(papel, this, filme));
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
 }

@@ -1,8 +1,8 @@
 package questaoQuatro;
 
 public class Produto {
-    private String nome;
-    private Integer valor;
+    protected String nome;
+    protected Integer valor;
 
     public Produto(String nome, Integer valor) {
         this.nome = nome;

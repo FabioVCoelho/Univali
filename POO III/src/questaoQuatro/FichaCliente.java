@@ -1,12 +1,14 @@
 package questaoQuatro;
 
 public class FichaCliente {
-    private Cliente cliente;
-    private Compra compra;
+    protected Cliente cliente;
+    protected Compra compra;
 
     public FichaCliente(Cliente cliente, Compra compra) {
         this.cliente = cliente;
+        cliente.setFichaCliente(this);
         this.compra = compra;
+        compra.setFichaCliente(this);
     }
 
     public void inicia() {
@@ -15,6 +17,7 @@ public class FichaCliente {
 
     public boolean finaliza() {
         compra.realizarCompra();
+        System.out.println("Compra Finalizada.");
         return true;
     }
 }

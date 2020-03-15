@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private List<Produto> produtos = new ArrayList<Produto>();
+    protected Compra compra;
+    protected List<Produto> produtos = new ArrayList<Produto>();
+
+    public Compra getCompra() {
+        return compra;
+    }
+
+    public void setCompra(Compra compra) {
+        if (this.compra == null)
+            this.compra = compra;
+    }
 
     public List<Produto> getProdutos() {
         return new ArrayList<>(produtos);

@@ -14,23 +14,20 @@ public class Filme {
         this.duracao = duracao;
     }
 
-    public List<Atua> getAtuacoes() {
-        return atuacoes;
+    public List<Atua> getElenco() {
+        return new ArrayList<>(atuacoes);
+    }
+
+    public void adicionaAtuacao(String papel, Ator ator) {
+        atuacoes.add(new Atua(papel, ator, this));
     }
 
     public String getTitulo() {
         return titulo;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public Time getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(Time duracao) {
-        this.duracao = duracao;
-    }
 }

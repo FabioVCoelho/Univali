@@ -15,15 +15,11 @@ public class Atua {
         return papel;
     }
 
-    public void setPapel(String papel) {
-        this.papel = papel;
-    }
-
     public String getAtor() {
         return ator.getNome();
     }
 
     public String getFilme() {
-        return filme.getTitulo() + " " + filme.getDuracao();
+        return filme.getTitulo();
     }
 }

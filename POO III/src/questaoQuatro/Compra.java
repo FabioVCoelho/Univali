@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Compra {
-    private List<Pedido> pedidos = new ArrayList<Pedido>();
-    private Integer valorTotal = 0;
-    private List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+
+    protected List<Pedido> pedidos = new ArrayList<Pedido>();
+    protected Integer valorTotal = 0;
+    protected List<Pagamento> pagamentos = new ArrayList<Pagamento>();
+    protected FichaCliente fichaCliente;
+
+    public FichaCliente getFichaCliente() {
+        return fichaCliente;
+    }
+
+    public void setFichaCliente(FichaCliente fichaCliente) {
+        this.fichaCliente = fichaCliente;
+    }
 
     public List<Pagamento> getPagamentos() {
         return new ArrayList<>(pagamentos);
@@ -27,14 +37,18 @@ public class Compra {
     }
 
     public void realizarCompra() {
-        System.out.println("Compra realizada com sucesso");
+        System.out.println("Compra realizada com sucesso no valor total de " + getValorTotal());
+        System.out.println("Formas de pagamentos");
+        getFormasDePagamento();
     }
 
     public void addPagamento(Pagamento pagamento) {
+        pagamento.setCompra(this);
         pagamentos.add(pagamento);
     }
 
     public void addPedido(Pedido pedido) {
+        pedido.setCompra(this);
         pedidos.add(pedido);
     }
 
@@ -44,6 +58,13 @@ public class Compra {
 
     public void removePagamento(Pagamento pagamento) {
         pagamentos.remove(pagamento);
+    }
+
+    public void getFormasDePagamento() {
+        for (Pagamento pagamento : this.getPagamentos()) {
+            System.out.println(pagamento.getTipoPagamento());
+            System.out.println("Valor de " + pagamento.getValor());
+        }
     }
 
 }

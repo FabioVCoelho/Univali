@@ -1,25 +1,22 @@
 package questaoTres;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Vendedor {
-    private float comissao;
-    private List<Venda> vendas = new ArrayList<Venda>();
 
-    public List<Venda> getVendas() {
-        return vendas;
+    private float comissao = 0;
+
+    public Vendedor(float comissao) {
+        this.comissao = comissao;
+    }
+
+    public Vendedor() {
     }
 
     public float getComissao() {
         return comissao;
     }
 
-    public void setComissao(float comissao) {
-        this.comissao = comissao;
-    }
-
     public void vende() {
-
+        System.out.println("Vendedor recebeu comissão pela venda");
+        comissao += 10;
     }
 }
