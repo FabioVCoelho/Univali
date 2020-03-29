@@ -8,12 +8,17 @@ public class Dependente extends Pessoa {
         super(nome, email, telefone);
     }
 
-    public Dependente(Pessoa pessoa) {
-        super(pessoa.nome, pessoa.email, pessoa.telefone);
-    }
-
     public long registrar(Socio socio) {
         this.socio = socio;
         return socio.numeroCartaoSocio;
+    }
+
+    @Override
+    public String toString() {
+        return "Dependente{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                '}';
     }
 }

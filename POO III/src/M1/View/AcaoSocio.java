@@ -14,11 +14,17 @@ public class AcaoSocio extends JPanel {
     JButton adicionarSocio = new JButton("Adicionar Sócio");
     JButton removerSocio = new JButton("Remover Sócio");
     JButton atualizarSocio = new JButton("Atualizar Sócio");
+    JButton quitarMensalidade = new JButton("Quitar mensalidade Sócio");
+    JButton gerarMensalidade = new JButton("Gerar Mensalidade");
+    JButton listarDependetes = new JButton("Listar Dependentes");
 
-    public JPanel getPanel(JPanel panels, CadastroSocio cadastroSocio) {
+    public JPanel getPanel(JPanel panels, CadastroSocio cadastroSocio, ListarMensalidadeSocio listarMensalidadeSocio, ListarDependenteSocio listarDependenteSocio) {
         this.add(adicionarSocio);
         this.add(atualizarSocio);
         this.add(removerSocio);
+        this.add(gerarMensalidade);
+        this.add(quitarMensalidade);
+        this.add(listarDependetes);
         this.add(listaSocios);
 
         adicionarSocio.addActionListener(e -> {
@@ -36,6 +42,25 @@ public class AcaoSocio extends JPanel {
             cadastroSocio.preencherCampos((Socio) listaSocios.getSelectedValue());
             CardLayout layout = (CardLayout) (panels.getLayout());
             layout.show(panels, "1");
+        });
+
+        gerarMensalidade.addActionListener(e -> {
+            CardLayout layout = (CardLayout) (panels.getLayout());
+            layout.show(panels, "3");
+        });
+
+        quitarMensalidade.addActionListener(e -> {
+            listarMensalidadeSocio.setSocio((Socio) listaSocios.getSelectedValue());
+            listarMensalidadeSocio.atualizarLista();
+            CardLayout layout = (CardLayout) (panels.getLayout());
+            layout.show(panels, "4");
+        });
+
+        listarDependetes.addActionListener(e -> {
+            listarDependenteSocio.setSocio((Socio) listaSocios.getSelectedValue());
+            listarDependenteSocio.atualizarLista();
+            CardLayout layout = (CardLayout) (panels.getLayout());
+            layout.show(panels, "6");
         });
 
         return this;

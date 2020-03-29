@@ -38,13 +38,57 @@ public class Socio extends Pessoa {
         return this.toString();
     }
 
+    public void adicionarDependente(Dependente dependente) {
+        dependenteList.add(dependente);
+        dependente.registrar(this);
+    }
+
     @Override
     public String toString() {
         return "Socio{" +
                 "numeroCartaoSocio=" + numeroCartaoSocio +
+                ", dependenteList=" + dependenteListToString() +
+                ", mensalidadeList=" + mensalidadeListToString() +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
                 ", telefone='" + telefone + '\'' +
                 '}';
+    }
+
+    private String mensalidadeListToString() {
+        StringBuilder mensalidadeStr = new StringBuilder();
+        for (Mensalidade mensalidade : mensalidadeList) {
+            mensalidadeStr.append(mensalidade.toString());
+        }
+        return mensalidadeStr.toString();
+    }
+
+    private String dependenteListToString() {
+        StringBuilder dependentes = new StringBuilder();
+        for (Dependente dependente : dependenteList) {
+            dependentes.append(dependente.toString());
+        }
+        return dependentes.toString();
+    }
+
+    public void registrarMensalidade(Mensalidade mensalidade) {
+        mensalidadeList.add(mensalidade);
+    }
+
+    public List<Mensalidade> getMensalidades() {
+        return mensalidadeList;
+    }
+
+    public List<Dependente> getDependetes() {
+        return dependenteList;
+    }
+
+    public void removerDependente(Dependente dependente) {
+        dependenteList.remove(dependente);
+    }
+
+    public void atualizarDependente(Dependente dependenteOld, Dependente dependente) {
+        removerDependente(dependenteOld);
+        adicionarDependente(dependente);
     }
 }

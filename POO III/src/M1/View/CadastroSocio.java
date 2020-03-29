@@ -23,7 +23,7 @@ public class CadastroSocio extends JPanel {
     private boolean atualizar = false;
     private Socio socio;
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio) {
+    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, CadastroDependente cadastroDependente) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         nomeText.setColumns(20);
@@ -91,23 +91,29 @@ public class CadastroSocio extends JPanel {
         constraints.gridy = 5;
         this.add(voltar, constraints);
 
+        cadastrar_dependente.setEnabled(false);
+
         cadastrar_dependente.addActionListener(e -> {
+            cadastroDependente.setSocio(this.socio.getNumeroCartaoSocio());
+            cadastroDependente.cleanAll();
             CardLayout layout = (CardLayout) (panels.getLayout());
             layout.show(panels, "2");
         });
 
         cadastrar_Socio.addActionListener(e -> {
             if (validarForm() && !atualizar) {
-                Socio socio = new Socio(nomeText.getText(), emailText.getText(), telefoneText.getText());
+                this.socio = new Socio(nomeText.getText(), emailText.getText(), telefoneText.getText());
                 cartaoNumeroText.setText(socio.registrar().toString());
                 cadastrar_Socio.setEnabled(false);
                 errorMsg.setText("");
+                cadastrar_dependente.setEnabled(true);
             } else if (atualizar) {
                 Socio socioOld = this.socio;
                 this.socio.setNome(nomeText.getText());
                 this.socio.setEmail(emailText.getText());
                 this.socio.setTelefone(telefoneText.getText());
                 database.atualizarSocio(socioOld, this.socio);
+                cadastrar_dependente.setEnabled(true);
             } else {
                 errorMsg.setText("Erro no registro");
             }
