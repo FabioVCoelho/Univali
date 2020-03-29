@@ -69,6 +69,7 @@ public class QuitarMensalidade extends JPanel {
         if (mensalidade.getQuitada()) {
             valorPago.setEnabled(false);
             valorPago.setText(mensalidade.getValor_pago().toString());
+            pagar.setEnabled(false);
         }
     }
 }
