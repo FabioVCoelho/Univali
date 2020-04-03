@@ -9,7 +9,7 @@ public class run {
     public static void main(String[] args) {
         Clube clube = new Clube("AABB");
         AcaoSocio acaoSocio = new AcaoSocio();
-        CadastroSocio cadastroSocio = new CadastroSocio();
+        SolicitarAssossiacao solicitarAssossiacao = new SolicitarAssossiacao();
         CadastroDependente cadastroDependente = new CadastroDependente();
         GerarMensalidadeSocio mensalidadeSocio = new GerarMensalidadeSocio();
         ListarMensalidadeSocio listarMensalidadeSocio = new ListarMensalidadeSocio();
@@ -17,13 +17,13 @@ public class run {
         ListarDependenteSocio listarDependenteSocio = new ListarDependenteSocio();
 
         JFrame principal = new JFrame();
-        principal.setSize(500, 300);
+        principal.setSize(700, 300);
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panels = new JPanel(new CardLayout());
-        JPanel socioCRUDPanel = acaoSocio.getPanel(panels, cadastroSocio, listarMensalidadeSocio, listarDependenteSocio, clube);
-        JPanel cadastroSocioPanel = cadastroSocio.getPanel(panels, acaoSocio, cadastroDependente, clube);
-        JPanel cadastroDependentePanel = cadastroDependente.getPanel(panels, acaoSocio);
+        JPanel socioCRUDPanel = acaoSocio.getPanel(panels, solicitarAssossiacao, listarMensalidadeSocio, listarDependenteSocio, clube);
+        JPanel cadastroSocioPanel = solicitarAssossiacao.getPanel(panels, acaoSocio, clube);
+        JPanel cadastroDependentePanel = cadastroDependente.getPanel(panels, acaoSocio, clube);
         JPanel gerarMensalidadeSocio = mensalidadeSocio.getPanel(panels, acaoSocio, clube);
         JPanel listarMensalideSocio = listarMensalidadeSocio.getPanel(panels, acaoSocio, quitarMensalidade);
         JPanel quitarMensalidadePanel = quitarMensalidade.getPanel(panels);

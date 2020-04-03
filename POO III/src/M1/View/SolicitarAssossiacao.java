@@ -6,30 +6,25 @@ import M1.Socio;
 import javax.swing.*;
 import java.awt.*;
 
-public class CadastroSocio extends JPanel {
+public class SolicitarAssossiacao extends JPanel {
     JLabel nomeLabel = new JLabel("Nome: ");
     JTextField nomeText = new JTextField();
     JLabel emailLabel = new JLabel("E-mail: ");
     JTextField emailText = new JTextField();
     JLabel telefoneLabel = new JLabel("Telefone: ");
     JTextField telefoneText = new JTextField();
-    JLabel cartaoSocioLabel = new JLabel("Numero cartão: ");
-    JTextField cartaoNumeroText = new JTextField();
     JLabel errorMsg = new JLabel("");
-    JButton cadastrar_Socio = new JButton("Cadastrar");
+    JButton solicitar_pedido = new JButton("Cadastrar");
     JButton voltar = new JButton("Voltar");
-    JButton cadastrar_dependente = new JButton("Cadastrar Dependente");
     private boolean atualizar = false;
     private Socio socio;
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, CadastroDependente cadastroDependente, Clube clube) {
+    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, Clube clube) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         nomeText.setColumns(20);
         emailText.setColumns(20);
         telefoneText.setColumns(20);
-        cartaoNumeroText.setColumns(20);
-        cartaoNumeroText.setEnabled(false);
         this.setMaximumSize(new Dimension(100, nomeLabel.getHeight()));
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.PAGE_START;
@@ -59,29 +54,14 @@ public class CadastroSocio extends JPanel {
         constraints.ipadx = 0;
         constraints.gridx = 0;
         constraints.gridy = 3;
-        this.add(cartaoSocioLabel, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 3;
-        constraints.ipadx = 150;
-        this.add(cartaoNumeroText, constraints);
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        constraints.ipadx = 150;
         this.add(errorMsg, constraints);
-
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.anchor = GridBagConstraints.PAGE_END;
-        constraints.ipadx = 0;
-        constraints.gridx = 1;
-        constraints.gridy = 5;
-        this.add(cadastrar_dependente, constraints);
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.PAGE_END;
         constraints.ipadx = 0;
         constraints.gridx = 2;
         constraints.gridy = 5;
-        this.add(cadastrar_Socio, constraints);
+        this.add(solicitar_pedido, constraints);
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.PAGE_END;
@@ -90,29 +70,17 @@ public class CadastroSocio extends JPanel {
         constraints.gridy = 5;
         this.add(voltar, constraints);
 
-        cadastrar_dependente.setEnabled(false);
-
-        cadastrar_dependente.addActionListener(e -> {
-            cadastroDependente.setSocio(this.socio.getNumeroCartaoSocio());
-            cadastroDependente.cleanAll();
-            CardLayout layout = (CardLayout) (panels.getLayout());
-            layout.show(panels, "2");
-        });
-
-        cadastrar_Socio.addActionListener(e -> {
+        solicitar_pedido.addActionListener(e -> {
             if (validarForm() && !atualizar) {
-                this.socio = new Socio(nomeText.getText(), emailText.getText(), telefoneText.getText());
-                cartaoNumeroText.setText(socio.registrar().toString());
-                cadastrar_Socio.setEnabled(false);
+                clube.solicitarAssossiacao(nomeText.getText(), telefoneText.getText(), emailText.getText());
+                solicitar_pedido.setEnabled(false);
                 errorMsg.setText("");
-                cadastrar_dependente.setEnabled(true);
             } else if (atualizar) {
                 Socio socioOld = this.socio;
                 this.socio.setNome(nomeText.getText());
                 this.socio.setEmail(emailText.getText());
                 this.socio.setTelefone(telefoneText.getText());
                 clube.atualizarSocio(socioOld, this.socio);
-                cadastrar_dependente.setEnabled(true);
             } else {
                 errorMsg.setText("Erro no registro");
             }
@@ -121,6 +89,7 @@ public class CadastroSocio extends JPanel {
         voltar.addActionListener(e -> {
             CardLayout layout = (CardLayout) (panels.getLayout());
             acaoSocio.atualizarLista();
+            acaoSocio.atualizarListaPessoas();
             layout.show(panels, "0");
         });
 
@@ -139,9 +108,8 @@ public class CadastroSocio extends JPanel {
         nomeText.setText("");
         emailText.setText("");
         telefoneText.setText("");
-        cartaoNumeroText.setText("");
-        cadastrar_Socio.setEnabled(true);
-        cadastrar_Socio.setText("Cadastrar");
+        solicitar_pedido.setEnabled(true);
+        solicitar_pedido.setText("Cadastrar");
         atualizar = false;
     }
 
@@ -149,10 +117,9 @@ public class CadastroSocio extends JPanel {
         nomeText.setText(socio.getNome());
         emailText.setText(socio.getEmail());
         telefoneText.setText(socio.getTelefone());
-        cartaoNumeroText.setText(socio.getNumeroCartaoSocio().toString());
         atualizar = true;
         this.socio = socio;
-        cadastrar_Socio.setEnabled(true);
-        cadastrar_Socio.setText("Atualizar");
+        solicitar_pedido.setEnabled(true);
+        solicitar_pedido.setText("Atualizar");
     }
 }

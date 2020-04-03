@@ -36,6 +36,15 @@ public class Pessoa {
     }
 
     public void solicitarAssossicao(Clube clube) {
-        clube.validarCandidato(this);
+        clube.solicitarAssossiacao(this.nome, this.telefone, this.email);
+    }
+
+    @Override
+    public String toString() {
+        return "Pessoa{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                '}';
     }
 }

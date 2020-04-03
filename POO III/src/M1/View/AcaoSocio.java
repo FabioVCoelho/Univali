@@ -1,6 +1,7 @@
 package M1.View;
 
 import M1.Clube;
+import M1.Pessoa;
 import M1.Socio;
 
 import javax.swing.*;
@@ -9,8 +10,11 @@ import java.util.List;
 
 public class AcaoSocio extends JPanel {
     DefaultListModel defaultListModel = new DefaultListModel();
+    DefaultListModel defaultListModelPessoas = new DefaultListModel();
     JList listaSocios = new JList(defaultListModel);
-    JButton adicionarSocio = new JButton("Adicionar Sócio");
+    JList listaPessoasJList = new JList(defaultListModelPessoas);
+    JButton solicitacaoDeSocio = new JButton("Solicitar Assossiação");
+    JButton adicionarSocio = new JButton("Aceitar Solicitação");
     JButton removerSocio = new JButton("Remover Sócio");
     JButton atualizarSocio = new JButton("Atualizar Sócio");
     JButton quitarMensalidade = new JButton("Quitar mensalidade Sócio");
@@ -19,20 +23,39 @@ public class AcaoSocio extends JPanel {
 
     Clube clube;
 
-    public JPanel getPanel(JPanel panels, CadastroSocio cadastroSocio, ListarMensalidadeSocio listarMensalidadeSocio, ListarDependenteSocio listarDependenteSocio, Clube clube) {
+    public JPanel getPanel(JPanel panels, SolicitarAssossiacao cadastroSocio, ListarMensalidadeSocio listarMensalidadeSocio, ListarDependenteSocio listarDependenteSocio, Clube clube) {
+        JPanel botoes = new JPanel();
+        botoes.setLayout(new GridLayout(2, 4));
         this.clube = clube;
-        this.add(adicionarSocio);
-        this.add(atualizarSocio);
-        this.add(removerSocio);
-        this.add(gerarMensalidade);
-        this.add(quitarMensalidade);
-        this.add(listarDependetes);
-        this.add(listaSocios);
+        botoes.add(solicitacaoDeSocio);
+        botoes.add(adicionarSocio);
+        botoes.add(atualizarSocio);
+        botoes.add(removerSocio);
+        botoes.add(gerarMensalidade);
+        botoes.add(quitarMensalidade);
+        botoes.add(listarDependetes);
+        this.add(botoes);
+        JPanel listaSocio = new JPanel();
+        listaSocio.setLayout(new GridLayout(0, 1));
+        listaSocio.add(new JLabel("Lista de Socios:"));
+        listaSocio.add(listaSocios);
+        this.add(listaSocio);
+        JPanel listaPessoas = new JPanel();
+        listaPessoas.setLayout(new GridLayout(0, 1));
+        listaPessoas.add(new JLabel("Pessoas para avaliar assossiação:"));
+        listaPessoas.add(listaPessoasJList);
+        this.add(listaPessoas);
 
-        adicionarSocio.addActionListener(e -> {
+        solicitacaoDeSocio.addActionListener(e -> {
             CardLayout layout = (CardLayout) (panels.getLayout());
             cadastroSocio.cleanAll();
             layout.show(panels, "1");
+        });
+
+        adicionarSocio.addActionListener(e -> {
+            clube.aceitarSolicitacao((Pessoa) listaPessoasJList.getSelectedValue());
+            atualizarLista();
+            atualizarListaPessoas();
         });
 
         removerSocio.addActionListener(e -> {
@@ -75,4 +98,13 @@ public class AcaoSocio extends JPanel {
             defaultListModel.addElement(objs.get(i));
         }
     }
+
+    public void atualizarListaPessoas() {
+        defaultListModelPessoas.clear();
+        List<Pessoa> objs = clube.consultaCandidato();
+        for (int i = 0; i < objs.size(); i++) {
+            defaultListModelPessoas.addElement(objs.get(i));
+        }
+    }
+
 }

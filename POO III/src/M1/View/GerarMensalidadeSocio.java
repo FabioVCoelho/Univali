@@ -33,7 +33,11 @@ public class GerarMensalidadeSocio extends JPanel {
         this.add(voltar);
 
         gerarMensalidade.addActionListener(e -> {
-            clube.gerarMensalidade((Date) datePicker.getModel().getValue());
+            try {
+                clube.gerarMensalidade((Date) datePicker.getModel().getValue());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         });
 
         voltar.addActionListener(e -> {

@@ -90,6 +90,7 @@ public class CadastroDependente extends JPanel {
         voltar.addActionListener(e -> {
             CardLayout layout = (CardLayout) (panels.getLayout());
             acaoSocio.atualizarLista();
+            acaoSocio.atualizarListaPessoas();
             layout.show(panels, "0");
         });
 
@@ -108,6 +109,7 @@ public class CadastroDependente extends JPanel {
         nomeText.setText("");
         emailText.setText("");
         telefoneText.setText("");
+        cadastrar_Dependente.setText("Cadastrar");
         atualizar = false;
     }
 
