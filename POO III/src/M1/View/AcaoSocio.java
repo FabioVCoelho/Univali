@@ -1,6 +1,6 @@
 package M1.View;
 
-import M1.Database;
+import M1.Clube;
 import M1.Socio;
 
 import javax.swing.*;
@@ -8,7 +8,6 @@ import java.awt.*;
 import java.util.List;
 
 public class AcaoSocio extends JPanel {
-    Database database = Database.getInstance();
     DefaultListModel defaultListModel = new DefaultListModel();
     JList listaSocios = new JList(defaultListModel);
     JButton adicionarSocio = new JButton("Adicionar Sócio");
@@ -18,7 +17,10 @@ public class AcaoSocio extends JPanel {
     JButton gerarMensalidade = new JButton("Gerar Mensalidade");
     JButton listarDependetes = new JButton("Listar Dependentes");
 
-    public JPanel getPanel(JPanel panels, CadastroSocio cadastroSocio, ListarMensalidadeSocio listarMensalidadeSocio, ListarDependenteSocio listarDependenteSocio) {
+    Clube clube;
+
+    public JPanel getPanel(JPanel panels, CadastroSocio cadastroSocio, ListarMensalidadeSocio listarMensalidadeSocio, ListarDependenteSocio listarDependenteSocio, Clube clube) {
+        this.clube = clube;
         this.add(adicionarSocio);
         this.add(atualizarSocio);
         this.add(removerSocio);
@@ -34,7 +36,7 @@ public class AcaoSocio extends JPanel {
         });
 
         removerSocio.addActionListener(e -> {
-            database.removerSocio((Socio) listaSocios.getSelectedValue());
+            clube.removerSocio((Socio) listaSocios.getSelectedValue());
             atualizarLista();
         });
 
@@ -68,7 +70,7 @@ public class AcaoSocio extends JPanel {
 
     public void atualizarLista() {
         defaultListModel.clear();
-        List<Socio> objs = database.consultaSocio();
+        List<Socio> objs = clube.consultaSocio();
         for (int i = 0; i < objs.size(); i++) {
             defaultListModel.addElement(objs.get(i));
         }

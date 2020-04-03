@@ -31,6 +31,7 @@ public class ListarMensalidadeSocio extends JPanel {
         pagar.addActionListener(e -> {
             CardLayout layout = (CardLayout) (panels.getLayout());
             quitarMensalidade.setMensalidade((Mensalidade) listaMensalidade.getSelectedValue());
+            quitarMensalidade.setSocio(this.socio);
             layout.show(panels, "5");
         });
 

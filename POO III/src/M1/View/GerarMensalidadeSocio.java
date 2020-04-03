@@ -1,8 +1,6 @@
 package M1.View;
 
-import M1.Database;
-import M1.Mensalidade;
-import M1.Socio;
+import M1.Clube;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -16,12 +14,11 @@ import java.util.Date;
 import java.util.Properties;
 
 public class GerarMensalidadeSocio extends JPanel {
-    Database database = Database.getInstance();
     JLabel dataVencimento = new JLabel("Data Vencimento: ");
     JButton gerarMensalidade = new JButton("Gerar Mensalidade");
     JButton voltar = new JButton("Voltar");
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio) {
+    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, Clube clube) {
         this.setLayout(new FlowLayout());
         UtilDateModel model = new UtilDateModel();
         Properties properties = new Properties();
@@ -36,10 +33,7 @@ public class GerarMensalidadeSocio extends JPanel {
         this.add(voltar);
 
         gerarMensalidade.addActionListener(e -> {
-            for (Socio socio : database.consultaSocio()) {
-                Mensalidade mensalidade = new Mensalidade((Date) datePicker.getModel().getValue(), null, 150D, false, 0D, 0D);
-                socio.registrarMensalidade(mensalidade);
-            }
+            clube.gerarMensalidade((Date) datePicker.getModel().getValue());
         });
 
         voltar.addActionListener(e -> {

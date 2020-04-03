@@ -8,25 +8,21 @@ public class Socio extends Pessoa {
     Long numeroCartaoSocio;
     List<Mensalidade> mensalidadeList = new ArrayList<>();
     List<Dependente> dependenteList = new ArrayList<>();
-    Database database = Database.getInstance();
 
     public Socio(String nome, String email, String telefone) {
         super(nome, email, telefone);
-        database.adicionarSocio(this);
     }
 
     public Long getNumeroCartaoSocio() {
         return numeroCartaoSocio;
     }
 
-    public void pagarMensalidade() {
-
+    public void pagarMensalidade(Mensalidade mensalidade, double valorPago) {
+        mensalidade.quitar(valorPago);
     }
 
     public Long registrar() {
-        database.removerSocio(this);
         this.numeroCartaoSocio = Math.abs(new Random().nextLong());
-        database.adicionarSocio(this);
         return this.numeroCartaoSocio;
     }
 

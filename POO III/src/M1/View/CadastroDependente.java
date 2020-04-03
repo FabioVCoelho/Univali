@@ -1,6 +1,6 @@
 package M1.View;
 
-import M1.Database;
+import M1.Clube;
 import M1.Dependente;
 import M1.Socio;
 
@@ -18,12 +18,13 @@ public class CadastroDependente extends JPanel {
     JLabel errorMsg = new JLabel("");
     JButton cadastrar_Dependente = new JButton("Cadastrar");
     JButton voltar = new JButton("Voltar");
-    Database database = Database.getInstance();
     Socio socio;
     private boolean atualizar = false;
     private Dependente dependente;
+    private Clube clube;
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio) {
+    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, Clube clube) {
+        this.clube = clube;
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         nomeText.setColumns(20);
@@ -96,7 +97,7 @@ public class CadastroDependente extends JPanel {
     }
 
     public void setSocio(Long numeroCartao) {
-        for (Socio socio : database.consultaSocio()) {
+        for (Socio socio : clube.consultaSocio()) {
             if (socio.getNumeroCartaoSocio().equals(numeroCartao)) {
                 this.socio = socio;
             }

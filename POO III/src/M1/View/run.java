@@ -1,10 +1,13 @@
 package M1.View;
 
+import M1.Clube;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class run {
     public static void main(String[] args) {
+        Clube clube = new Clube("AABB");
         AcaoSocio acaoSocio = new AcaoSocio();
         CadastroSocio cadastroSocio = new CadastroSocio();
         CadastroDependente cadastroDependente = new CadastroDependente();
@@ -18,10 +21,10 @@ public class run {
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panels = new JPanel(new CardLayout());
-        JPanel socioCRUDPanel = acaoSocio.getPanel(panels, cadastroSocio, listarMensalidadeSocio, listarDependenteSocio);
-        JPanel cadastroSocioPanel = cadastroSocio.getPanel(panels, acaoSocio, cadastroDependente);
+        JPanel socioCRUDPanel = acaoSocio.getPanel(panels, cadastroSocio, listarMensalidadeSocio, listarDependenteSocio, clube);
+        JPanel cadastroSocioPanel = cadastroSocio.getPanel(panels, acaoSocio, cadastroDependente, clube);
         JPanel cadastroDependentePanel = cadastroDependente.getPanel(panels, acaoSocio);
-        JPanel gerarMensalidadeSocio = mensalidadeSocio.getPanel(panels, acaoSocio);
+        JPanel gerarMensalidadeSocio = mensalidadeSocio.getPanel(panels, acaoSocio, clube);
         JPanel listarMensalideSocio = listarMensalidadeSocio.getPanel(panels, acaoSocio, quitarMensalidade);
         JPanel quitarMensalidadePanel = quitarMensalidade.getPanel(panels);
         JPanel listarDependenteSocioPanel = listarDependenteSocio.getPanel(panels, acaoSocio, cadastroDependente);

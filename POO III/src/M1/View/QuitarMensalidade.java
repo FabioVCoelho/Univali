@@ -1,6 +1,7 @@
 package M1.View;
 
 import M1.Mensalidade;
+import M1.Socio;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class QuitarMensalidade extends JPanel {
     JButton voltar = new JButton("Voltar");
     JButton pagar = new JButton("Pagar");
     private Mensalidade mensalidade;
+    private Socio socio;
 
     public JPanel getPanel(JPanel panels) {
         this.setLayout(new GridLayout(0, 2));
@@ -48,7 +50,7 @@ public class QuitarMensalidade extends JPanel {
         });
 
         pagar.addActionListener(e -> {
-            this.mensalidade.quitar(Double.parseDouble(valorPago.getText()));
+            socio.pagarMensalidade(this.mensalidade, Double.parseDouble(valorPago.getText()));
             quitada.setText(this.mensalidade.getQuitada().toString());
             dataPagamento.setText(this.mensalidade.getData_pagamento().toString());
             valorPago.setEnabled(false);
@@ -71,5 +73,9 @@ public class QuitarMensalidade extends JPanel {
             valorPago.setText(mensalidade.getValor_pago().toString());
             pagar.setEnabled(false);
         }
+    }
+
+    public void setSocio(Socio socio) {
+        this.socio = socio;
     }
 }

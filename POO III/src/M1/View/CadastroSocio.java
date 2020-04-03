@@ -1,6 +1,6 @@
 package M1.View;
 
-import M1.Database;
+import M1.Clube;
 import M1.Socio;
 
 import javax.swing.*;
@@ -19,11 +19,10 @@ public class CadastroSocio extends JPanel {
     JButton cadastrar_Socio = new JButton("Cadastrar");
     JButton voltar = new JButton("Voltar");
     JButton cadastrar_dependente = new JButton("Cadastrar Dependente");
-    Database database = Database.getInstance();
     private boolean atualizar = false;
     private Socio socio;
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, CadastroDependente cadastroDependente) {
+    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, CadastroDependente cadastroDependente, Clube clube) {
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         nomeText.setColumns(20);
@@ -112,7 +111,7 @@ public class CadastroSocio extends JPanel {
                 this.socio.setNome(nomeText.getText());
                 this.socio.setEmail(emailText.getText());
                 this.socio.setTelefone(telefoneText.getText());
-                database.atualizarSocio(socioOld, this.socio);
+                clube.atualizarSocio(socioOld, this.socio);
                 cadastrar_dependente.setEnabled(true);
             } else {
                 errorMsg.setText("Erro no registro");
