@@ -1,0 +1,946 @@
+format 222
+"exercicio"
+  revision 6
+  modified_by 32 "Casa"
+
+
+  
+  // class settings
+  default_attribute_visibility private default_relation_visibility private default_operation_visibility public
+  
+  classdiagramsettings draw_all_relations yes hide_attributes no hide_operations no hide_getset_operations no hide_ports no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_context no show_members_multiplicity no show_members_initialization no show_attribute_modifiers no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_relation_modifiers no show_relation_visibility no show_infonote no shadow yes gradient none show_stereotype_properties no end
+  
+  classcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  usecasediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes gradient none show_stereotype_properties no end
+  
+  sequencediagramsettings show_full_operations_definition no show_class_of_operation no write_horizontally yes instances_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes gradient none show_stereotype_properties no show_class_context_mode no show_msg_context_mode no end
+  
+  collaborationdiagramsettings show_full_operations_definition no show_class_of_operation no show_hierarchical_rank no write_horizontally yes instances_drawing_mode natural drawing_language uml package_name_in_tab no show_class_pack_context_mode no show_msg_context_mode no draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectdiagramsettings write_horizontally yes package_name_in_tab no show_class_pack_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none show_stereotype_properties no end
+  
+  objectcompositediagramsettings auto_label_position yes draw_all_relations yes shadow yes gradient none end
+  
+  componentdiagramsettings package_name_in_tab no show_context_mode no auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  deploymentdiagramsettings package_name_in_tab no show_context_mode no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes gradient none
+   draw_component_as_icon no show_component_req_prov no show_component_rea no show_stereotype_properties no end
+  
+  statediagramsettings package_name_in_tab no show_context_mode no auto_label_position yes write_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes gradient none
+   show_activities yes region_horizontally yes drawing_language uml show_stereotype_properties no end
+  
+  activitydiagramsettings package_name_in_tab no show_context_mode no show_opaque_action_definition no auto_label_position yes write_label_horizontally no draw_all_relations yes shadow yes gradient none
+   show_infonote yes drawing_language uml show_stereotype_properties no end
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activitypartition_color transparent activityaction_color transparent parameterpin_color white generalization_color black 
+  dpi 96
+  font_size 9
+  diagram_format A4
+
+  image_root_dir ""
+
+
+  mark_for_import
+  
+  usecaseview 128160 "Sistema de Controle de Clube Social "
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    usecasediagram 128032 "Caso de Uso"
+      usecasediagramsettings end
+      size A4
+    end
+
+    class 128160 "Dependente"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128160 // <generalisation>
+	relation 128160 ---|>
+	  a public
+	    classrelation_ref 128160 // <generalisation>
+	  b parent class_ref 128416 // Pessoa
+      end
+
+      classrelation 134816 // <aggregation>
+	relation_ref 134688 // <aggregation>
+      end
+
+      classrelation 135072 // <association>
+	relation_ref 134816 // <association>
+      end
+
+      classrelation 135328 // <association>
+	relation_ref 134944 // <association>
+      end
+
+      attribute 128672 "numeroCartaoSocio"
+	protected explicit_type "long"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136096 "parentesco"
+	protected explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 143264 // <composition>
+	relation_ref 142240 // <composition>
+      end
+
+      operation 144160 "registrar"
+	public explicit_return_type "Long"
+	nparams 1
+	  param in name "socio" type class_ref 128288 // Socio
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128288 "Socio"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128032 // <generalisation>
+	relation 128032 ---|>
+	  a public
+	    comment "É uma"
+	    classrelation_ref 128032 // <generalisation>
+	  b parent class_ref 128416 // Pessoa
+      end
+
+      attribute 128544 "numeroCartaoSocio"
+	protected explicit_type "long"
+	constraint "Not null"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 134688 // <aggregation>
+	relation 134688 o---
+	  a role_name "" private
+	    classrelation_ref 134688 // <aggregation>
+	  b role_name "" private
+	    classrelation_ref 134816 // <aggregation>
+      end
+
+      classrelation 134944 // <association>
+	relation 134816 ----
+	  a role_name "" private
+	    classrelation_ref 134944 // <association>
+	  b role_name "" private
+	    classrelation_ref 135072 // <association>
+      end
+
+      classrelation 135200 // dependentes (<association>)
+	relation 134944 ----
+	  a role_name "dependentes" multiplicity "*" private
+	    classrelation_ref 135200 // dependentes (<association>)
+	  b role_name "socio" multiplicity "1" private
+	    classrelation_ref 135328 // <association>
+      end
+
+      operation 128416 "pagarMensalidade"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "mensalidade" type class_ref 135072 // Mensalidade
+	multiplicity "1"
+	  param in name "valorPago" explicit_type "Double"
+	multiplicity "1"
+	
+	
+	
+	
+	
+      end
+
+      classrelation 135712 // mensalidade (<association>)
+	relation 135328 ----
+	  a role_name "mensalidade" multiplicity "*" private
+	    classrelation_ref 135712 // mensalidade (<association>)
+	  b role_name "socio" multiplicity "1" private
+	    classrelation_ref 135840 // socio (<association>)
+	  association_type class_ref 135072 // Mensalidade
+      end
+
+      classrelation 136096 // <association>
+	relation_ref 135456 // <association>
+      end
+
+      attribute 129568 "Mensalidades"
+	private type class_ref 135072 // Mensalidade
+	multiplicity "12"
+	stereotype "list"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 142752 // <composition>
+	relation_ref 141984 // <composition>
+      end
+
+      classrelation 142880 // mensalidades (<composition>)
+	relation 142112 *---
+	  a role_name "mensalidades" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 142880 // mensalidades (<composition>)
+	  b role_name "vinculo" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143008 // vinculo (<composition>)
+      end
+
+      classrelation 143136 // dependente (<composition>)
+	relation 142240 *---
+	  a role_name "dependente" multiplicity "0..*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 143136 // dependente (<composition>)
+	  b role_name "parenteSocio" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 143264 // <composition>
+      end
+
+      operation 141856 "getNumeroCartaoSocio"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142112 "registrar"
+	public explicit_return_type "Long"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142240 "adicionarDependente"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "dependente" type class_ref 128160 // Dependente
+	
+	
+	
+	
+	
+      end
+
+      operation 142368 "mensalidadeListToString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142496 "dependenteListToString"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142624 "registrarMensalidade"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "mensalidade" type class_ref 135072 // Mensalidade
+	
+	
+	
+	
+	
+      end
+
+      operation 142752 "getMensalidades"
+	public explicit_return_type "List<Mensalidade>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 142880 "getDependetes"
+	public return_type class_ref 128160 // Dependente
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143008 "removerDependente"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "dependente" type class_ref 128160 // Dependente
+	
+	
+	
+	
+	
+      end
+
+      operation 143136 "atualizarDependente"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "dependenteOld" type class_ref 128160 // Dependente
+	multiplicity "1"
+	  param in name "dependenteNew" type class_ref 128160 // Dependente
+	multiplicity "1"
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128416 "Pessoa"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128032 "nome"
+	protected explicit_type "string"
+	constraint "Not null"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128288 "telefone"
+	protected explicit_type "long"
+	constraint "Not null"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128416 "email"
+	protected explicit_type "string"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128032 "solicitarAssossicao"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "clube" type class_ref 128544 // Clube
+	multiplicity "1"
+	
+	
+	
+	
+	
+      end
+
+      operation 144288 "getNome"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144544 "getTelefone"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144672 "getEmail"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144800 "setNome"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nome" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 144928 "setTelefone"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "telefone" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 145056 "setEmail"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "email" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128544 "Clube"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      operation 128160 "adicionarSocio"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "pessoa" type class_ref 128416 // Pessoa
+	multiplicity "1"
+	
+	
+	
+	
+	
+      end
+
+      operation 128288 "gerarMensalidades"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "data" explicit_type "Date"
+	multiplicity "1"
+	
+	
+	
+	
+	
+      end
+
+      operation 128544 "aceitarSolicitacao"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "pessoa" type class_ref 128416 // Pessoa
+	multiplicity "1"
+	
+	
+	
+	
+	
+	comment "				"
+      end
+
+      classrelation 135968 // socios (<association>)
+	relation 135456 ----
+	  a role_name "socios" multiplicity "*" private
+	    classrelation_ref 135968 // socios (<association>)
+	  b role_name "clubeAssossiado" multiplicity "1" private
+	    classrelation_ref 136096 // <association>
+	  association_type class_ref 128288 // Socio
+      end
+
+      attribute 129440 "Socios"
+	private type class_ref 128288 // Socio
+	stereotype "list"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 135200 "atualizarSocio"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "socioOld" type class_ref 128288 // Socio
+	multiplicity "1"
+	  param in name "socioNew" type class_ref 128288 // Socio
+	
+	
+	
+	
+	
+      end
+
+      operation 135328 "removerSocio"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "socio" type class_ref 128288 // Socio
+	
+	
+	
+	
+	
+      end
+
+      classrelation 142624 // sociosDoClube (<composition>)
+	relation 141984 *---
+	  a role_name "sociosDoClube" multiplicity "*" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	    classrelation_ref 142624 // sociosDoClube (<composition>)
+	  b role_name "clubeDoSocio" multiplicity "1" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142752 // <composition>
+      end
+
+      attribute 142624 "nome"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142752 "candidatos"
+	private type class_ref 128416 // Pessoa
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 141984 "solicitarAssossiacao"
+	public explicit_return_type "void"
+	nparams 3
+	  param in name "nome" explicit_type "String"
+	multiplicity "1"
+	  param in name "email" explicit_type "String"
+	  param in name "telefone" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 151584 "consultaSocio"
+	public explicit_return_type "List<Socio>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 151712 "consultaCandidato"
+	public explicit_return_type "List<Pessoa>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    usecase 128032 "Apresentar solicitacao"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128288 "Pagar mensalidade"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128416 "Gerar Mensalidade"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128544 "Cadastrar Socio"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 135072 "Manter Socios e Dependentes"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    classdiagram 134560 "Diagrama de Classes"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A4
+    end
+
+    class 135072 "Mensalidade"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128800 "data_vencimento"
+	protected explicit_type "Date"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128928 "valor_pago"
+	private explicit_type "Double"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129056 "data_pagamento"
+	private explicit_type "Date"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129312 "juros_sobre_o_valor"
+	private explicit_type "Double"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      classrelation 135840 // socio (<association>)
+	relation_ref 135328 // <association>
+      end
+
+      classrelation 143008 // vinculo (<composition>)
+	relation_ref 142112 // <composition>
+      end
+
+      operation 143264 "calcularJuros"
+	public explicit_return_type "double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143392 "quitar"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "valorPago" explicit_type "Double"
+	multiplicity "1"
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143520 "getData_vencimento"
+	public explicit_return_type "Date"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143648 "getData_pagamento"
+	public explicit_return_type "Date"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143776 "getValor"
+	public explicit_return_type "Double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 143904 "getQuitada"
+	public explicit_return_type "Boolean"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      operation 144032 "getValor_pago"
+	public explicit_return_type "Double"
+	nparams 0
+	
+	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+      end
+
+      attribute 142880 "quitada"
+	private explicit_type "Boolean"
+	init_value "false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143008 "valor"
+	private explicit_type "Double"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+  end
+end
