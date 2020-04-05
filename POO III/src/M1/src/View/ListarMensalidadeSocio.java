@@ -1,4 +1,4 @@
-package M1.View;
+package src.View;
 
 import src.Mensalidade;
 import src.Socio;

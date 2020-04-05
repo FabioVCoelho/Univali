@@ -1,4 +1,4 @@
-package M1.View;
+package src.View;
 
 import src.Clube;
 import src.Pessoa;
