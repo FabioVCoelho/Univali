@@ -1,9 +1,9 @@
-package M1.View;
+package src.View;
 
-import M1.Clube;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import src.Clube;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,7 +18,7 @@ public class GerarMensalidadeSocio extends JPanel {
     JButton gerarMensalidade = new JButton("Gerar Mensalidade");
     JButton voltar = new JButton("Voltar");
 
-    public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, Clube clube) {
+    public JPanel getPanel(JPanel panels, M1.View.AcaoSocio acaoSocio, Clube clube) {
         this.setLayout(new FlowLayout());
         UtilDateModel model = new UtilDateModel();
         Properties properties = new Properties();

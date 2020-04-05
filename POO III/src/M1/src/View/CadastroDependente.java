@@ -1,12 +1,14 @@
 package M1.View;
 
-import M1.Clube;
-import M1.Socio;
+import src.Clube;
+import src.Dependente;
+import src.Socio;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class SolicitarAssossiacao extends JPanel {
+public class CadastroDependente extends JPanel {
+
     JLabel nomeLabel = new JLabel("Nome: ");
     JTextField nomeText = new JTextField();
     JLabel emailLabel = new JLabel("E-mail: ");
@@ -14,12 +16,15 @@ public class SolicitarAssossiacao extends JPanel {
     JLabel telefoneLabel = new JLabel("Telefone: ");
     JTextField telefoneText = new JTextField();
     JLabel errorMsg = new JLabel("");
-    JButton solicitar_pedido = new JButton("Cadastrar");
+    JButton cadastrar_Dependente = new JButton("Cadastrar");
     JButton voltar = new JButton("Voltar");
+    Socio socio;
     private boolean atualizar = false;
-    private Socio socio;
+    private Dependente dependente;
+    private Clube clube;
 
     public JPanel getPanel(JPanel panels, AcaoSocio acaoSocio, Clube clube) {
+        this.clube = clube;
         this.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         nomeText.setColumns(20);
@@ -54,14 +59,13 @@ public class SolicitarAssossiacao extends JPanel {
         constraints.ipadx = 0;
         constraints.gridx = 0;
         constraints.gridy = 3;
-        this.add(errorMsg, constraints);
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.PAGE_END;
         constraints.ipadx = 0;
         constraints.gridx = 2;
         constraints.gridy = 5;
-        this.add(solicitar_pedido, constraints);
+        this.add(cadastrar_Dependente, constraints);
 
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.PAGE_END;
@@ -70,19 +74,16 @@ public class SolicitarAssossiacao extends JPanel {
         constraints.gridy = 5;
         this.add(voltar, constraints);
 
-        solicitar_pedido.addActionListener(e -> {
-            if (validarForm() && !atualizar) {
-                clube.solicitarAssossiacao(nomeText.getText(), telefoneText.getText(), emailText.getText());
-                solicitar_pedido.setEnabled(false);
-                errorMsg.setText("");
-            } else if (atualizar) {
-                Socio socioOld = this.socio;
-                this.socio.setNome(nomeText.getText());
-                this.socio.setEmail(emailText.getText());
-                this.socio.setTelefone(telefoneText.getText());
-                clube.atualizarSocio(socioOld, this.socio);
+        cadastrar_Dependente.addActionListener(e -> {
+            if (atualizar) {
+                Dependente dependenteOld = this.dependente;
+                this.dependente.setEmail(emailText.getText());
+                this.dependente.setNome(nomeText.getText());
+                this.dependente.setTelefone(telefoneText.getText());
+                socio.atualizarDependente(dependenteOld, this.dependente);
             } else {
-                errorMsg.setText("Erro no registro");
+                Dependente dependente = new Dependente(nomeText.getText(), emailText.getText(), telefoneText.getText());
+                socio.adicionarDependente(dependente);
             }
         });
 
@@ -96,30 +97,29 @@ public class SolicitarAssossiacao extends JPanel {
         return this;
     }
 
-    private boolean validarForm() {
-        if (nomeText.getText().length() < 4) {
-            return false;
+    public void setSocio(Long numeroCartao) {
+        for (Socio socio : clube.consultaSocio()) {
+            if (socio.getNumeroCartaoSocio().equals(numeroCartao)) {
+                this.socio = socio;
+            }
         }
-        if (!emailText.getText().contains("@") && emailText.getText().length() < 10) return false;
-        return telefoneText.getText().length() >= 8;
     }
 
     public void cleanAll() {
         nomeText.setText("");
         emailText.setText("");
         telefoneText.setText("");
-        solicitar_pedido.setEnabled(true);
-        solicitar_pedido.setText("Cadastrar");
+        cadastrar_Dependente.setText("Cadastrar");
         atualizar = false;
     }
 
-    public void preencherCampos(Socio socio) {
-        nomeText.setText(socio.getNome());
-        emailText.setText(socio.getEmail());
-        telefoneText.setText(socio.getTelefone());
+    public void preencherCampos(Dependente dependente) {
+        nomeText.setText(dependente.getNome());
+        emailText.setText(dependente.getEmail());
+        telefoneText.setText(dependente.getTelefone());
         atualizar = true;
-        this.socio = socio;
-        solicitar_pedido.setEnabled(true);
-        solicitar_pedido.setText("Atualizar");
+        cadastrar_Dependente.setText("Atualizar");
+        this.dependente = dependente;
     }
+
 }

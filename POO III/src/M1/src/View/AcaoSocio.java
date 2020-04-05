@@ -1,8 +1,8 @@
 package M1.View;
 
-import M1.Clube;
-import M1.Pessoa;
-import M1.Socio;
+import src.Clube;
+import src.Pessoa;
+import src.Socio;
 
 import javax.swing.*;
 import java.awt.*;

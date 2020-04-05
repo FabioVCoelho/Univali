@@ -138,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onCalcularCompra(View view) {
-        findViewById(R.id.textView5).setVisibility(View.VISIBLE);
-        findViewById(R.id.textView7).setVisibility(View.VISIBLE);
+        findViewById(R.id.textView5).setVisibility(src.View.VISIBLE);
+        findViewById(R.id.textView7).setVisibility(src.View.VISIBLE);
         TextView calorias = findViewById(R.id.calorias);
         calorias.setText(calculateCalories());
         TextView valor = findViewById(R.id.valor);

@@ -1,6 +1,6 @@
 package M1.View;
 
-import M1.Clube;
+import src.Clube;
 
 import javax.swing.*;
 import java.awt.*;

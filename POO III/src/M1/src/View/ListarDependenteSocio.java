@@ -1,7 +1,7 @@
 package M1.View;
 
-import M1.Dependente;
-import M1.Socio;
+import src.Dependente;
+import src.Socio;
 
 import javax.swing.*;
 import java.awt.*;

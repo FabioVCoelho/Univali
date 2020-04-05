@@ -1,4 +1,4 @@
-package M1;
+package src;
 
 public class Pessoa {
     String nome;
