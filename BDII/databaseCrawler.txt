@@ -1,0 +1,220 @@
+CREATE TABLE site (
+	id integer primary key,
+	url text,
+	last_time_processed timestamp,
+	category text,
+	depth integer,
+	ajax_load_more_time integer,
+	usuario text,
+	periodicity_in_minutes integer
+);
+
+CREATE TABLE category_twitter (
+	id integer primary key,
+	category text,
+	usuario text,
+	token_access text,
+	token_password text,
+	consumer_access text,
+	consumer_password text
+);
+
+CREATE TABLE category_form (
+	id integer primary key,
+	category text,
+	usuario text,
+	url_login text,
+	id_form text,
+	id_login text,
+	id_password text,
+	login text,
+	password text,
+	id_submit text
+);
+
+CREATE TABLE category_instagram (
+	id integer primary key,
+	category text,
+	usuario text,
+	access_token text,
+	client_secret text
+);
+
+CREATE TABLE site_audit (
+	operacao text,
+	usuario_audit text,
+	data timestamp,
+	id integer,
+	url text,
+	last_time_processed timestamp,
+	category text,
+	depth integer,
+	ajax_load_more_time integer,
+	usuario text,
+	periodicity_in_minutes integer
+);
+
+
+---------------------------------- Triggers ----------------------------------
+CREATE OR REPLACE FUNCTION site_requirements() RETURNS trigger AS $site_requirements$
+BEGIN
+
+-- Verificar se foi cadastrada uma url
+IF NEW.url IS NULL THEN
+RAISE EXCEPTION 'A url não pode ser nula';
+END IF;
+
+-- Verifica se a profundidade do crawl é maior ou igual a 0
+IF NEW.depth < 0 THEN
+RAISE EXCEPTION 'A profundidade para realizar o crawl não pode menor que zero';
+END IF;
+
+-- Verifica se a periodicidade do crawl é maior que 30
+IF NEW.periodicity_in_minutes < 30 THEN
+RAISE EXCEPTION 'A periodicidade para realizar o crawl não pode ser menor que 30 minutos';
+END IF;
+
+-- Verificar se foi fornecido um protocolo de acesso ao site
+IF (substring(NEW.url,1,8) != 'https://' AND substring(NEW.url,1,7) != 'http://') THEN
+RAISE EXCEPTION 'Não pode haver uma url sem protocolo de acesso (http:// ou https://)';
+END IF;
+
+RETURN NEW;
+END;
+$site_requirements$ LANGUAGE plpgsql;
+
+CREATE TRIGGER site_requirements BEFORE INSERT OR UPDATE ON site
+FOR EACH ROW EXECUTE PROCEDURE site_requirements();
+
+--------------------------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION processa_site_audit() RETURNS TRIGGER AS
+$site_audit$
+BEGIN
+--
+-- Cria uma linha na tabela emp_audit para refletir a operação
+-- realizada na tabela emp. Utiliza a variável especial TG_OP
+-- para descobrir a operação sendo realizada.
+--
+IF (TG_OP = 'DELETE') THEN
+INSERT INTO site_audit SELECT 'E', user, now(), OLD.*;
+RETURN OLD;
+ELSIF (TG_OP = 'UPDATE') THEN
+INSERT INTO site_audit SELECT 'U', user, now(), NEW.*;
+RETURN NEW;
+ELSIF (TG_OP = 'INSERT') THEN
+INSERT INTO site_audit SELECT 'I', user, now(), NEW.*;
+RETURN NEW;
+END IF;
+RETURN NULL; -- o resultado é ignorado uma vez que este é um gatilho AFTER
+END;
+$site_audit$ language plpgsql;
+
+CREATE TRIGGER site_audit
+AFTER INSERT OR UPDATE OR DELETE ON site
+FOR EACH ROW EXECUTE PROCEDURE processa_site_audit();
+
+------------------------------------------------------------------------------
+   CREATE OR REPLACE FUNCTION DateDiff (units VARCHAR(30), start_t TIMESTAMP, end_t TIMESTAMP) 
+     RETURNS INT AS $$
+   DECLARE
+     diff_interval INTERVAL; 
+     diff INT = 0;
+     years_diff INT = 0;
+   BEGIN
+     IF units IN ('yy', 'yyyy', 'year', 'mm', 'm', 'month') THEN
+       years_diff = DATE_PART('year', end_t) - DATE_PART('year', start_t);
+ 
+       IF units IN ('yy', 'yyyy', 'year') THEN
+         -- SQL Server does not count full years passed (only difference between year parts)
+         RETURN years_diff;
+       ELSE
+         -- If end month is less than start month it will subtracted
+         RETURN years_diff * 12 + (DATE_PART('month', end_t) - DATE_PART('month', start_t)); 
+       END IF;
+     END IF;
+ 
+     -- Minus operator returns interval 'DDD days HH:MI:SS'  
+     diff_interval = end_t - start_t;
+ 
+     diff = diff + DATE_PART('day', diff_interval);
+ 
+     IF units IN ('wk', 'ww', 'week') THEN
+       diff = diff/7;
+       RETURN diff;
+     END IF;
+ 
+     IF units IN ('dd', 'd', 'day') THEN
+       RETURN diff;
+     END IF;
+ 
+     diff = diff * 24 + DATE_PART('hour', diff_interval); 
+ 
+     IF units IN ('hh', 'hour') THEN
+        RETURN diff;
+     END IF;
+ 
+     diff = diff * 60 + DATE_PART('minute', diff_interval);
+ 
+     IF units IN ('mi', 'n', 'minute') THEN
+        RETURN diff;
+     END IF;
+ 
+     diff = diff * 60 + DATE_PART('second', diff_interval);
+ 
+     RETURN diff;
+   END;
+   $$ LANGUAGE plpgsql;
+
+-------------------------------- Function ------------------------------------
+Select * FROM get_site_which_should_run();
+
+CREATE OR REPLACE FUNCTION get_site_which_should_run()
+RETURNS setof site as $$
+BEGIN
+	RETURN QUERY SELECT * FROM SITE WHERE DATEDIFF('minute', last_time_processed::timestamp, current_date) > periodicity_in_minutes;
+END;
+$$ LANGUAGE plpgsql;
+-------------------------------------------------------------------------------
+
+CREATE INDEX category_index ON site (
+	category ASC
+);
+
+INSERT INTO site (id,url,last_time_processed,category,depth,ajax_load_more_time,usuario, periodicity_in_minutes)
+values (1,'htt://a',current_date,'instagram',2,3,'eu',40);
+
+INSERT INTO site (id,url,last_time_processed,category,depth,ajax_load_more_time,usuario, periodicity_in_minutes)
+values (1,'http://a',current_date,'instagram',-1,3,'eu',40);
+
+INSERT INTO site (id,url,last_time_processed,category,depth,ajax_load_more_time,usuario, periodicity_in_minutes)
+values (1,'http://a',current_date,'instagram',0,3,'eu',29);
+
+INSERT INTO site (id,url,last_time_processed,category,depth,ajax_load_more_time,usuario, periodicity_in_minutes)
+values (1,'http://a',current_date,'instagram',0,3,'eu',30);
+
+INSERT INTO site (id,url,last_time_processed,category,depth,ajax_load_more_time,usuario, periodicity_in_minutes)
+values (2,'http://a',TO_TIMESTAMP('2017-03-31 9:30:20','YYYY-MM-DD HH:MI:SS'),'instagram',0,3,'eu',30);
+
+
+SELECT * FROM site;
+
+ANALYZE VERBOSE site;
+
+DELETE FROM site WHERE id > 50 AND id < 200;
+
+DELETE FROM site WHERE id > 500 AND id < 700;
+
+DELETE FROM site WHERE id > 720 AND id < 800;
+
+DELETE FROM site WHERE id > 1000 AND id < 1200;
+
+DELETE FROM site WHERE id > 1500 AND id < 1800;
+
+DELETE FROM site WHERE id > 1923 AND id < 2112;
+
+DELETE FROM site WHERE id > 2200 AND id < 2358;
+
+DELETE FROM site WHERE id > 2643 AND id < 2943;
+
+VACUUM ANALYZE site;

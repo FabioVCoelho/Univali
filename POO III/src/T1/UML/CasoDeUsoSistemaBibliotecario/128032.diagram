@@ -1,0 +1,88 @@
+format 222
+
+classcanvas 128032 class_ref 128032 // Usuario
+  simpleclassdiagramsettings end
+  xyz 153 142 2000
+end
+usecasecanvas 128160 usecase_ref 128032 // Consultar acervo
+  xyzwh 405 201 3005 64 32 label_xy 375 233
+end
+usecasecanvas 128288 usecase_ref 128160 // Fazer empréstimo
+  xyzwh 222 306 3005 64 32 label_xy 188 338
+end
+usecasecanvas 128416 usecase_ref 128288 // Fazer Reserva
+  xyzwh 26 238 3005 64 32 label_xy 7 270
+end
+usecasecanvas 128544 usecase_ref 128416 // Devolver empréstimo
+  xyzwh 70 308 3005 64 32 label_xy 23 340
+end
+classcanvas 128672 class_ref 128160 // Biblioteca
+  simpleclassdiagramsettings end
+  xyz 681 93 2000
+end
+usecasecanvas 128800 usecase_ref 128544 // Cadastrar material
+  xyzwh 535 296 3005 64 32 label_xy 498 328
+end
+usecasecanvas 128928 usecase_ref 128672 // Editar material
+  xyzwh 653 350 3005 64 32 label_xy 631 382
+end
+usecasecanvas 129056 usecase_ref 128800 // Remover material
+  xyzwh 728 420 3005 64 32 label_xy 695 452
+end
+usecasecanvas 129184 usecase_ref 128928 // Cancelar Reserva
+  xyzwh 37 133 3005 64 32 label_xy 5 165
+end
+usecasecanvas 129312 usecase_ref 129056 // Cadastrar usuário
+  xyzwh 406 47 3005 64 32 label_xy 373 79
+end
+usecasecanvas 129440 usecase_ref 129184 // Verificar Atraso
+  xyzwh 58 400 3011 64 32 label_xy 34 432
+end
+usecasecanvas 131232 usecase_ref 135712 // Login
+  xyzwh 409 120 3005 64 32 label_xy 421 152
+end
+usecasecanvas 132000 usecase_ref 135968 // Pagar Multa
+  xyzwh 343 288 3005 64 32 label_xy 332 320
+end
+classcanvas 132256 class_ref 134688 // Bibliotecario
+  simpleclassdiagramsettings end
+  xyz 424 400 2000
+end
+simplerelationcanvas 129568 simplerelation_ref 128032
+  from ref 129440 z 3012 to ref 128544
+end
+line 129696 --->
+  from ref 128672 z 3006 to ref 129312
+line 129952 ----
+  from ref 129312 z 3006 to ref 128032
+line 130208 --->
+  from ref 128032 z 3006 to ref 129184
+line 130464 --->
+  from ref 128032 z 3006 to ref 128544
+line 130592 --->
+  from ref 128032 z 3006 to ref 128288
+line 130848 --->
+  from ref 128032 z 3006 to ref 128416
+line 130976 --->
+  from ref 128032 z 3006 to ref 128160
+line 131104 ----
+  from ref 128160 z 3006 to ref 128672
+line 131360 --->
+  from ref 128032 z 3006 to ref 131232
+line 131488 ----
+  from ref 131232 z 3006 to ref 128672
+line 132128 --->
+  from ref 128032 z 3006 to ref 132000
+line 132768 --->
+  from ref 132256 z 3006 to ref 128800
+line 132896 --->
+  from ref 132256 z 3006 to ref 128928
+line 133024 --->
+  from ref 132256 z 3006 to ref 129056
+line 133152 ----
+  from ref 128800 z 3006 to ref 128672
+line 133280 ----
+  from ref 128928 z 3006 to ref 128672
+line 133408 ----
+  from ref 129056 z 3006 to ref 128672
+end

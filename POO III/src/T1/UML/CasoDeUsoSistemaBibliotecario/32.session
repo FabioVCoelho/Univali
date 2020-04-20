@@ -1,0 +1,14 @@
+window_sizes 1366 704 320 1040 553 96
+cleanlooks_style
+diagrams
+  active  usecasediagram_ref 128032 // casoDeUso
+    1040 553 100 A4 0 0
+end
+show_stereotypes
+selected usecase_ref 129184 // Verificar Atraso
+open
+  usecase_ref 128288 // Fazer Reserva
+  usecase_ref 128672 // Editar material
+  usecase_ref 129184 // Verificar Atraso
+end
+end

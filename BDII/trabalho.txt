@@ -1,0 +1,6 @@
+https://github.com/facebookarchive/python-instagram
+
+https://python-twitter.readthedocs.io/en/latest/
+
+https://facebook-sdk.readthedocs.io/en/latest/api.html
+https://pypi.org/project/python-facebook-api/
