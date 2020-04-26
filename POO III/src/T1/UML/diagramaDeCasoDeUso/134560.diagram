@@ -1,0 +1,148 @@
+format 222
+
+classinstance 128672 class_ref 128032 // Usuario
+  name ""   xyz 57 4 2000 life_line_z 2000
+classinstance 128800 class_ref 128160 // Biblioteca
+  name ""   xyz 729 5 2000 life_line_z 2000
+classinstance 128928 class_ref 141984 // TelaControle
+  name ""   xyz 351 6 2000 life_line_z 2000
+fragment 132896 "critical"
+  form "usuarioComMultaAcimaDeR$10,00" xyzwh 11 118 2000 802 562
+  separator 2246
+end
+textcanvas 133024 "Se usuario com multa acima de R$10,00"
+  xyzwh 118 131 2005 195 41
+textcanvas 133792 "else"
+  xyzwh 131 260 2005 46 30
+fragment 134048 "alt"
+  form "codigoEncontrado" xyzwh 20 427 2005 778 144
+  separator 5185
+end
+textcanvas 134176 "Material == null"
+  xyzwh 171 436 2011 145 28
+textcanvas 134304 "else"
+  xyzwh 218 507 2010 30 18
+durationcanvas 129056 classinstance_ref 128672 // :Usuario
+  xyzwh 84 86 2010 11 156
+end
+durationcanvas 129440 classinstance_ref 128672 // :Usuario
+  xyzwh 84 356 2010 11 208
+end
+durationcanvas 129696 classinstance_ref 128928 // :TelaControle
+  xyzwh 399 388 2010 11 176
+end
+durationcanvas 129952 classinstance_ref 128800 // :Biblioteca
+  xyzwh 764 403 2010 11 147
+end
+durationcanvas 130464 classinstance_ref 128928 // :TelaControle
+  xyzwh 399 586 2010 11 82
+end
+durationcanvas 130720 classinstance_ref 128800 // :Biblioteca
+  xyzwh 764 590 2010 11 60
+end
+durationcanvas 132128 classinstance_ref 128800 // :Biblioteca
+  xyzwh 764 91 2010 11 227
+end
+durationcanvas 133152 classinstance_ref 128928 // :TelaControle
+  xyzwh 399 88 2010 11 280
+end
+durationcanvas 133920 classinstance_ref 128672 // :Usuario
+  xyzwh 84 578 2010 11 91
+end
+msg 129312 synchronous
+  from durationcanvas_ref 129056
+  to durationcanvas_ref 133152
+  yz 99 2015 explicitmsg "selecionaEmprestimo:void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 148 81
+msg 129568 synchronous
+  from durationcanvas_ref 133152
+  to durationcanvas_ref 129440
+  yz 357 2015 explicitmsg "inisiraOCodigoDeBarraDoLivro:void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 117 339
+msg 129824 synchronous
+  from durationcanvas_ref 129440
+  to durationcanvas_ref 129696
+  yz 388 2015 explicitmsg "valorCodigoDeBarra: string"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 160 370
+msg 130080 synchronous
+  from durationcanvas_ref 129696
+  to durationcanvas_ref 129952
+  yz 403 2020 explicitmsg "buscarMaterialComCodigoDeBarra: Material"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 435 385
+msg 130208 return
+  from durationcanvas_ref 129952
+  to durationcanvas_ref 129696
+  yz 539 2015 explicitmsg "MaterialEncontrado:Material"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 489 522
+msg 130336 return
+  from durationcanvas_ref 129696
+  to durationcanvas_ref 129440
+  yz 553 2015 explicitmsg "DetalhesDoMaterial:string"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 145 535
+msg 130592 synchronous
+  from durationcanvas_ref 133920
+  to durationcanvas_ref 130464
+  yz 586 2015 explicitmsg "validaMaterialEEmpresta:string"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 145 569
+msg 130848 synchronous
+  from durationcanvas_ref 130464
+  to durationcanvas_ref 130720
+  yz 595 2015 explicitmsg "emprestarMaterialParaUsuario:string"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 451 578
+msg 130976 return
+  from durationcanvas_ref 130720
+  to durationcanvas_ref 130464
+  yz 630 2015 explicitmsg "Material emprestado com sucesso"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 458 612
+msg 131488 return
+  from durationcanvas_ref 130464
+  to durationcanvas_ref 133920
+  yz 653 2015 explicitmsg "Material emprestado com sucesso"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 115 634
+msg 132256 synchronous
+  from durationcanvas_ref 133152
+  to durationcanvas_ref 132128
+  yz 140 2015 explicitmsg "verificaValorMultaUsuario:boolean"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 462 122
+msg 133280 return
+  from durationcanvas_ref 132128
+  to durationcanvas_ref 133152
+  yz 286 2015 explicitmsg "continue"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 671 267
+msg 133408 return
+  from durationcanvas_ref 132128
+  to durationcanvas_ref 133152
+  yz 186 2015 explicitmsg "pague a divida antes"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 511 168
+msg 133664 return
+  from durationcanvas_ref 133152
+  to durationcanvas_ref 129056
+  yz 204 2015 explicitmsg "AcaoCanceladaNecessarioPagamento"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 107 186
+msg 134432 return
+  from durationcanvas_ref 129952
+  to durationcanvas_ref 129696
+  yz 472 2015 explicitmsg "Material nao encontrado"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 492 454
+msg 134560 return
+  from durationcanvas_ref 129696
+  to durationcanvas_ref 129440
+  yz 489 2020 explicitmsg "material nao encontrado tente novamente"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 96 471
+end

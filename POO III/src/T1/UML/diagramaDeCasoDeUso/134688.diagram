@@ -1,0 +1,35 @@
+format 222
+
+classcanvas 128032 class_ref 128032 // Usuario
+  classdiagramsettings member_max_width 0 end
+  xyz 174 109 2000
+end
+classcanvas 128160 class_ref 141216 // Material
+  classdiagramsettings member_max_width 0 end
+  xyz 326 101 2000
+end
+classcanvas 128288 class_ref 141344 // Emprestimo
+  classdiagramsettings member_max_width 0 end
+  xyz 569 103 2000
+end
+classcanvas 128416 class_ref 141472 // Livro
+  classdiagramsettings member_max_width 0 end
+  xyz 429 279 2000
+end
+classcanvas 128544 class_ref 141600 // Revista
+  classdiagramsettings member_max_width 0 end
+  xyz 351 339 2000
+end
+classcanvas 128672 class_ref 141728 // Artigo
+  classdiagramsettings member_max_width 0 end
+  xyz 529 194 2000
+end
+classcanvas 128800 class_ref 141856 // Reserva
+  classdiagramsettings member_max_width 0 end
+  xyz 265 220 2000
+end
+classcanvas 128928 class_ref 141984 // TelaControle
+  classdiagramsettings member_max_width 0 end
+  xyz 622 397 2000
+end
+end
