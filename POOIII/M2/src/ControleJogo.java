@@ -3,7 +3,6 @@ package src;
 public class ControleJogo {
     protected Pessoa pessoa;
     protected Palavra palavra;
-    protected boolean venceu = false;
     protected String palavraSecreta;
 
     public String getPalavraSecreta() {
@@ -13,7 +12,6 @@ public class ControleJogo {
     public void iniciarJogo() {
         pessoa = new Pessoa();
         palavra = new Palavra();
-        venceu = false;
         palavraSecreta = palavra.getPalavraSecreta();
     }
 
