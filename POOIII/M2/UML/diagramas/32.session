@@ -1,0 +1,14 @@
+window_sizes 1920 1016 450 1464 843 120
+cleanlooks_style
+diagrams
+  active  sequencediagram_ref 128288 // ChutarLetra
+    1464 843 100 A4 0 0
+  classdiagram_ref 128032 // deClasse
+    120 106 100 A4 0 0
+  sequencediagram_ref 128160 // InicioJogo
+    120 106 100 A4 0 0
+end
+show_stereotypes
+selected 
+  package_ref 129 // diagramas
+end

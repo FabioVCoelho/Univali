@@ -1,0 +1,435 @@
+format 222
+"M2" // M2
+  revision 1
+  modified_by 32 "samaia"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  classview 128032 "Diagramas"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    classdiagram 128032 "deClasse"
+      classdiagramsettings member_max_width 0 end
+      size A4
+    end
+
+    class 128032 "Palavra"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128032 "palavra"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128160 "palavraSecreta"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128288 "letrasReveladas"
+	private explicit_type "List<Character>"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128032 "esconderLetras"
+	public explicit_return_type "string"
+	nparams 1
+	  param in name "palavraSecreta" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 128160 "carregarPalavraSecreta"
+	public explicit_return_type "String"
+	nparams 0
+	nexceptions 1
+	  explicit_exception "IOException"
+	
+	
+	
+	
+	
+      end
+
+      operation 128288 "possuiALetra"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "letra" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 128416 "isCompleta"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128544 "getPalavraSecreta"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128672 "getLetrasReveladas"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128160 "Pessoa"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128544 "todosOsMembros"
+	private type class_ref 128416 // MembrosPessoa
+	stereotype "vector"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128672 "membros"
+	private type class_ref 128416 // MembrosPessoa
+	stereotype "vector"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128800 "adicionarUmMembro"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128928 "perdeuTodosOsMembros"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129056 "getMembros"
+	stereotype "Array"
+	public return_type class_ref 128416 // MembrosPessoa
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 128288 // <generalisation>
+	relation 128288 ---|>
+	  a public
+	    classrelation_ref 128288 // <generalisation>
+	  b parent class_ref 128416 // MembrosPessoa
+      end
+    end
+
+    class 128288 "ControleJogo"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128032 // <generalisation>
+	relation 128032 ---|>
+	  a public
+	    classrelation_ref 128032 // <generalisation>
+	  b parent class_ref 128032 // Palavra
+      end
+
+      classrelation 128160 // <generalisation>
+	relation 128160 ---|>
+	  a public
+	    classrelation_ref 128160 // <generalisation>
+	  b parent class_ref 128160 // Pessoa
+      end
+
+      attribute 128800 "palavraSecreta"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129184 "iniciarJogo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129312 "jogadorChutou"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "letra" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      operation 129440 "fimDeJogo"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129568 "getLetrasJaUsada"
+	public explicit_return_type "String"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129696 "getPessoaMembros"
+	stereotype "Array"
+	public return_type class_ref 128416 // MembrosPessoa
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129824 "getFimDeJogoMensagem"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 128416 "MembrosPessoa"
+      visibility package stereotype "enum_class"
+      cpp_decl "${comment}enum class ${name} {
+${items}};
+"
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+      php_decl "${comment}${visibility}final class ${name} {
+${items}}
+"
+      python_2_2 python_decl "class ${name}:
+${docstring}${members}
+"
+      idl_decl "${comment}enum ${name} {
+${items}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 128928 "CABECA"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129056 "CORPO"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129184 "BRACO_DIREITO"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129312 "BRACO_ESQUERDO"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129440 "PERNA_ESQUERDA"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129568 "PERNA_DIREITA"
+	private explicit_type ""
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    sequencediagram 128160 "InicioJogo"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    sequencediagram 128288 "ChutarLetra"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+  end
+end

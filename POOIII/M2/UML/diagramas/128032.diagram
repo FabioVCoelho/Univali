@@ -1,0 +1,34 @@
+format 222
+
+classcanvas 128032 class_ref 128032 // Palavra
+  classdiagramsettings member_max_width 0 end
+  xyz 45 91 2000
+end
+classcanvas 128160 class_ref 128160 // Pessoa
+  classdiagramsettings member_max_width 0 end
+  xyz 588 125 2000
+end
+classcanvas 128288 class_ref 128288 // ControleJogo
+  classdiagramsettings member_max_width 0 end
+  xyz 298 108 2000
+end
+classcanvas 128416 class_ref 128416 // MembrosPessoa
+  classdiagramsettings member_max_width 0 end
+  xyz 607 337 2000
+end
+relationcanvas 128544 relation_ref 128032 // <generalisation>
+  from ref 128288 z 2001 to ref 128032
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128672 relation_ref 128160 // <generalisation>
+  from ref 128288 z 2001 to ref 128160
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128800 relation_ref 128288 // <generalisation>
+  from ref 128160 z 2001 to ref 128416
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+end

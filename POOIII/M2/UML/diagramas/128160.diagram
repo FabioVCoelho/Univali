@@ -1,0 +1,101 @@
+format 222
+
+classinstance 128032 class_ref 128288 // ControleJogo
+  name ""   xyz 155 4 2000 life_line_z 2010
+classinstance 129056 class_ref 128160 // Pessoa
+  name ""   xyz 389 46 2000 life_line_z 2001
+classinstance 129440 class_ref 128032 // Palavra
+  name ""   xyz 574 248 2010 life_line_z 2010
+fragment 131616 "critical"
+  xyzwh 36 291 2000 784 339
+  separator 5000
+end
+textcanvas 131744 "Se carregarPalavraSecreta, lançar uma exceção"
+  xyzwh 46 326 2020 161 69
+textcanvas 131872 "X"
+  font large_bold  xyzwh 197 421 2020 34 25
+textcanvas 132000 "X"
+  font large_bold  xyzwh 412 421 2010 34 34
+textcanvas 132128 "X"
+  font large_bold  xyzwh 599 423 2010 28 27
+classinstance 132256 class_ref 128416 // MembrosPessoa
+  name ""   xyz 475 4 2000 life_line_z 2000
+durationcanvas 128544 classinstance_ref 128032 // :ControleJogo
+  xyzwh 201 75 2016 11 546
+end
+durationcanvas 129184 classinstance_ref 129056 // :Pessoa
+  xyzwh 416 97 2015 11 87
+end
+durationcanvas 129568 classinstance_ref 129440 // :Palavra
+  xyzwh 601 304 2016 11 96
+  overlappingdurationcanvas 131232
+    xyzwh 607 319 2020 11 57
+  end
+end
+durationcanvas 130080 classinstance_ref 129440 // :Palavra
+  xyzwh 601 530 2016 11 91
+  overlappingdurationcanvas 130720
+    xyzwh 607 570 2020 11 25
+  end
+end
+durationcanvas 132384 classinstance_ref 132256 // :MembrosPessoa
+  xyzwh 532 127 2010 11 55
+end
+lostfoundmsgsupport 128672 xyz 15 77 2015
+msg 128800 found_synchronous
+  from lostfoundmsgsupport_ref 128672
+  to durationcanvas_ref 128544
+  yz 75 2015 explicitmsg "iniciouOPrograma"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 53 57
+msg 129312 synchronous
+  from durationcanvas_ref 128544
+  to durationcanvas_ref 129184
+  yz 101 2001 explicitmsg "CriaAPessoa"
+  stereotype "<<void>>" xyz 283 119 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 271 83
+msg 129696 synchronous
+  from durationcanvas_ref 128544
+  to durationcanvas_ref 129568
+  yz 319 2020 explicitmsg "CriaAPalavra"
+  stereotype "<<void>>" xyz 399 327 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 372 302
+msg 130336 return
+  from durationcanvas_ref 130080
+  to durationcanvas_ref 128544
+  yz 610 2020 explicitmsg "palavraSecreta"
+  stereotype "<<String>>" xyz 381 628 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 367 592
+reflexivemsg 130592 synchronous
+  to durationcanvas_ref 130720
+  yz 570 2025 msg operation_ref 128032 // "esconderLetras(in palavraSecreta : String) : string"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 649 553
+msg 131104 synchronous
+  from durationcanvas_ref 128544
+  to durationcanvas_ref 130080
+  yz 545 2025 msg operation_ref 128544 // "getPalavraSecreta() : String"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 352 527
+reflexivemsg 131360 synchronous
+  to durationcanvas_ref 131232
+  yz 319 2025 msg operation_ref 128160 // "carregarPalavraSecreta() : String"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 642 299
+msg 132512 synchronous
+  from durationcanvas_ref 129184
+  to durationcanvas_ref 132384
+  yz 130 2020 explicitmsg "buscaOsValoresDosMembros"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 443 103
+msg 132640 return
+  from durationcanvas_ref 132384
+  to durationcanvas_ref 129184
+  yz 164 2020 explicitmsg "todosOsMembrosPessoa"
+  stereotype "<<MembroPessoa>>" xyz 433 182 3000
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 438 148
+end
