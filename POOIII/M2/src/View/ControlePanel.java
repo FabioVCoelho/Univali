@@ -29,7 +29,7 @@ public class ControlePanel extends JPanel {
         jogadorPanel.setPalavraChave(controle.getPalavraSecreta());
         jogadorPanel.setLetrasJaUsadas(controle.getLetrasJaUsada());
         pessoaPanel.setPessoaDraw(controle.getPessoaMembros(), pessoaPanel.getGraphics());
-        if (controle.jogadorVitorioso()) {
+        if (controle.fimDeJogo()) {
             String fimDeJogo = controle.getFimDeJogoMensagem();
             JOptionPane.showMessageDialog(null, fimDeJogo);
             jogadorPanel.desabilitarTudo();

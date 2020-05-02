@@ -23,7 +23,7 @@ public class ControleJogo {
         }
     }
 
-    public boolean jogadorVitorioso() {
+    public boolean fimDeJogo() {
         return palavra.isCompleta() || pessoa.perdeuTodosOsMembros();
     }
 
