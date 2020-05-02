@@ -1,9 +1,8 @@
 package src;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +17,7 @@ public class Palavra {
         letrasReveladas = new ArrayList<>();
         try {
             palavraSecreta = carregarPalavraSecreta();
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Não encontrou o arquivo");
             System.exit(0);
         }
@@ -40,13 +39,25 @@ public class Palavra {
         return palavraEscondida.toString();
     }
 
-    private String carregarPalavraSecreta() throws IOException {
-        if (getClass().getClassLoader().getResource("words.txt") == null) {
-            throw new FileNotFoundException("Não encontrou o arquivo");
+    private String carregarPalavraSecreta() throws Exception {
+        InputStream wordstxtIS = getClass().getClassLoader().getResourceAsStream("words.txt");
+        if (wordstxtIS == null) {
+            throw new Exception("Não encontrou o arquivo");
         }
-        List<String> lines = Files.readAllLines(Paths.get(getClass().getClassLoader().getResource("words.txt").getPath()));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(wordstxtIS));
+        int lines = 0;
+        while (reader.ready()) {
+            lines++;
+            reader.readLine();
+        }
         Random random = new Random();
-        return lines.get(random.nextInt(lines.size()));
+        int randomValue = random.nextInt(lines);
+        wordstxtIS = getClass().getClassLoader().getResourceAsStream("words.txt");
+        reader = new BufferedReader(new InputStreamReader(wordstxtIS));
+        for (int i = 0; i < randomValue; i++) {
+            reader.readLine();
+        }
+        return reader.readLine();
     }
 
     public boolean possuiALetra(String letra) {
