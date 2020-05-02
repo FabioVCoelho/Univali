@@ -30,8 +30,8 @@ public class JogadorPanel extends JPanel {
         palavraSecretaLabel.setFont(new Font(palavraSecretaLabel.getFont().getName(), Font.PLAIN, 28));
         letrasJaChutadas.setFont(new Font(letrasJaChutadas.getFont().getName(), Font.PLAIN, 28));
         chutar.addActionListener(e -> {
-            controle.jogadorChutou(letraChuteJogador.getText());
-            controlePanel.atualizarLabels();
+            boolean fimDeJogo = controle.jogadorChutou(letraChuteJogador.getText());
+            controlePanel.atualizarLabels(fimDeJogo);
             letraChuteJogador.setText("");
         });
 

@@ -11,7 +11,7 @@ public class Pessoa {
         todosOsMembros = MembrosPessoa.values();
     }
 
-    public void mostrarUmMembro() {
+    public void adicionarUmMembro() {
         for (int i = 0; i < membros.length; i++) {
             if (membros[i] == null) {
                 membros[i] = todosOsMembros[i];

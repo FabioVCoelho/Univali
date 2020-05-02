@@ -21,17 +21,17 @@ public class ControlePanel extends JPanel {
         this.setLayout(new GridLayout(1, 1));
         this.add(pessoaPanel.getPanel());
         this.add(jogadorPanel.getPanel());
-        atualizarLabels();
+        atualizarLabels(false);
         return this;
     }
 
-    public void atualizarLabels() {
+    public void atualizarLabels(boolean fimDeJogo) {
         jogadorPanel.setPalavraChave(controle.getPalavraSecreta());
         jogadorPanel.setLetrasJaUsadas(controle.getLetrasJaUsada());
         pessoaPanel.setPessoaDraw(controle.getPessoaMembros(), pessoaPanel.getGraphics());
-        if (controle.fimDeJogo()) {
-            String fimDeJogo = controle.getFimDeJogoMensagem();
-            JOptionPane.showMessageDialog(null, fimDeJogo);
+        if (fimDeJogo) {
+            String fimDeJogoMsg = controle.getFimDeJogoMensagem();
+            JOptionPane.showMessageDialog(null, fimDeJogoMsg);
             jogadorPanel.desabilitarTudo();
         }
     }

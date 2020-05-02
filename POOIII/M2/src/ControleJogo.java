@@ -15,12 +15,13 @@ public class ControleJogo {
         palavraSecreta = palavra.getPalavraSecreta();
     }
 
-    public void jogadorChutou(String letra) {
+    public boolean jogadorChutou(String letra) {
         if (palavra.possuiALetra(letra)) {
             palavraSecreta = palavra.getPalavraSecreta();
         } else {
-            pessoa.mostrarUmMembro();
+            pessoa.adicionarUmMembro();
         }
+        return fimDeJogo();
     }
 
     public boolean fimDeJogo() {
