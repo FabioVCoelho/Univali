@@ -22,7 +22,6 @@ public class Palavra {
             System.out.println("Não encontrou o arquivo");
             System.exit(0);
         }
-        palavra = esconderLetras(palavraSecreta);
     }
 
     public String getLetrasReveladas() {
