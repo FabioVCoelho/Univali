@@ -10,7 +10,7 @@ fragment 131616 "critical"
   xyzwh 36 291 2000 784 339
   separator 5000
 end
-textcanvas 131744 "Se carregarPalavraSecreta, lançar uma exceção"
+textcanvas 131744 "Se carregarPalavraSecreta, lançar uma exceção, matar o programa"
   xyzwh 46 326 2020 161 69
 textcanvas 131872 "X"
   font large_bold  xyzwh 197 421 2020 34 25
@@ -51,24 +51,21 @@ msg 128800 found_synchronous
 msg 129312 synchronous
   from durationcanvas_ref 128544
   to durationcanvas_ref 129184
-  yz 101 2001 explicitmsg "CriaAPessoa"
-  stereotype "<<void>>" xyz 283 119 3000
+  yz 101 2001 explicitmsg "CriaAPessoa:void"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 271 83
 msg 129696 synchronous
   from durationcanvas_ref 128544
   to durationcanvas_ref 129568
-  yz 319 2020 explicitmsg "CriaAPalavra"
-  stereotype "<<void>>" xyz 399 327 3000
+  yz 319 2020 explicitmsg "CriaAPalavra: void"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 372 302
 msg 130336 return
   from durationcanvas_ref 130080
   to durationcanvas_ref 128544
-  yz 610 2020 explicitmsg "palavraSecreta"
-  stereotype "<<String>>" xyz 381 628 3000
+  yz 610 2020 explicitmsg "palavraSecreta: String"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 367 592
+  label_xy 341 594
 reflexivemsg 130592 synchronous
   to durationcanvas_ref 130720
   yz 570 2025 msg operation_ref 128032 // "esconderLetras(in palavraSecreta : String) : string"
@@ -94,8 +91,7 @@ msg 132512 synchronous
 msg 132640 return
   from durationcanvas_ref 132384
   to durationcanvas_ref 129184
-  yz 164 2020 explicitmsg "todosOsMembrosPessoa"
-  stereotype "<<MembroPessoa>>" xyz 433 182 3000
+  yz 165 2020 explicitmsg "todosOsMembrosPessoa: MembrosPessoa[]"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
-  label_xy 438 148
+  label_xy 432 181
 end
