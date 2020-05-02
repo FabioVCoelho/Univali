@@ -1,2 +1,5 @@
-
-Compiler/.idea/workspace.xml
+Compiler/*
+*/.idea/
+*/workspace.xml
+POO III Target/*
+*/target

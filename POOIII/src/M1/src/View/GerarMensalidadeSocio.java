@@ -51,8 +51,8 @@ public class GerarMensalidadeSocio extends JPanel {
 
     private static class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
-        private String datePattern = "dd-MM-yyyy";
-        private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+        private final String datePattern = "dd-MM-yyyy";
+        private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
         @Override
         public Object stringToValue(String text) throws ParseException {

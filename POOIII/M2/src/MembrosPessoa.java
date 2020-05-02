@@ -1,0 +1,5 @@
+package src;
+
+public enum MembrosPessoa {
+    CABECA, CORPO, BRACO_DIREITO, BRACO_ESQUERDO, PERNA_ESQUERDA, PERNA_DIREITA
+}
