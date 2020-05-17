@@ -1,0 +1,39 @@
+format 222
+
+classcanvas 128032 class_ref 128032 // Jogador
+  simpleclassdiagramsettings end
+  xyz 91 156 2000
+end
+usecasecanvas 128160 usecase_ref 128032 // Fazer jogada
+  xyzwh 267 60 3005 64 32 label_xy 256 92
+end
+usecasecanvas 128416 usecase_ref 128160 // Escolher Dificuldade
+  xyzwh 266 148 3005 64 32 label_xy 231 180
+end
+usecasecanvas 128672 usecase_ref 128288 // Iniciar Jogo
+  xyzwh 268 249 3005 64 32 label_xy 263 281
+end
+classcanvas 128928 class_ref 128160 // Tabuleiro
+  simpleclassdiagramsettings end
+  xyz 492 151 2000
+end
+usecasecanvas 129440 usecase_ref 128416 // Sair do Jogo
+  xyzwh 273 357 3005 64 32 label_xy 264 389
+end
+line 128288 --->
+  from ref 128032 z 3006 to ref 128160
+line 128544 --->
+  from ref 128032 z 3006 to ref 128416
+line 128800 --->
+  from ref 128032 z 3006 to ref 128672
+line 129056 ----
+  from ref 128160 z 3006 to ref 128928
+line 129184 ----
+  from ref 128672 z 3006 to ref 128928
+line 129312 ----
+  from ref 128416 z 3006 to ref 128928
+line 129696 --->
+  from ref 128032 z 3006 to ref 129440
+line 129824 ----
+  from ref 129440 z 3006 to ref 128928
+end

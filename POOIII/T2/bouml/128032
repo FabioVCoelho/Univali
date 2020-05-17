@@ -1,0 +1,551 @@
+format 222
+"JogoDaMemoria" // JogoDaMemoria
+  revision 2
+  modified_by 32 "samaia"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  usecaseview 128032 "pacoteDeDiagrams"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    usecasediagram 128032 "CasoDeUso"
+      usecasediagramsettings end
+      size A4
+    end
+
+    class 128032 "Jogador"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128544 // <association>
+	relation 128288 ----
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 128544 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 128672 // <association>
+      end
+
+      operation 129312 "alterarDificuldade"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129440 "selecionadoCarta"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "posicaoX" explicit_type "int"
+	  param in name "posicaoY" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+
+      attribute 128928 "nome"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129568 "iniciarJogo"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    usecase 128032 "Fazer jogada"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128160 "Escolher Dificuldade"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    usecase 128288 "Iniciar Jogo"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    class 128160 "Tabuleiro"
+      visibility package stereotype "actor"
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128672 // <association>
+	relation_ref 128288 // <association>
+      end
+
+      classrelation 128800 // <association>
+	relation 128416 ----
+	  a role_name "" private
+	    classrelation_ref 128800 // <association>
+	  b role_name "" private
+	    classrelation_ref 128928 // <association>
+      end
+
+      classrelation 129056 // <composition>
+	relation 128544 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 129056 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 129184 // <composition>
+      end
+
+      classrelation 129312 // posicoes (<association>)
+	relation 128672 ----
+	  a role_name "posicoes" multiplicity "20..*" private
+	    classrelation_ref 129312 // posicoes (<association>)
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 129440 // <association>
+      end
+
+      classrelation 129568 // <composition>
+	relation 128800 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 129568 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 129696 // <composition>
+      end
+
+      operation 129824 "buscarCarta"
+	public return_type class_ref 128416 // Carta
+	nparams 2
+	  param in name "posicaoX" explicit_type "int"
+	  param in name "posicaoY" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+
+      attribute 129056 "Jogada"
+	private type class_ref 128416 // Carta
+	stereotype "list"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    classdiagram 128160 "DiagramaDeClasse"
+      classdiagramsettings draw_all_relations no member_max_width 0 end
+      size A4
+    end
+
+    class 128288 "Posicao"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128288 // <association>
+	relation 128160 ----
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 128288 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 128416 // <association>
+      end
+
+      attribute 128416 "posicaoX"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128544 "posicaoY"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128800 "obterX"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128928 "obterY"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 129440 // <association>
+	relation_ref 128672 // <association>
+      end
+    end
+
+    class 128416 "Carta"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128416 // <association>
+	relation_ref 128160 // <association>
+      end
+
+      attribute 128032 "virada"
+	private explicit_type "boolean"
+	init_value "false"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128160 "imagem"
+	private explicit_type ""
+	multiplicity "1"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128032 "virar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+	comment "Muda o valor de virada da carta para true."
+      end
+
+      operation 128160 "desvirar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+	comment "Modifica o valor de virada para false."
+      end
+
+      operation 128288 "obterImagem"
+	public explicit_return_type ""
+	nparams 0
+	
+	
+	
+	
+	
+	comment "Retorna a imagem da carta."
+      end
+    end
+
+    class 128544 "Cronometro"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128928 // <association>
+	relation_ref 128416 // <association>
+      end
+
+      classrelation 129184 // <composition>
+	relation_ref 128544 // <composition>
+      end
+
+      attribute 128288 "tempo"
+	private explicit_type "long"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 128416 "iniciar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128544 "parar"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 128672 "obterTempo"
+	public explicit_return_type "long"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+    end
+
+    usecase 128416 "Sair do Jogo"
+      
+      usecasediagramsettings end
+      
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+    end
+
+    class 128672 "Nivel"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 129696 // <composition>
+	relation_ref 128800 // <composition>
+      end
+
+      attribute 128672 "dificuldade"
+	private explicit_type "string"
+	init_value "Fácil"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 129056 "obterDificuldade"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 129184 "alterarDificuldade"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "dificuldade" explicit_type "String"
+	
+	
+	
+	
+	
+      end
+
+      attribute 128800 "quantidadeDeCarta"
+	private explicit_type "int"
+	init_value "20"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    sequencediagram 128288 "Fazer Jogada"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+  end
+end

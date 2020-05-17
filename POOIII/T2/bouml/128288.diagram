@@ -1,0 +1,131 @@
+format 222
+
+classinstance 131744 class_ref 128032 // Jogador
+  name ""   xyz 41.44 4.36 2000 life_line_z 2000
+classinstance 131872 class_ref 128160 // Tabuleiro
+  name ""   xyz 351.76 4.36 2000 life_line_z 2000
+classinstance 132000 class_ref 128416 // Carta
+  name ""   xyz 744.16 3.52 2000 life_line_z 2000
+classinstance 132128 class_ref 128288 // Posicao
+  name ""   xyz 594.28 3.52 2000 life_line_z 2000
+fragment 133408 "alt"
+  xyzwh 29.24 298.08 2000 806 550
+  separator 1652
+end
+textcanvas 133536 "Se jogada.size =< 1"
+  xyzwh 53.4 332.16 2005 145 23
+fragment 135840 "alt"
+  xyzwh 123.6 595.56 2005 705 232
+end
+textcanvas 135968 "Se jogada Possui A Mesma Carta == false"
+  xyzwh 180.88 637.04 2010 125 51
+fragment 136096 "loop"
+  xyzwh 148.52 451.24 2030 671 87
+end
+textcanvas 136224 "Para cada carta em jogada"
+  xyzwh 195.16 761.72 2035 150 20
+fragment 136352 "loop"
+  xyzwh 169.72 726.2 1995 642 88
+end
+textcanvas 136736 "Para cada carta em jogada"
+  xyzwh 170.4 489.32 2035 150 20
+durationcanvas 132256 classinstance_ref 131744 // :Jogador
+  xyzwh 66 94.96 2010 11 40
+end
+durationcanvas 132384 classinstance_ref 131872 // :Tabuleiro
+  xyzwh 379 96.12 2010 11 826
+  overlappingdurationcanvas 133664
+    xyzwh 385 313.96 2020 11 63
+  end
+  overlappingdurationcanvas 134176
+    xyzwh 385 439.48 2020 11 135
+  end
+  overlappingdurationcanvas 136864
+    xyzwh 385 875.28 2020 11 25
+  end
+end
+durationcanvas 132640 classinstance_ref 132128 // :Posicao
+  xyzwh 622 119.52 2010 11 48
+end
+durationcanvas 133024 classinstance_ref 132000 // :Carta
+  xyzwh 764 192.6 2010 11 47
+end
+durationcanvas 134432 classinstance_ref 132000 // :Carta
+  xyzwh 764 471.76 2010 11 50
+end
+durationcanvas 135200 classinstance_ref 132000 // :Carta
+  xyzwh 764 259.08 2010 11 27
+end
+durationcanvas 136480 classinstance_ref 132000 // :Carta
+  xyzwh 764 763.16 2010 11 27
+end
+msg 132512 synchronous
+  from durationcanvas_ref 132256
+  to durationcanvas_ref 132384
+  yz 96 2015 explicitmsg "selecionaPosicao(x,y)"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 157 78
+msg 132768 synchronous
+  from durationcanvas_ref 132384
+  to durationcanvas_ref 132640
+  yz 121 2015 explicitmsg "obterPosicao()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 457 103
+msg 132896 return
+  from durationcanvas_ref 132640
+  to durationcanvas_ref 132384
+  yz 155 2015 explicitmsg "posicao"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 480 137
+msg 133152 synchronous
+  from durationcanvas_ref 132384
+  to durationcanvas_ref 133024
+  yz 192 2015 explicitmsg "obterCarta()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 537 174
+msg 133280 return
+  from durationcanvas_ref 133024
+  to durationcanvas_ref 132384
+  yz 225 2015 explicitmsg "carta"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 559 208
+reflexivemsg 133792 asynchronous
+  to durationcanvas_ref 133664
+  yz 338 2025 explicitmsg "adicionarCartaAJogada()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 349 326
+reflexivemsg 134304 synchronous
+  to durationcanvas_ref 134176
+  yz 439 2025 explicitmsg "jogadaPossuiAMesmaCarta()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 324 416
+msg 134560 synchronous
+  from durationcanvas_ref 134176
+  to durationcanvas_ref 134432
+  yz 476 2025 msg operation_ref 128288 // "obterImagem()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 536 459
+msg 134688 return
+  from durationcanvas_ref 134432
+  to durationcanvas_ref 134176
+  yz 504 2025 explicitmsg "Imagem"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 558 487
+msg 135328 synchronous
+  from durationcanvas_ref 132384
+  to durationcanvas_ref 135200
+  yz 259 2015 msg operation_ref 128032 // "virar() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 557 241
+msg 136608 synchronous
+  from durationcanvas_ref 132384
+  to durationcanvas_ref 136480
+  yz 763 2015 msg operation_ref 128160 // "desvirar() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 551 745
+reflexivemsg 136992 synchronous
+  to durationcanvas_ref 136864
+  yz 875 2025 explicitmsg "incrementarJogadas()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 338 857
+end
