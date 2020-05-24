@@ -1,0 +1,23 @@
+format 222
+
+classinstance 128032 class_ref 128032 // Jogador
+  name ""   xyz 43 4 2000 life_line_z 2000
+classinstance 128160 class_ref 141856 // MenuDeOpcoes
+  name ""   xyz 187 4 2000 life_line_z 2000
+textcanvas 128672 "X"
+  font large  fg red  xyzwh 242 173 2005 28 31
+textcanvas 128800 "X"
+  font large  fg red  xyzwh 65 172.5 2005 28 31
+durationcanvas 128288 classinstance_ref 128032 // :Jogador
+  xyzwh 70 98 2010 11 40
+end
+durationcanvas 128416 classinstance_ref 128160 // :MenuDeOpcoes
+  xyzwh 247 98 2010 11 25
+end
+msg 128544 synchronous
+  from durationcanvas_ref 128288
+  to durationcanvas_ref 128416
+  yz 98 2015 explicitmsg "sair do jogo"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 122 80
+end

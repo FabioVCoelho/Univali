@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class MenuDeOpcoes extends JPanel {
 
-    public JPanel getPanel(JPanel painelPrincipal, Tabuleiro tabuleiro, Nivel nivel, TelaDoJogo telaDoJogo, TelaDeFimDeJogo telaDeFimDeJogo) {
+    public JPanel getPanel(ControleVisual painelPrincipal, Tabuleiro tabuleiro, Nivel nivel, TelaDoJogo telaDoJogo, TelaDeFimDeJogo telaDeFimDeJogo) {
         this.setLayout(new GridLayout(3, 1));
         JButton inicioDeJogo = new JButton("Novo jogo");
         JButton nivelDeDificuldade = new JButton("Nível de dificuldade");

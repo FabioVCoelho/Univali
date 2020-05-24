@@ -1,6 +1,5 @@
 package src.View;
 
-import src.Jogador;
 import src.Nivel;
 import src.Tabuleiro;
 
@@ -9,9 +8,8 @@ import java.awt.*;
 
 public class ControleVisual extends JPanel {
 
-    public Component getPanel() {
+    public JPanel getPanel() {
         Nivel nivel = new Nivel();
-        Jogador jogador;
         Tabuleiro tabuleiro = new Tabuleiro();
         this.setLayout(new CardLayout());
         MenuDeOpcoes menuDeOpcoes = new MenuDeOpcoes();

@@ -1,0 +1,102 @@
+format 222
+
+classinstance 128032 class_ref 128032 // Jogador
+  name ""   xyz -2 4 2000 life_line_z 2000
+classinstance 128160 class_ref 128160 // Tabuleiro
+  name ""   xyz 313 82 2000 life_line_z 2010
+classinstance 128544 class_ref 128544 // Cronometro
+  name ""   xyz 412 151 2000 life_line_z 2000
+classinstance 128672 class_ref 141856 // MenuDeOpcoes
+  name ""   xyz 107 4 2000 life_line_z 2000
+textcanvas 129696 "<<create>>"
+  xyzwh 205 81 2018 96 18
+textcanvas 130336 "<<create>>"
+  xyzwh 352 137 2018 96 18
+classinstance 130976 class_ref 128672 // Nivel
+  name ""   xyz 559 4 2000 life_line_z 2010
+classinstance 131488 class_ref 128416 // Carta
+  name ""   xyz 657 469 2010 life_line_z 2010
+fragment 133152 "loop"
+  form "quantidade" xyzwh 293 441 2000 476 111
+end
+textcanvas 133280 "0 até quantidade"
+  xyzwh 632 446 2031 126 18
+textcanvas 133792 "<<create>>"
+  xyzwh 474 490 2000 96 18
+durationcanvas 128800 classinstance_ref 128032 // :Jogador
+  xyzwh 25 91 2010 11 42
+end
+durationcanvas 128928 classinstance_ref 128672 // :MenuDeOpcoes
+  xyzwh 167 93 2010 11 82
+end
+durationcanvas 129824 classinstance_ref 128160 // :Tabuleiro
+  xyzwh 345 146 2020 11 435
+  overlappingdurationcanvas 130720
+    xyzwh 351 349 2026 11 174
+    overlappingdurationcanvas 133408
+      xyzwh 357 463 2036 11 43
+    end
+  end
+end
+durationcanvas 131104 classinstance_ref 130976 // :Nivel
+  xyzwh 580 367 2018 11 43
+end
+durationcanvas 132128 classinstance_ref 128544 // :Cronometro
+  xyzwh 458 232 3005 11 61
+end
+durationcanvas 132256 classinstance_ref 130976 // :Nivel
+  xyzwh 580 232 2010 11 61
+end
+msg 129056 synchronous
+  from durationcanvas_ref 128800
+  to durationcanvas_ref 128928
+  yz 93 2015 explicitmsg "iniciarJogo"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 64 75
+msg 129952 asynchronous
+  from durationcanvas_ref 128928
+  to durationcanvas_ref 129824
+  yz 148 2015 msg operation_ref 143648 // "iniciarJogo(in nivel : Nivel) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 201 130
+reflexivemsg 130848 synchronous
+  to durationcanvas_ref 130720
+  yz 349 2025 msg operation_ref 136736 // "carregarCartas(in nivel : Nivel) : List<Carta>"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 309 331
+msg 131232 synchronous
+  from durationcanvas_ref 130720
+  to durationcanvas_ref 131104
+  yz 372 2030 msg operation_ref 136352 // "obterQuantidadeDeCartas() : int"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 375 357
+msg 131360 return
+  from durationcanvas_ref 131104
+  to durationcanvas_ref 130720
+  yz 394 2035 explicitmsg "quantidade"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 431 376
+msg 132384 synchronous
+  from durationcanvas_ref 132128
+  to durationcanvas_ref 132256
+  yz 233 2015 explicitmsg "obterTempo()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 472 215
+msg 132512 return
+  from durationcanvas_ref 132256
+  to durationcanvas_ref 132128
+  yz 264 2015 explicitmsg "tempoMaximoDoJogo"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 473 246
+reflexivemsg 133536 synchronous
+  to durationcanvas_ref 133408
+  yz 463 2041 explicitmsg "obterImagemDaCarta"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 364 444
+line 129440 -_-_ decenter_begin 181 decenter_end 595
+  from ref 128928 z 2011 to ref 128160
+line 130208 -_-_ decenter_begin 45
+  from ref 129824 z 2011 to ref 128544
+line 133664 -_-_
+  from ref 133408 z 2037 to ref 131488
+end

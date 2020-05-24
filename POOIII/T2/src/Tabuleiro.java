@@ -7,7 +7,6 @@ import java.util.List;
 public class Tabuleiro {
     protected Cronometro cronometro;
     protected List<Carta> cartas = new ArrayList<>();
-    protected Jogador jogador;
     protected Carta jogada = null;
     protected Integer numeroDeJogadas;
     private boolean fimDeJogo;
@@ -25,7 +24,6 @@ public class Tabuleiro {
         cronometro = new Cronometro();
         cartas = carregarCartas(nivel);
         Collections.shuffle(cartas);
-        jogador = new Jogador();
         numeroDeJogadas = 0;
         fimDeJogo = false;
     }
@@ -75,5 +73,9 @@ public class Tabuleiro {
 
     public void iniciarCronometro(Nivel nivel) {
         cronometro.iniciar(nivel);
+    }
+
+    public void pararCronometro() {
+        cronometro.parar();
     }
 }

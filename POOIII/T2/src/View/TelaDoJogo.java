@@ -20,7 +20,7 @@ public class TelaDoJogo extends JPanel {
         return this;
     }
 
-    public void criarJogo(Tabuleiro tabuleiro, JPanel painelPrincipal, Nivel nivel, TelaDeFimDeJogo telaDeFimDeJogo) {
+    public void criarJogo(Tabuleiro tabuleiro, ControleVisual painelPrincipal, Nivel nivel, TelaDeFimDeJogo telaDeFimDeJogo) {
         cartas = new ArrayList<>();
         this.removeAll();
         int numeroDeCartas = tabuleiro.obterQuantidadeDeCarta();
@@ -56,6 +56,7 @@ public class TelaDoJogo extends JPanel {
                     atualizarJogo(tabuleiro);
                     jogadas.setText("Numero de jogadas: " + tabuleiro.obterNumeroDeJogadas());
                     if (tabuleiro.jogoFinalizado()) {
+                        tabuleiro.pararCronometro();
                         telaDeFimDeJogo.setText(tabuleiro);
                         CardLayout layout = (CardLayout) (painelPrincipal.getLayout());
                         layout.show(painelPrincipal, "3");

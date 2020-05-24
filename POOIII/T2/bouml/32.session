@@ -1,21 +1,18 @@
-window_sizes 1920 1016 450 1464 861 102
+window_sizes 1360 731 317 1037 574 102
 cleanlooks_style
 diagrams
   usecasediagram_ref 128032 // CasoDeUso
     1171 674 100 A4 0 0
-  classdiagram_ref 128160 // DiagramaDeClasse
-    120 106 100 A4 0 0
-  active  sequencediagram_ref 128288 // Fazer Jogada
-    1464 861 108 A4 458 0
+  active  classdiagram_ref 128160 // DiagramaDeClasse
+    1037 574 100 A4 144 0
+  sequencediagram_ref 128288 // Fazer Jogada
+    1464 861 108 A4 230 0
+  sequencediagram_ref 134816 // Iniciar jogo
+    120 110 100 A4 84 0
 end
 show_stereotypes
-selected class_ref 128288 // Posicao
+selected classdiagram_ref 128160 // DiagramaDeClasse
 open
   class_ref 128032 // Jogador
-  class_ref 128160 // Tabuleiro
-  class_ref 128288 // Posicao
-  class_ref 128416 // Carta
-  class_ref 128544 // Cronometro
-  class_ref 128672 // Nivel
 end
 end

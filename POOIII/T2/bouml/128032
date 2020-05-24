@@ -1,7 +1,7 @@
 format 222
 "JogoDaMemoria" // JogoDaMemoria
-  revision 2
-  modified_by 32 "samaia"
+  revision 4
+  modified_by 32 "fabio"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -74,47 +74,12 @@ format 222
 	    classrelation_ref 128672 // <association>
       end
 
-      operation 129312 "alterarDificuldade"
-	public explicit_return_type "void"
-	nparams 0
-	
-	
-	
-	
-	
-      end
-
-      operation 129440 "selecionadoCarta"
-	public explicit_return_type "void"
-	nparams 2
-	  param in name "posicaoX" explicit_type "int"
-	  param in name "posicaoY" explicit_type "int"
-	
-	
-	
-	
-	
-      end
-
-      attribute 128928 "nome"
-	private explicit_type "String"
-	cpp_decl ""
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 129568 "iniciarJogo"
-	public explicit_return_type "void"
-	nparams 0
-	
-	
-	
-	
-	
+      classrelation 136992 // <association>
+	relation 135712 ----
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 136992 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 137120 // <association>
       end
     end
 
@@ -217,32 +182,12 @@ format 222
 	    classrelation_ref 129184 // <composition>
       end
 
-      classrelation 129312 // posicoes (<association>)
-	relation 128672 ----
-	  a role_name "posicoes" multiplicity "20..*" private
-	    classrelation_ref 129312 // posicoes (<association>)
-	  b role_name "" multiplicity "1" private
-	    classrelation_ref 129440 // <association>
-      end
-
       classrelation 129568 // <composition>
 	relation 128800 *---
 	  a role_name "" multiplicity "1" private
 	    classrelation_ref 129568 // <composition>
 	  b role_name "" multiplicity "1" private
 	    classrelation_ref 129696 // <composition>
-      end
-
-      operation 129824 "buscarCarta"
-	public return_type class_ref 128416 // Carta
-	nparams 2
-	  param in name "posicaoX" explicit_type "int"
-	  param in name "posicaoY" explicit_type "int"
-	
-	
-	
-	
-	
       end
 
       attribute 129056 "Jogada"
@@ -255,6 +200,154 @@ format 222
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
+      end
+
+      classrelation 136224 // <association>
+	relation 135328 ----
+	  a role_name "" multiplicity "[20,30,40]" private
+	    classrelation_ref 136224 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 136352 // <association>
+      end
+
+      operation 136736 "carregarCartas"
+	public explicit_return_type "List<Carta>"
+	nparams 1
+	  param in name "nivel" type class_ref 128672 // Nivel
+	
+	
+	
+	
+	
+      end
+
+      classrelation 136864 // <association>
+	relation_ref 135584 // <association>
+      end
+
+      attribute 135968 "numeroDeJogadas"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136096 "fimDeJogo"
+	private explicit_type "boolean"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 143648 "iniciarJogo"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nivel" type class_ref 128672 // Nivel
+	
+	
+	
+	
+	
+      end
+
+      operation 143776 "obterQuantidadeDeCarta"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143904 "obterCarta"
+	public return_type class_ref 128416 // Carta
+	nparams 1
+	  param in name "posicao" explicit_type "int"
+	
+	
+	
+	
+	
+      end
+
+      operation 144032 "cartaSelecionada"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "carta" type class_ref 128416 // Carta
+	
+	
+	
+	
+	
+      end
+
+      operation 144160 "jogoFinalizado"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144288 "obterNumeroDeJogadas"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144416 "obterCartas"
+	public explicit_return_type "List<Carta>"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144544 "obterTempo"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144672 "iniciarCronometro"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 144800 "pararCronometro"
+	public explicit_return_type "void"
+	nparams 0
+	
+	
+	
+	
+	
       end
     end
 
@@ -322,10 +415,6 @@ format 222
 	
 	
       end
-
-      classrelation 129440 // <association>
-	relation_ref 128672 // <association>
-      end
     end
 
     class 128416 "Carta"
@@ -388,15 +477,73 @@ format 222
 	comment "Modifica o valor de virada para false."
       end
 
-      operation 128288 "obterImagem"
-	public explicit_return_type ""
-	nparams 0
+      operation 128288 "inserirImagemNaCarta"
+	public explicit_return_type "Image"
+	nparams 1
+	  param in name "posicao" explicit_type "int"
 	
 	
 	
 	
 	
 	comment "Retorna a imagem da carta."
+      end
+
+      classrelation 136352 // <association>
+	relation_ref 135328 // <association>
+      end
+
+      attribute 135584 "id"
+	private explicit_type "int"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 135712 "imagemViradaParaBaixo"
+	private explicit_type "Image"
+	init_value "0.png"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 143264 "estaVirada"
+	public explicit_return_type "boolean"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 143392 "obterImagemDaCarta"
+	public explicit_return_type "Image"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 146080 "getId"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
       end
     end
 
@@ -451,6 +598,27 @@ format 222
 
       operation 128672 "obterTempo"
 	public explicit_return_type "long"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      attribute 135840 "timer"
+	private explicit_type "Timer"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 143520 "acabouOTempo"
+	public explicit_return_type "boolean"
 	nparams 0
 	
 	
@@ -530,9 +698,244 @@ format 222
 	
       end
 
-      attribute 128800 "quantidadeDeCarta"
-	private explicit_type "int"
-	init_value "20"
+      operation 136352 "obterQuantidadeDeCartas"
+	public explicit_return_type "int"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 136480 "obterTempoMaximo"
+	public explicit_return_type "string"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 136608 // <association>
+	relation_ref 135456 // <association>
+      end
+    end
+
+    sequencediagram 128288 "Fazer Jogada"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    sequencediagram 134816 "Iniciar jogo"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    class 135200 "ControleVisual"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 136480 // <association>
+	relation 135456 ----
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 136480 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 136608 // <association>
+      end
+
+      classrelation 136736 // <association>
+	relation 135584 ----
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 136736 // <association>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 136864 // <association>
+      end
+
+      classrelation 137120 // <association>
+	relation_ref 135712 // <association>
+      end
+
+      operation 144928 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      classrelation 143648 // <composition>
+	relation 142240 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 143648 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 143776 // <composition>
+      end
+
+      classrelation 143904 // <composition>
+	relation 142368 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 143904 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 144032 // <composition>
+      end
+
+      classrelation 144160 // <composition>
+	relation 142496 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 144160 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 144288 // <composition>
+      end
+
+      classrelation 144416 // <composition>
+	relation 142624 *---
+	  a role_name "" multiplicity "1" private
+	    classrelation_ref 144416 // <composition>
+	  b role_name "" multiplicity "1" private
+	    classrelation_ref 144544 // <composition>
+      end
+    end
+
+    class 141728 "MenuDeDificuldade"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 143776 // <composition>
+	relation_ref 142240 // <composition>
+      end
+
+      operation 145696 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 2
+	  param in name "painelPrincipal" type class_ref 135200 // ControleVisual
+	  param in name "nivel" type class_ref 128672 // Nivel
+	
+	
+	
+	
+	
+      end
+
+      operation 145824 "voltarParaOMenuDeOpcoes"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "painelPrincipal" type class_ref 135200 // ControleVisual
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 141856 "MenuDeOpcoes"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144032 // <composition>
+	relation_ref 142368 // <composition>
+      end
+
+      operation 145952 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 5
+	  param in name "painelPrincipal" type class_ref 135200 // ControleVisual
+	  param in name "tabuleiro" type class_ref 128160 // Tabuleiro
+	  param in name "nivel" type class_ref 128672 // Nivel
+	  param in name "telaDoJogo" type class_ref 141984 // TelaDoJogo
+	  param in name "telaDeFimDeJogo" type class_ref 142112 // TelaDeFimDeJogo
+	
+	
+	
+	
+	
+      end
+    end
+
+    class 141984 "TelaDoJogo"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144288 // <composition>
+	relation_ref 142496 // <composition>
+      end
+
+      operation 145056 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 0
+	
+	
+	
+	
+	
+      end
+
+      operation 145184 "criarJogo"
+	public explicit_return_type ""
+	nparams 4
+	  param in name "tabuleiro" type class_ref 128160 // Tabuleiro
+	  param in name "painelPrincipal" type class_ref 135200 // ControleVisual
+	  param in name "nivel" type class_ref 128672 // Nivel
+	  param in name "telaDeFimDeJogo" type class_ref 142112 // TelaDeFimDeJogo
+	
+	
+	
+	
+	
+      end
+
+      operation 145312 "atualizarJogo"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "tabuleiro" type class_ref 128160 // Tabuleiro
+	
+	
+	
+	
+	
+      end
+
+      attribute 136736 "cartas"
+	private explicit_type "List<JButton>"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136864 "timer"
+	private explicit_type "Timer"
 	cpp_decl ""
 	java_decl ""
 	php_decl ""
@@ -543,7 +946,87 @@ format 222
       end
     end
 
-    sequencediagram 128288 "Fazer Jogada"
+    class 142112 "TelaDeFimDeJogo"
+      visibility package 
+      cpp_decl ""
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 144544 // <composition>
+	relation_ref 142624 // <composition>
+      end
+
+      operation 145440 "getPanel"
+	public explicit_return_type "JPanel"
+	nparams 1
+	  param in name "painelPrincipal" type class_ref 135200 // ControleVisual
+	
+	
+	
+	
+	
+      end
+
+      operation 145568 "setText"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "tabuleiro" type class_ref 128160 // Tabuleiro
+	
+	
+	
+	
+	
+      end
+
+      attribute 136352 "jogadas"
+	private explicit_type "JLabel"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136480 "cronometroLabel"
+	private explicit_type "JLabel"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 136608 "mensagemDeFimDeJogo"
+	private explicit_type "JLabel"
+	cpp_decl ""
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    sequencediagram 141344 "Sair do Jogo"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141472 "Escolher Dificuldade"
+      sequencediagramsettings end
+      overlapping_bars size A4
+    end
+
+    sequencediagram 141600 "Jogo"
       sequencediagramsettings end
       overlapping_bars size A4
     end

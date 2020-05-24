@@ -1,0 +1,30 @@
+format 222
+
+classinstance 128032 class_ref 128032 // Jogador
+  name ""   xyz 59 4 2000 life_line_z 2000
+classinstance 128800 class_ref 141728 // MenuDeDificuldade
+  name ""   xyz 249 4 2000 life_line_z 2000
+classinstance 129056 class_ref 128672 // Nivel
+  name ""   xyz 618 4 2000 life_line_z 2000
+durationcanvas 129184 classinstance_ref 128032 // :Jogador
+  xyzwh 86 114 2010 11 43
+end
+durationcanvas 129312 classinstance_ref 128800 // :MenuDeDificuldade
+  xyzwh 323 114 2010 11 42
+end
+durationcanvas 129568 classinstance_ref 129056 // :Nivel
+  xyzwh 639 139 2010 11 29
+end
+msg 129440 synchronous
+  from durationcanvas_ref 129184
+  to durationcanvas_ref 129312
+  yz 114 2015 explicitmsg "escolheAOpcaoDeDificuldade"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 105 97
+msg 129696 synchronous
+  from durationcanvas_ref 129312
+  to durationcanvas_ref 129568
+  yz 139 2020 msg operation_ref 129184 // "alterarDificuldade(in dificuldade : String) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 415 121
+end

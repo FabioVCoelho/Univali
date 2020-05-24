@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class MenuDeDificuldade extends JPanel {
 
-    public JPanel getPanel(JPanel painelPrincipal, Nivel nivel) {
+    public JPanel getPanel(ControleVisual painelPrincipal, Nivel nivel) {
         this.setLayout(new GridLayout(3, 1));
         JButton facil = new JButton("Fácil");
         JButton normal = new JButton("Normal");
@@ -15,17 +15,17 @@ public class MenuDeDificuldade extends JPanel {
 
         facil.addActionListener(e -> {
             nivel.alterarDificuldade(facil.getText());
-            backToLastOptionMenu(painelPrincipal);
+            voltarParaOMenuDeOpcoes(painelPrincipal);
         });
 
         normal.addActionListener(e -> {
             nivel.alterarDificuldade(normal.getText());
-            backToLastOptionMenu(painelPrincipal);
+            voltarParaOMenuDeOpcoes(painelPrincipal);
         });
 
         dificil.addActionListener(e -> {
             nivel.alterarDificuldade(dificil.getText());
-            backToLastOptionMenu(painelPrincipal);
+            voltarParaOMenuDeOpcoes(painelPrincipal);
         });
 
         this.add(facil);
@@ -35,7 +35,7 @@ public class MenuDeDificuldade extends JPanel {
         return this;
     }
 
-    private void backToLastOptionMenu(JPanel painelPrincipal) {
+    private void voltarParaOMenuDeOpcoes(ControleVisual painelPrincipal) {
         CardLayout layout = (CardLayout) (painelPrincipal.getLayout());
         layout.show(painelPrincipal, "0");
     }

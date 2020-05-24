@@ -9,11 +9,11 @@ public class Carta {
     protected boolean virada = true;
     protected Image image;
     protected Integer id;
-    protected Image backCard;
+    protected Image imagemViradaParaBaixo;
 
     {
         try {
-            backCard = ImageIO.read(getClass().getClassLoader().getResourceAsStream("0.png"));
+            imagemViradaParaBaixo = ImageIO.read(getClass().getClassLoader().getResourceAsStream("0.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -22,7 +22,7 @@ public class Carta {
     Carta(Integer id) {
         id = id + 1;
         if (id > 10) id = id - 10;
-        this.image = obterImagemDaCarta(id);
+        this.image = inserirImagemNaCarta(id);
         this.id = id;
     }
 
@@ -32,7 +32,7 @@ public class Carta {
 
     public Image getImagem() {
         if (!virada) {
-            return backCard;
+            return imagemViradaParaBaixo;
         }
         return this.image;
     }
@@ -45,7 +45,7 @@ public class Carta {
         this.virada = false;
     }
 
-    private Image obterImagemDaCarta(int i) {
+    private Image inserirImagemNaCarta(int i) {
         Image image = null;
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(i + ".png"));

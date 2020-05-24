@@ -2,51 +2,83 @@ format 222
 
 classcanvas 128032 class_ref 128032 // Jogador
   classdiagramsettings member_max_width 0 end
-  xyz 49 137 2000
+  xyz 80 66 2000
 end
 classcanvas 128160 class_ref 128160 // Tabuleiro
   classdiagramsettings member_max_width 0 end
-  xyz 353 166 2000
-end
-classcanvas 128544 class_ref 128288 // Posicao
-  classdiagramsettings member_max_width 0 end
-  xyz 371 409 2000
+  xyz 322 35 2000
 end
 classcanvas 129184 class_ref 128416 // Carta
   classdiagramsettings member_max_width 0 end
-  xyz 359 620 2000
+  xyz 631 216 2000
 end
 classcanvas 130208 class_ref 128544 // Cronometro
   classdiagramsettings member_max_width 0 end
-  xyz 588 171 2006
+  xyz 678 16 2006
 end
 classcanvas 131360 class_ref 128672 // Nivel
   classdiagramsettings member_max_width 0 end
-  xyz 572 377 2000
+  xyz 36 334 2000
 end
-relationcanvas 129312 relation_ref 128160 // <association>
-  from ref 128544 z 2001 to ref 129184
-  no_role_a no_role_b
-  multiplicity_a_pos 392 595 3000 multiplicity_b_pos 390 528 3000
+classcanvas 131616 class_ref 135200 // ControleVisual
+  classdiagramsettings member_max_width 0 end
+  xyz 366 521 2000
 end
-relationcanvas 129568 relation_ref 128288 // <association>
-  from ref 128032 z 2001 to ref 128160
-  no_role_a no_role_b
-  multiplicity_a_pos 334 226 3000 multiplicity_b_pos 191 220 3000
+classcanvas 132256 class_ref 141728 // MenuDeDificuldade
+  classdiagramsettings member_max_width 0 end
+  xyz 394 715 2000
+end
+classcanvas 132512 class_ref 141856 // MenuDeOpcoes
+  classdiagramsettings member_max_width 0 end
+  xyz 230 724 2000
+end
+classcanvas 132768 class_ref 141984 // TelaDoJogo
+  classdiagramsettings member_max_width 0 end
+  xyz 50 714 2005
+end
+classcanvas 133024 class_ref 142112 // TelaDeFimDeJogo
+  classdiagramsettings member_max_width 0 end
+  xyz 650 713 2000
 end
 relationcanvas 130720 relation_ref 128544 // <composition>
   from ref 128160 z 2007 to ref 130208
   no_role_a no_role_b
-  multiplicity_a_pos 569 232 3000 multiplicity_b_pos 461 228 3000
+  multiplicity_a_pos 658 119 3000 multiplicity_b_pos 536 174 3000
 end
-relationcanvas 130976 relation_ref 128672 // <association>
-  from ref 128160 z 2001 to ref 128544
-  role_a_pos 414 384 3000 no_role_b
-  multiplicity_a_pos 364 384 3000 multiplicity_b_pos 384 281 3000
-end
-relationcanvas 131488 relation_ref 128800 // <composition>
-  from ref 128160 z 2001 to ref 131360
+relationcanvas 131744 relation_ref 135328 // <association>
+  decenter_begin 501
+  from ref 128160 z 2001 to ref 129184
   no_role_a no_role_b
-  multiplicity_a_pos 561 393 3000 multiplicity_b_pos 461 280 3000
+  multiplicity_a_pos 543 287 3000 multiplicity_b_pos 536 224 3000
+end
+relationcanvas 131872 relation_ref 135456 // <association>
+  from ref 131616 z 2001 to ref 131360
+  no_role_a no_role_b
+  multiplicity_a_pos 262 468 3000 multiplicity_b_pos 340 519 3000
+end
+relationcanvas 132000 relation_ref 135584 // <association>
+  from ref 131616 z 2001 to ref 128160
+  no_role_a no_role_b
+  multiplicity_a_pos 408 390 3000 multiplicity_b_pos 412 496 3000
+end
+relationcanvas 132384 relation_ref 142240 // <composition>
+  from ref 131616 z 2001 to ref 132256
+  no_role_a no_role_b
+  multiplicity_a_pos 470 690 3000 multiplicity_b_pos 426 586 3000
+end
+relationcanvas 132640 relation_ref 142368 // <composition>
+  from ref 131616 z 2001 to ref 132512
+  no_role_a no_role_b
+  multiplicity_a_pos 303 699 3000 multiplicity_b_pos 388 586 3000
+end
+relationcanvas 132896 relation_ref 142496 // <composition>
+  from ref 131616 z 2006 to ref 132768
+  no_role_a no_role_b
+  multiplicity_a_pos 178 736 3000 multiplicity_b_pos 369 579 3000
+end
+relationcanvas 133152 relation_ref 142624 // <composition>
+  from ref 131616 z 2001 to ref 133024
+  no_role_a no_role_b
+  multiplicity_a_pos 638 728 3000 multiplicity_b_pos 482 593 3000
 end
 end

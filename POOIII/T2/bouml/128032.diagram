@@ -8,7 +8,7 @@ usecasecanvas 128160 usecase_ref 128032 // Fazer jogada
   xyzwh 267 60 3005 64 32 label_xy 256 92
 end
 usecasecanvas 128416 usecase_ref 128160 // Escolher Dificuldade
-  xyzwh 266 148 3005 64 32 label_xy 231 180
+  xyzwh 273 148 3005 64 32 label_xy 238 180
 end
 usecasecanvas 128672 usecase_ref 128288 // Iniciar Jogo
   xyzwh 268 249 3005 64 32 label_xy 263 281
@@ -18,7 +18,7 @@ classcanvas 128928 class_ref 128160 // Tabuleiro
   xyz 492 151 2000
 end
 usecasecanvas 129440 usecase_ref 128416 // Sair do Jogo
-  xyzwh 273 357 3005 64 32 label_xy 264 389
+  xyzwh 268 350 3005 64 32 label_xy 259 382
 end
 line 128288 --->
   from ref 128032 z 3006 to ref 128160
