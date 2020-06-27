@@ -31,7 +31,7 @@ public class Clube {
             throw new Exception("");
         }
         for (Socio socio : socioList) {
-            Mensalidade mensalidade = new Mensalidade(dataParaGerar, null, 150D, false, 0D, 0D);
+            Mensalidade mensalidade = new Mensalidade(dataParaGerar, null, 150D, 0D, 0D);
             socio.registrarMensalidade(mensalidade);
         }
     }

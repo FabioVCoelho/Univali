@@ -9,10 +9,10 @@ import java.awt.*;
 import java.util.List;
 
 public class AcaoSocio extends JPanel {
-    DefaultListModel defaultListModel = new DefaultListModel();
-    DefaultListModel defaultListModelPessoas = new DefaultListModel();
-    JList listaSocios = new JList(defaultListModel);
-    JList listaPessoasJList = new JList(defaultListModelPessoas);
+    DefaultListModel<Socio> defaultListModel = new DefaultListModel<>();
+    DefaultListModel<Pessoa> defaultListModelPessoas = new DefaultListModel<>();
+    JList<Socio> listaSocios = new JList<Socio>(defaultListModel);
+    JList<Pessoa> listaPessoasJList = new JList<Pessoa>(defaultListModelPessoas);
     JButton solicitacaoDeSocio = new JButton("Solicitar Assossiação");
     JButton adicionarSocio = new JButton("Aceitar Solicitação");
     JButton removerSocio = new JButton("Remover Sócio");
@@ -53,18 +53,18 @@ public class AcaoSocio extends JPanel {
         });
 
         adicionarSocio.addActionListener(e -> {
-            clube.aceitarSolicitacao((Pessoa) listaPessoasJList.getSelectedValue());
+            clube.aceitarSolicitacao(listaPessoasJList.getSelectedValue());
             atualizarLista();
             atualizarListaPessoas();
         });
 
         removerSocio.addActionListener(e -> {
-            clube.removerSocio((Socio) listaSocios.getSelectedValue());
+            clube.removerSocio(listaSocios.getSelectedValue());
             atualizarLista();
         });
 
         atualizarSocio.addActionListener(e -> {
-            cadastroSocio.preencherCampos((Socio) listaSocios.getSelectedValue());
+            cadastroSocio.preencherCampos(listaSocios.getSelectedValue());
             CardLayout layout = (CardLayout) (panels.getLayout());
             layout.show(panels, "1");
         });
@@ -75,14 +75,14 @@ public class AcaoSocio extends JPanel {
         });
 
         quitarMensalidade.addActionListener(e -> {
-            listarMensalidadeSocio.setSocio((Socio) listaSocios.getSelectedValue());
+            listarMensalidadeSocio.setSocio(listaSocios.getSelectedValue());
             listarMensalidadeSocio.atualizarLista();
             CardLayout layout = (CardLayout) (panels.getLayout());
             layout.show(panels, "4");
         });
 
         listarDependetes.addActionListener(e -> {
-            listarDependenteSocio.setSocio((Socio) listaSocios.getSelectedValue());
+            listarDependenteSocio.setSocio(listaSocios.getSelectedValue());
             listarDependenteSocio.atualizarLista();
             CardLayout layout = (CardLayout) (panels.getLayout());
             layout.show(panels, "6");
@@ -94,16 +94,16 @@ public class AcaoSocio extends JPanel {
     public void atualizarLista() {
         defaultListModel.clear();
         List<Socio> objs = clube.consultaSocio();
-        for (int i = 0; i < objs.size(); i++) {
-            defaultListModel.addElement(objs.get(i));
+        for (Socio obj : objs) {
+            defaultListModel.addElement(obj);
         }
     }
 
     public void atualizarListaPessoas() {
         defaultListModelPessoas.clear();
         List<Pessoa> objs = clube.consultaCandidato();
-        for (int i = 0; i < objs.size(); i++) {
-            defaultListModelPessoas.addElement(objs.get(i));
+        for (Pessoa obj : objs) {
+            defaultListModelPessoas.addElement(obj);
         }
     }
 

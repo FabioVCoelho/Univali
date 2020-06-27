@@ -2,11 +2,16 @@ package src.View;
 
 import src.Mensalidade;
 import src.Socio;
+import src.estadoMensalidade.MensalidadeQuitada;
+import src.observerView.Observer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QuitarMensalidade extends JPanel {
+    protected final List<Observer> colecaoDeObservers = new ArrayList<>();
     JLabel dataVencimentoLabel = new JLabel("Data Vencimento: ");
     JLabel dataPagamentoLabel = new JLabel("Data Pagamento: ");
     JLabel valorAPagarLabel = new JLabel("Valor da fatura: ");
@@ -24,7 +29,6 @@ public class QuitarMensalidade extends JPanel {
     JButton voltar = new JButton("Voltar");
     JButton pagar = new JButton("Pagar");
     private Mensalidade mensalidade;
-    private Socio socio;
 
     public JPanel getPanel(JPanel panels) {
         this.setLayout(new GridLayout(0, 2));
@@ -50,11 +54,8 @@ public class QuitarMensalidade extends JPanel {
         });
 
         pagar.addActionListener(e -> {
-            socio.pagarMensalidade(this.mensalidade, Double.parseDouble(valorPago.getText()));
-            quitada.setText(this.mensalidade.getQuitada().toString());
-            dataPagamento.setText(this.mensalidade.getData_pagamento().toString());
-            valorPago.setEnabled(false);
-            pagar.setEnabled(false);
+            colecaoDeObservers.forEach(observer -> observer.quitarMensalidade(this.mensalidade, Double.parseDouble(valorPago.getText())));
+            setMensalidade(this.mensalidade);
         });
 
         return this;
@@ -64,19 +65,22 @@ public class QuitarMensalidade extends JPanel {
         this.mensalidade = mensalidade;
         valorAPagar.setText(mensalidade.getValor().toString());
         quitada.setText(mensalidade.getQuitada().toString());
+        valorPago.setText(mensalidade.getValor_pago().toString());
         if (mensalidade.getData_pagamento() != null) {
             dataPagamento.setText(mensalidade.getData_pagamento().toString());
         }
         dataVencimento.setText(mensalidade.getData_vencimento().toString());
-        jurosSobreOValor.setText(String.valueOf(mensalidade.calcularJuros()));
-        if (mensalidade.getQuitada()) {
-            valorPago.setEnabled(false);
+        if (mensalidade.getQuitada().getClass().equals(MensalidadeQuitada.class)) {
             valorPago.setText(mensalidade.getValor_pago().toString());
-            pagar.setEnabled(false);
         }
+        pagar.setEnabled(this.mensalidade.getQuitada().getPagarEnable());
+        valorPago.setEnabled(this.mensalidade.getQuitada().getValorPagoEnable());
+        jurosSobreOValor.setText(this.mensalidade.getQuitada().getJuros());
     }
 
     public void setSocio(Socio socio) {
-        this.socio = socio;
+        colecaoDeObservers.clear();
+        colecaoDeObservers.add(socio);
     }
+
 }

@@ -1,10 +1,12 @@
 package src;
 
+import src.observerView.Observer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Socio extends Pessoa {
+public class Socio extends Pessoa implements Observer {
     Long numeroCartaoSocio;
     List<Mensalidade> mensalidadeList = new ArrayList<>();
     List<Dependente> dependenteList = new ArrayList<>();
@@ -15,10 +17,6 @@ public class Socio extends Pessoa {
 
     public Long getNumeroCartaoSocio() {
         return numeroCartaoSocio;
-    }
-
-    public void pagarMensalidade(Mensalidade mensalidade, double valorPago) {
-        mensalidade.quitar(valorPago);
     }
 
     public Long registrar() {
@@ -86,5 +84,10 @@ public class Socio extends Pessoa {
     public void atualizarDependente(Dependente dependenteOld, Dependente dependente) {
         removerDependente(dependenteOld);
         adicionarDependente(dependente);
+    }
+
+    @Override
+    public void quitarMensalidade(Mensalidade mensalidade, double valorPago) {
+        mensalidade.quitar(valorPago);
     }
 }

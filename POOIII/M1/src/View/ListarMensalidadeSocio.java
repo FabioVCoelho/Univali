@@ -11,8 +11,8 @@ public class ListarMensalidadeSocio extends JPanel {
     JButton voltar = new JButton("Voltar");
     JButton pagar = new JButton("Pagar");
 
-    DefaultListModel defaultListModel = new DefaultListModel();
-    JList listaMensalidade = new JList(defaultListModel);
+    DefaultListModel<Mensalidade> defaultListModel = new DefaultListModel<>();
+    JList<Mensalidade> listaMensalidade = new JList<>(defaultListModel);
 
     private Socio socio;
 
@@ -30,7 +30,7 @@ public class ListarMensalidadeSocio extends JPanel {
 
         pagar.addActionListener(e -> {
             CardLayout layout = (CardLayout) (panels.getLayout());
-            quitarMensalidade.setMensalidade((Mensalidade) listaMensalidade.getSelectedValue());
+            quitarMensalidade.setMensalidade(listaMensalidade.getSelectedValue());
             quitarMensalidade.setSocio(this.socio);
             layout.show(panels, "5");
         });
@@ -45,8 +45,8 @@ public class ListarMensalidadeSocio extends JPanel {
     public void atualizarLista() {
         defaultListModel.clear();
         List<Mensalidade> objs = socio.getMensalidades();
-        for (int i = 0; i < objs.size(); i++) {
-            defaultListModel.addElement(objs.get(i));
+        for (Mensalidade obj : objs) {
+            defaultListModel.addElement(obj);
         }
     }
 
