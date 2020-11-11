@@ -1,0 +1,10 @@
+[RESOURCES]
+Trabalhador do Corte
+Trabalhador da Colagem
+[VARIABLES]
+Processo de Colagem.NumberOut
+Ordem recebida.NumberOut
+Processo de Colagem.NumberIn
+Processo de Corte.NumberIn
+Processo de Corte.NumberOut
+Enviada ao cliente.NumberOut

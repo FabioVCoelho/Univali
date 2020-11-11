@@ -1,0 +1,57 @@
+
+                                      ARENA Simulation Results
+                                      Fabio - License: STUDENT
+
+                                  Sumário para Replicação 1 de 1
+
+Projeto: Unnamed Project                                             Data da execução :11/11/2020
+Analista: Fabio                                                       Data de revisão do modelo:11/11/2020
+
+Replicação terminada no tempo de      : 480.0 Minutos 
+Unidade de Tempo Base: Minutos
+
+                                           VARIÁVEIS DE REGISTRO
+
+Identificador                                  Média   Meia Largura  Mínimo    Máximo   Observações
+___________________________________________________________________________________________________
+
+pipa.VATime                                 24.085     (Insuf)    20.316     27.524         35    
+pipa.NVATime                                .00000     (Insuf)    .00000     .00000         35    
+pipa.WaitTime                               22.517     (Insuf)    .00000     55.931         35    
+pipa.TranTime                               .00000     (Insuf)    .00000     .00000         35    
+pipa.OtherTime                              .00000     (Insuf)    .00000     .00000         35    
+pipa.TotalTime                              46.602     (Insuf)    23.280     80.226         35    
+Processo de Colagem.Queue.WaitingTime       21.265     (Insuf)    .00000     50.941         35    
+Processo de Corte.Queue.WaitingTime         1.2164     (Insuf)    .00000     15.166         36    
+
+                                     VARIÁVEIS DISCRETAS
+
+Identificador                                 Média   Meia Largura  Mínimo    Máximo   Valor Final
+___________________________________________________________________________________________________
+
+pipa.WIP                                    3.4145     (Insuf)    .00000     7.0000     1.0000    
+Trabalhador do Corte.NumberBusy             .89827     (Insuf)    .00000     2.0000     1.0000    
+Trabalhador do Corte.NumberScheduled        2.0000     (Insuf)    2.0000     2.0000     2.0000    
+Trabalhador do Corte.Utilization            .44913     (Insuf)    .00000     1.0000     .50000    
+Trabalhador da Colagem.NumberBusy           .87442     (Insuf)    .00000     1.0000     .00000    
+Trabalhador da Colagem.NumberScheduled      1.0000     (Insuf)    1.0000     1.0000     1.0000    
+Trabalhador da Colagem.Utilization          .87442     (Insuf)    .00000     1.0000     .00000    
+Processo de Colagem.Queue.NumberInQueue     1.5506     (Insuf)    .00000     5.0000     .00000    
+Processo de Corte.Queue.NumberInQueue       .09123     (Insuf)    .00000     3.0000     .00000    
+
+                                             RESULTADOS
+
+Identificador                                   Valor
+_____________________________________________________________
+
+pipa.NumberIn                               36.000    
+pipa.NumberOut                              35.000    
+Trabalhador do Corte.NumberSeized           36.000    
+Trabalhador do Corte.ScheduledUtilization   .44913    
+Trabalhador da Colagem.NumberSeized         35.000    
+Trabalhador da Colagem.ScheduledUtilizatio  .87442    
+System.NumberOut                            35.000    
+
+
+Tempo executando a simulação: 0.12 minutos.
+Simulação completada.
