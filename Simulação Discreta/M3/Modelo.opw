@@ -1,0 +1,12 @@
+[RESOURCES]
+Resource 1
+[VARIABLES]
+Emergencia com Risco Vida.NumberOut
+Emergencia com Risco Vida.NumberIn
+Dispose 2.NumberOut
+Falsa.NumberOut
+Chamado.NumberOut
+Falsa.NumberIn
+Dispose 1.NumberOut
+Emergência sem Risco de Vida.NumberIn
+Emergência sem Risco de Vida.NumberOut
