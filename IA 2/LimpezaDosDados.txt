@@ -1,0 +1,68 @@
+Alunos: Fábio Volkmann Coelho
+
+Limpeza de dados referente as bases do projeto:
+
+Para a base do Procon foi necessário excluir as 2 últimas linhas do arquivo para evitar 2 linhas nulas. das bases de 2009 até 2011.
+A base de 2018 possui algumas colunas 'nome fantasia' que possuem ';' como separador de empresas e que consequentemente atrapalham na leitura dos dados pois alteram a quantidade de colunas finais. Sendo necessário a modificação por linha manual (18 linhas no total)
+Para fazer a união de todas as tabelas, foi necessário renomear as colunas dos anos de 2009,2010 e 2011, pois o padrão das colunas mudaram para CapitalCase enquanto que no começo era tudo minusculo.
+A união de todas as tabelas resultou em 1.668.061 linhas com 23 colunas.
+
+Fazendo a verificação dos dados notou-se que o número de CEPs que são vazios é de 120.078 e que isso representa 7,20% da base não é uma perda muito significativa que compromenta o estudo de caso.
+Dos 7,20% da base, separados pela quantidade por ano:
+
+ | Ano Calendario | Linhas |
+ |----------------|--------|
+ | 2009           | 9824   |
+ | 2010           | 11725  |
+ | 2011           | 9162   |
+ | 2012           | 13906  |
+ | 2013           | 18667  |
+ | 2014           | 17936  |
+ | 2015           | 18211  |
+ | 2016           | 14086  |
+ | 2017           | 4696   |
+ | 2018           | 1858   |
+
+Antes da remoção dos CEPs nulos, o ano que possuia mais reclamações era o de 2013 com 268.096 registros,após a remoção passou a ser o de 2014 o que possui mais reclamações com 249.828 registros.
+Assim como passou a ter somente 65.832 empresas sem o CNPJ que antes era de 71.583
+
+Diversas empresas possuem razões sociais com o mesmo radical de CNPJ porém com nomes diferentes, enquanto que na base da RFB estes possuem o mesmo valor. Realizando uma pesquisa externa, foi constatado que a razão social das empresas, mesmo partindo de uma mesma matriz, pode possuir nomes diferentes da matriz, dependendo da leis do estado referente a este valor.
+Algumas empresas possuem a mesma razão social porém com radicais de CNPJ distintos, tais como a
+"TELEMAR NORTE LESTE S/A", "BANCO DO BRASIL", "CAIXA ECONÔMICA FEDERAL"
+
+Para aqueles que possuem valor na base da RFB como únicos será utilizado o mesmo como razão social para melhorar o agrupamento das empresas.
+
+Para aprimorar a limpeza dos dados será removidos os caracteres que estão incluidos no SA tais como [.,/,-,@]
+
+Foi considerado utilizar a RazaoSocialRFB como strRazaoSocial, porém todos os campos que estão nulos na strRazaoSocial também estão vazios na RazaoSocialRFB/NumeroCNPJ/RadicalCNPJ, portanto nenhum deles é possível constatar qual a empresa que está sendo reclamada. Consequentemente estes serão removidos da base, pois não agregam valor aos dados. Que no total são 11 linhas.
+
+Foi feita download da base de CNPJs do Brasil da base da receita federal com 9Gb de dados com aproximadamente 45.184.161 linhas e 35 colunas. Ao realizar o join da tabela da receita federal referenciando a razão social de ambas as colunas, porém pela natureza da colunas, foi realizado um plano cartesiano, aumentando a quantidade de linhas de reclamações.
+
+Reavaliando a solução dos valores que não possuem CNPJ para tentar aprimorar a base, não foi encontrado uma possibilidade de fazer a união dessas tabelas.
+
+As bases dos CepsAbertos possui os CEPS separados por estados em 5 arquivos distintos, onde os dados da base de CEPs são separados por:
+ - CEP
+ - Logradouro: nome da rua, avenida, etc
+ - Nome do bairro
+ - ID da cidade: referente ao ID contido arquivo "Cidades"
+ - ID do estado: referente ao ID contido no arquivo "Estados"
+
+Tendo 2 bases separadas com as cidades e os estados separadas da seguinte forma:
+
+Cidades:
+ - ID da cidade
+ - Nome da cidade
+ - ID do estado
+
+Estados:
+ - ID do estado
+ - Nome do estado
+ - Sigla do estado
+
+A tabela unificada que foi criada através da base dos CEPs foi gerada com as cidades e UFs na mesma colunas separadas por '/' foi necessário separar ambos e inserir em 2 colunas separadas para simplificar as análises além disso foi constatado que todos os valores de CEPs são únicos, porém algumas UFs estão constatando como "- Povoado" e "- Distrito", sendo necessária a remoção desses dados para a unificação das UFs.
+
+Após estas limpezas foi feito a junção das tabelas do PROCON com a tabela dos CEPs.
+Realizando uma análise prévia, foi constatado que o estado que possui mais reclamações é SP com 208.495 linhas, na cidade de São Paulo com 151.589 linhas, porém a rua que possui mais reclamações é a de Brasília a rua SCS Quadra 8 Bloco B Lotes 50/60 com 2.677 linhas.
+
+Será reavaliada a possibilidade de preencher os campos nulos do número de CNPJ através da base de cnpjs do Brasil realizando uma combinação de chaves, para que na junção das tabelas não seja gerada uma multiplicação de plano cartesiano por haver mais de uma ocorrência das chaves utilizadas.
+
