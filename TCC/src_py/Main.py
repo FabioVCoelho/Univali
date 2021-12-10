@@ -77,6 +77,10 @@ if __name__ == '__main__':
     else:
         dataframe = None
 
+    columns_to_analyse = ['CodigoAssunto', 'CodigoProblema']
+    data_manipulation.mean_and_std(dataframe[columns_to_analyse])
+    data_manipulation.frequency_distribution_codigo_assunto(dataframe[columns_to_analyse])
+    data_manipulation.frequency_distribution_codigo_problema(dataframe[columns_to_analyse])
     # data_manipulation.view_df_stats(dataframe)
     # print(len(data_manipulation.unique(dataframe, 'cidade_bairro')))
     # working_with_knn(dataframe=dataframe)

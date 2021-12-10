@@ -92,3 +92,16 @@ class DataManipulation:
 
     def unique(self, dataframe, param):
         return pd.unique(dataframe[param])
+
+    def mean_and_std(self, dataframe):
+        for column in dataframe.columns:
+            print("Desvio padrão da coluna " + column + " " + str(dataframe[column].std()))
+            print("Média da coluna " + column + " " + str(dataframe[column].mean()))
+
+    def frequency_distribution_codigo_assunto(self, dataframe):
+        dataframe_2 = dataframe["CodigoAssunto"].where(dataframe["CodigoAssunto"] > 64).where(dataframe["CodigoAssunto"] < 131).value_counts()
+        print(dataframe_2)
+
+    def frequency_distribution_codigo_problema(self, dataframe):
+        dataframe_2 = dataframe["CodigoProblema"].where(dataframe["CodigoProblema"] > 3432).where(dataframe["CodigoAssunto"] < 4828).value_counts()
+        print(dataframe_2)
